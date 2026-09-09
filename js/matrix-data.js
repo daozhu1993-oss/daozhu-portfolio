@@ -222,7 +222,7 @@ window.DAOZHU_DATA = {
       tag: "博弈策略 · 国风沉浸",
       image: "assets/arena_ceramic_bowl.jpg",
       desc: "取材自蒲松龄《聊斋志异·促织》。包含明代宣德青花瓷盆赛场、钢丝与蟹壳青蟋蟀养成、搏斗节拍与戏剧化命运抉择。",
-      url: "https://github.com/daozhu1993-oss"
+      url: "https://cuzhi.daozhuai.cn"
     },
     {
       id: "foggs-bet",
