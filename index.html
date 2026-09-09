@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>岛主 | 用故事思维驱动用户价值 (Daozhu Portfolio 2026)</title>
-  <meta name="description" content="岛主官方个人门户。十年编剧 × AI 产品经理 × 独立全栈创作者。聚合 AI 日报、设计灵感站、编剧手艺工坊与独立游戏群岛。">
-  <meta name="keywords" content="岛主, 编剧, AI产品经理, 短剧变现, AI漫剧, 独立开发者, 一人公司, 数字群岛">
+  <meta name="description" content="岛主官方个人门户。十年编剧 × AI 产品 × 内容创作。聚合 AI 智能体、IP 孵化、内容变现、230+思维模型与数字群岛生态。">
+  <meta name="keywords" content="岛主, 编剧, AI产品经理, 短剧变现, AI漫剧, 独立开发者, 一人公司, 数字群岛, 摩比魔法七巧板, AI小思, AI乐乐">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="岛主 | 用故事思维驱动用户价值">
-  <meta property="og:description" content="十年编剧 × AI 产品经理。在岛上，慢慢长出来的数字化产品与故事宇宙。">
+  <meta property="og:description" content="十年编剧 × AI 产品 × 内容创作。在岛上，慢慢长出来的数字化产品与故事宇宙。">
   <meta property="og:image" content="assets/avatar.jpg">
 
   <!-- 防止深色模式闪烁脚本 (Rico UI 最佳实践) -->
@@ -40,17 +40,19 @@
   <div class="ambient-grid" aria-hidden="true"></div>
   <div class="ambient-glow-top" aria-hidden="true"></div>
 
-  <!-- ── 0. 右侧旅程航标 (Journey Nav from v2) ── -->
+  <!-- ── 0. 右侧旅程航标 (Journey Navigation) ── -->
   <aside class="journey-nav" aria-label="旅程导航">
-    <button class="journey-dot active" data-target="hero" data-label="00 岛屿"></button>
+    <button class="journey-dot active" data-target="hero" data-label="00 首页"></button>
     <button class="journey-dot" data-target="ecosystem" data-label="01 生态"></button>
     <button class="journey-dot" data-target="milestones" data-label="02 履历"></button>
-    <button class="journey-dot" data-target="works" data-label="03 战绩"></button>
-    <button class="journey-dot" data-target="arcade-section" data-label="04 街机"></button>
-    <button class="journey-dot" data-target="about" data-label="05 人文"></button>
-    <button class="journey-dot" data-target="now" data-label="06 动态"></button>
-    <button class="journey-dot" data-target="writing" data-label="07 手记"></button>
-    <button class="journey-dot" data-target="contact" data-label="08 咖啡"></button>
+    <button class="journey-dot" data-target="works" data-label="03 代表作"></button>
+    <button class="journey-dot" data-target="projects" data-label="04 项目"></button>
+    <button class="journey-dot" data-target="models" data-label="05 模型"></button>
+    <button class="journey-dot" data-target="about" data-label="06 我是谁"></button>
+    <button class="journey-dot" data-target="notes" data-label="07 手记"></button>
+    <button class="journey-dot" data-target="arcade-section" data-label="08 街机"></button>
+    <button class="journey-dot" data-target="closing" data-label="09 结语"></button>
+    <button class="journey-dot" data-target="contact" data-label="10 咖啡"></button>
   </aside>
 
   <!-- ── 1. 浮动毛玻璃胶囊导航 (Floating Island Header) ── -->
@@ -69,13 +71,15 @@
       <nav>
         <ul class="nav-links">
           <li><a href="#hero" class="nav-link active">首页</a></li>
-          <li><a href="#ecosystem" class="nav-link">群岛矩阵</a></li>
-          <li><a href="#milestones" class="nav-link">主线履历</a></li>
-          <li><a href="#works" class="nav-link">商业战绩</a></li>
-          <li><a href="#arcade-section" class="nav-link">独立街机</a></li>
-          <li><a href="#about" class="nav-link">故事小岛</a></li>
-          <li><a href="#now" class="nav-link">近期动态</a></li>
-          <li><a href="#writing" class="nav-link">思考手记</a></li>
+          <li><a href="#ecosystem" class="nav-link">群岛</a></li>
+          <li><a href="#milestones" class="nav-link">履历</a></li>
+          <li><a href="#works" class="nav-link">代表作</a></li>
+          <li><a href="#projects" class="nav-link">AI项目</a></li>
+          <li><a href="#models" class="nav-link">模型</a></li>
+          <li><a href="#about" class="nav-link">关于</a></li>
+          <li><a href="#notes" class="nav-link">手记</a></li>
+          <li><a href="#arcade-section" class="nav-link">街机</a></li>
+          <li><a href="#contact" class="nav-link">联系</a></li>
         </ul>
       </nav>
 
@@ -117,7 +121,7 @@
         <div class="hero-narrative">
           <div class="eyebrow reveal">
             <span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e; display: inline-block;"></span>
-            <span>AVAILABLE FOR WORK & AI PRODUCT ADVISORY</span>
+            <span>STORYTELLING · PRODUCT · AI</span>
           </div>
 
           <h1 class="hero-title">
@@ -127,21 +131,25 @@
 
           <div class="hero-role-tags font-mono reveal">
             <span>🎬 十年编剧</span>
-            <span>🚀 AI 产品经理</span>
-            <span>🏝️ 独立超级个体</span>
+            <span>🚀 创新产品策划</span>
+            <span>🏝️ 独立内容创作者</span>
           </div>
 
           <p class="hero-lead reveal delay-1">
-            十年电影、儿童动画与商业短剧编剧实战，转战好未来（学而思）创新启蒙硬件「摩比魔法七巧板」与乐乐趣「AI 乐乐」从 0 到 1。在 AI 时代，我把高密度的内容叙事力，转化为能真正交付落地、具有商业生长性的产品与数字群岛生态。
+            十年编剧 × AI 产品 × 内容创作。我把内容创作力，转化成能落地、能生长的产品——尤其在 <b>AI 智能体、IP 孵化与内容变现</b> 三个方向。
           </p>
 
           <blockquote class="hero-motto reveal delay-2">
             “别人做产品，我讲故事——只是我的故事，恰好能落地、能生长。”
           </blockquote>
 
+          <div style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--brand-primary); margin-bottom: 24px;" class="reveal delay-2">
+            独立 AI 内容创作者 · 前学而思 / 乐乐趣 创新产品 · 个人 IP「岛主」
+          </div>
+
           <div class="hero-actions reveal delay-3">
-            <a href="#ecosystem" class="btn btn-primary">
-              <span>探索群岛矩阵 ↓</span>
+            <a href="#works" class="btn btn-primary">
+              <span>看代表作品 →</span>
             </a>
             <a href="#contact" data-open-modal="coffee" class="btn btn-ghost">
               <span>☕ 找岛主喝杯咖啡</span>
@@ -151,25 +159,31 @@
           <!-- 社交外链微交互卡片列 -->
           <div class="social-cards-wrapper reveal delay-4">
             <div class="social-list">
+              <a href="https://daozhu1993-oss.github.io/v2/" target="_blank" rel="noopener noreferrer" class="social-item">
+                <span>🏝️ 作品站·岛上</span>
+              </a>
+              <a href="https://www.zhihu.com/people/wang-xianke-52" target="_blank" rel="noopener noreferrer" class="social-item">
+                <span>知乎 ↗</span>
+              </a>
               <a href="https://github.com/daozhu1993-oss" target="_blank" rel="noopener noreferrer" class="social-item">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                 <span>GitHub</span>
+              </a>
+              <a href="https://www.zcool.com.cn/u/29262244" target="_blank" rel="noopener noreferrer" class="social-item">
+                <span>站酷 ↗</span>
+              </a>
+              <a href="https://web.okjike.com" target="_blank" rel="noopener noreferrer" class="social-item">
+                <span>🟡 即刻: 岛主</span>
               </a>
               <a href="https://x.com/daozhu_1" target="_blank" rel="noopener noreferrer" class="social-item">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
                 <span>Twitter / X</span>
               </a>
-              <a href="https://web.okjike.com" target="_blank" rel="noopener noreferrer" class="social-item">
-                <span>🟡 即刻: 岛主</span>
-              </a>
-              <a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzIxOTE5OTczNA==&action=getalbum&album_id=4578372974411530241&scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer" class="social-item">
-                <span>📗 微信专栏</span>
-              </a>
             </div>
           </div>
         </div>
 
-        <!-- 右侧展台：Rico 风格 4角 Figma 标线框架 + 视觉大片海报 + 浮动磨砂工具组件 -->
+        <!-- 右侧展台：Rico 风格 4角 Figma 标线框架 + 视觉肖像海报 + 浮动磨砂工具组件 -->
         <div class="showcase-wrapper reveal delay-2">
           <div class="case-solid">
             <!-- 4 个角标对齐方块 (case-square) -->
@@ -210,10 +224,10 @@
                 <!-- 展台底部文字与背书 -->
                 <div class="hero-canvas-footer">
                   <span class="pill-badge" style="background: rgba(180,90,60,0.45); color: #fff; border-color: rgba(255,255,255,0.4); margin-bottom: 8px;">
-                    ✦ DAOZHU PORTFOLIO 2026
+                    在岛上，慢慢长出东西
                   </span>
                   <div class="hero-canvas-title">岛主</div>
-                  <div class="hero-canvas-sub">十年编剧 × AI 产品经理 · 用故事思维驱动价值</div>
+                  <div class="hero-canvas-sub">十年编剧 × AI 产品 · 用故事思维驱动价值</div>
                 </div>
               </div>
             </div>
@@ -223,55 +237,168 @@
     </div>
   </section>
 
-  <!-- ── 3. 群岛生态 Bento Grid (Ecosystem Hub) ── -->
-  <section id="ecosystem" class="ecosystem-section">
+  <!-- ── 3. 群岛生态卫星矩阵 (Bento Grid) ── -->
+  <section id="ecosystem" class="bento-section">
     <div class="container">
       <div class="eyebrow reveal">
-        <span>DIGITAL ARCHIPELAGO · 群岛生态矩阵</span>
+        <span>ARCHIPELAGO MATRIX · 群岛矩阵</span>
       </div>
-      <h2 class="section-title reveal">五大卫星生态，融会贯通</h2>
+      <h2 class="section-title reveal">多维生长的数字化产品群岛</h2>
       <p class="section-subtitle reveal">
-        从 24h 前沿雷达、复古工控终端灵感站，到工业化短剧漫剧手艺库与独立游戏街机，构建独立一人公司的产品闭环。
+        不是孤立的单点应用，而是围绕「前沿洞察、工控灵感、编剧手艺、独立游戏与人文绘本」深度咬合的群岛生态。
       </p>
 
-      <!-- Bento Grid 挂载容器 (由 js/main.js 注入) -->
+      <!-- 动态注入 Bento 栅格 -->
       <div id="ecosystem-bento-grid" class="bento-grid reveal delay-1"></div>
     </div>
   </section>
 
-  <!-- ── 4. 履历四大里程碑主线 (Milestones from Master Portfolio) ── -->
+  <!-- ── 4. 履历主线与一路走来 (Career & The Path) ── -->
   <section id="milestones" class="milestones-section">
     <div class="container">
       <div class="eyebrow reveal">
-        <span>FOUR MILESTONES · 履历与主线</span>
+        <span>THE PATH · 一路走来</span>
       </div>
-      <h2 class="section-title reveal">换了很多身份，但没换那条主线</h2>
+      <h2 class="section-title reveal">不是规划出来的，是一路走、一路长出来的</h2>
       <p class="section-subtitle reveal">
-        从影视剧本到教育硬件，再到 AI 时代独立超级个体。身份在变，但用故事驱动用户价值的心从未改变。
+        从影视剧本到教育硬件，再到 AI 时代独立超级个体。身份在变，但用故事驱动用户价值的核心主线从未改变。
       </p>
 
-      <!-- 四大里程碑网格 (由 js/main.js 注入) -->
+      <!-- 三大核心履历里程碑 -->
       <div id="milestones-grid" class="milestones-grid reveal delay-1"></div>
+
+      <!-- 四大精选经历卡片 -->
+      <div id="mini-milestones-grid" class="mini-milestones-grid reveal delay-2"></div>
     </div>
   </section>
 
-  <!-- ── 5. 代表作战绩池 (Selected Works) ── -->
+  <!-- ── 5. 代表作品与深度展台 (Selected Works) ── -->
   <section id="works" class="works-section">
     <div class="container">
       <div class="eyebrow reveal">
-        <span>COMMERCIAL TRACK RECORD · 代表作战绩</span>
+        <span>SELECTED WORKS · 代表作品</span>
       </div>
-      <h2 class="section-title reveal">好故事，恰好能落地并驱动增长</h2>
+      <h2 class="section-title reveal">未必都是标准意义的产品，但都是真做出来的东西</h2>
       <p class="section-subtitle reveal">
-        十年影视短剧编剧积累，转战头部教育产品与前沿 AI 智能体体系，打造千万级影响力的商业产品与内容矩阵。
+        涵盖头部智能硬件、AI 伴学智能体人设与世界观、4K 纸工艺拼贴纪录片、多模态伴读课程及自研内容站。点击卡片可查看深度复盘与真实展台。
       </p>
 
-      <!-- 作品栅格 (由 js/main.js 注入真实海报卡片) -->
+      <!-- 5个真实代表作栅格 (点击弹出对应详细 modal) -->
       <div id="works-grid" class="works-grid reveal delay-1"></div>
     </div>
   </section>
 
-  <!-- ── 6. 独立街机与游戏群岛 (Arcade & Interactive Stories) ── -->
+  <!-- ── 6. AI 小项目 (AI Projects) ── -->
+  <section id="projects" class="projects-section">
+    <div class="container">
+      <div class="eyebrow reveal">
+        <span>AI PROJECTS · AI 小项目</span>
+      </div>
+      <h2 class="section-title reveal">用 AI 辅助，把想法变成能用的小东西</h2>
+      <p class="section-subtitle reveal">
+        不追求完美代码，追求从 0 到 1 的创造快感。全部附带真实可体验链接。
+      </p>
+
+      <!-- 6个 AI 项目卡片 -->
+      <div id="projects-grid" class="projects-grid reveal delay-1"></div>
+    </div>
+  </section>
+
+  <!-- ── 7. 思维模型 · 每日一模型 (Mental Models Gateway) ── -->
+  <section id="models" class="models-section">
+    <div class="container">
+      <div class="eyebrow reveal">
+        <span>LEARN & DIGEST · 知识沉淀</span>
+      </div>
+      <h2 class="section-title reveal">思维模型 · 每日一模型</h2>
+      <p class="section-subtitle reveal">
+        与其追每一个新工具，不如把常用的思维模型沉淀成能随时调用的上下文。我把它们做成单页笔记，慢慢汇成一座知识库。
+      </p>
+
+      <div id="models-gateway-wrap"></div>
+    </div>
+  </section>
+
+  <!-- ── 8. 我是谁与人文小岛 (Who I Am & Humanist Island) ── -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="about-grid">
+        <!-- 左侧叙事 -->
+        <div class="reveal">
+          <div class="eyebrow">
+            <span>WHO I AM · 我是谁</span>
+          </div>
+          <h2 class="section-title">我擅长把内容创作力，变成产品创新力</h2>
+          <p style="font-size: 1.05rem; color: var(--text-primary); line-height: 1.85; margin-bottom: 16px;">
+            我做了十年编剧出身——电影、儿童动画、小说，后来转做产品。这些年我一直扎在 AI 内容和儿童内容这块：在学而思主导过 <b>AI 小思</b> IP 与 <b>摩比魔法七巧板</b> 智能启蒙硬件从 0 到 1，在乐乐趣做过亲子阅读的 <b>AI 乐乐</b>。
+          </p>
+          <p style="font-size: 0.98rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px;">
+            我自己是个爸爸，女儿出生后给她画成长绘本，到现在累计手绘 <b>30 册</b>，文和图都是我做的——所以我对孩子和内容，不是隔着冰冷调研，是每天在一线真实观察。这两年我也一直自己动手做 AI 内容：独立完成了一套全流程 4K 的 AIGC 系列纪录片《风物中国》，还用 AI 写代码做了多款内容工具。
+          </p>
+          <p style="font-size: 0.98rem; color: var(--text-secondary); line-height: 1.8;">
+            在我看来，创作与产品本质相通：都要从用户出发，靠洞察、策略与协作，实现从 0 到 1 的突破。<b>我擅长把内容创作力，变成产品创新力。</b>
+          </p>
+
+          <!-- 兴趣标签 -->
+          <div class="about-pills">
+            <div class="about-pill">🏃 跑步</div>
+            <div class="about-pill">🥾 徒步</div>
+            <div class="about-pill">🚗 自驾游</div>
+            <div class="about-pill">🖋️ 写故事</div>
+            <div class="about-pill">🎬 做片子</div>
+            <div class="about-pill">👧 陪一一</div>
+          </div>
+
+          <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--brand-primary); line-height: 1.6;">
+            用故事思维驱动用户价值 · AI 智能体 × IP 孵化 × 内容变现 · 编剧 → 产品 → 独立创作
+          </p>
+        </div>
+
+        <!-- 右侧卡片与小岛金句 -->
+        <div class="about-card-box reveal delay-2">
+          <blockquote>
+            “有用的东西，做得有人味；好玩的东西，做得有价值。这是我想一直做下去的事。”
+          </blockquote>
+          <div style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px;">
+            在岛上，慢慢长出能陪人很久的东西。绘本、纪录片、产品、新的问题，会继续在岛上长出来。
+          </div>
+          <a href="https://daozhu1993-oss.github.io/v2/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="width: 100%; justify-content: center;">
+            <span>🏝️ 漫步小岛人文作品站 (v2) ↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 9. 思考手记与追问矩阵 (Field Notes & Questions) ── -->
+  <section id="notes" class="writing-section">
+    <div class="container">
+      <div class="eyebrow reveal">
+        <span>FIELD NOTES · 思考手记</span>
+      </div>
+      <h2 class="section-title reveal">把还没完全想透的问题，也放在阳光下慢慢长</h2>
+      <p class="section-subtitle reveal">
+        关于 AI、产品，与普通人怎么用好工具的深度复盘与持续追问。
+      </p>
+
+      <div id="notes-content-wrap"></div>
+    </div>
+  </section>
+
+  <!-- ── 10. 公开分享 (Public Speaking) ── -->
+  <section id="speaking" class="speaking-section">
+    <div class="container">
+      <div class="eyebrow reveal">
+        <span>PUBLIC SPEAKING · 公开分享</span>
+      </div>
+      <h2 class="section-title reveal">把踩过的坑和想通的事，翻译成别人能带走的东西</h2>
+      <div class="scaffold-box reveal delay-1">
+        这块的分享记录还比较散，正在整理中——之后会把主题、场景和材料陆续补进来。
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 11. 独立街机与游戏群岛 (Arcade Games) ── -->
   <section id="arcade-section" class="games-section">
     <div class="container">
       <div class="eyebrow reveal">
@@ -282,129 +409,57 @@
         从 3D 极速赛道到古典聊斋青花瓷盆蟋蟀博弈，将硬核全栈技术、文学张力与高参与度机制融为一体。
       </p>
 
-      <!-- 游戏栅格 (由 js/main.js 注入) -->
+      <!-- 游戏栅格 -->
       <div id="games-grid" class="games-grid reveal delay-1"></div>
     </div>
   </section>
 
-  <!-- ── 7. 我是谁与人文小岛 (Who I Am & Humanist Island) ── -->
-  <section id="about" class="about-section">
-    <div class="container">
-      <div class="about-grid">
-        <!-- 左侧叙事 -->
-        <div class="reveal">
-          <div class="eyebrow">
-            <span>WHO I AM & HUMANIST SOUL · 我是谁</span>
-          </div>
-          <h2 class="section-title">在岛上，慢慢长出能陪人很久的东西</h2>
-          <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.85; margin-bottom: 16px;">
-            做再多商业与前沿 AI，心中始终留着一座小岛——留给童话、给女儿的画，和慢悠悠的时光。
-          </p>
-          <p style="font-size: 0.96rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px;">
-            女儿一一出生后，我坚持给她画成长绘本，到现在已累计手绘 <b>30 册</b>，文和图都由我独立完成。我对孩子和内容的理解，不是隔着冰冷的市场调研，而是来自每天在一线的真实观察。
-          </p>
-          <p style="font-size: 0.96rem; color: var(--text-secondary); line-height: 1.8;">
-            在岛上，我还沉淀了 <b>230 个思维模型知识库</b> 与原创 IP「芽芽兽」，以故事和产品视角，拆解人性和决策的底层规律。
-          </p>
-
-          <!-- 兴趣标签 -->
-          <div class="about-pills">
-            <div class="about-pill">🖋️ 专注写故事</div>
-            <div class="about-pill">🎬 4K AIGC 影像</div>
-            <div class="about-pill">👧 每天陪女儿一一</div>
-            <div class="about-pill">🏃 跑步 10KM</div>
-            <div class="about-pill">🥾 山野徒步</div>
-            <div class="about-pill">🚗 自驾远行</div>
-          </div>
-        </div>
-
-        <!-- 右侧卡片与小岛金句 -->
-        <div class="about-card-box reveal delay-2">
-          <blockquote>
-            “有用的东西，做得有人味；好玩的东西，做得有价值。这是我想一直做下去的事。”
-          </blockquote>
-          <div style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;">
-            无论是做千万级学员的儿童教育硬件，还是破亿播放的商业短剧，亦或是给女儿的睡前画册，背后的本质是相通的：用诚意和敬畏心，打磨每一个细节。
-          </div>
-          <a href="https://daozhu1993-oss.github.io/v2/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="width: 100%; justify-content: center;">
-            <span>🏝️ 访问小岛人文诗歌站点 (v2) ↗</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 8. 最近在做什么 (Now / Changelog from v2) ── -->
-  <section id="now" class="now-section">
-    <div class="container now-container">
-      <div class="eyebrow reveal">
-        <span>NOW & CHANGELOG · 最近在做什么</span>
-      </div>
-      <h2 class="section-title reveal">在岛上慢慢长出来的节奏</h2>
-      <p class="section-subtitle reveal">
-        记录最近的小步快跑：新的站点、新的思考模型与实验性小产品。
-      </p>
-
-      <ul id="now-list" class="now-list reveal delay-1">
-        <!-- 由 js/main.js 自动从 matrix-data.js 注入 -->
-      </ul>
-    </div>
-  </section>
-
-  <!-- ── 9. 今日日刊与思考手记 (Writing & Notes) ── -->
-  <section id="writing" class="writing-section">
+  <!-- ── 12. 结语：换了很多身份，但没换那条主线 (Closing Steps) ── -->
+  <section id="closing" class="closing-section">
     <div class="container">
       <div class="eyebrow reveal">
-        <span>DAILY CURATOR & THOUGHTS · 今日日刊与手记</span>
+        <span>CLOSING · 结语</span>
       </div>
-      <h2 class="section-title reveal">沉淀下来的方法论与前沿思考</h2>
-      <p class="section-subtitle reveal">
-        不追逐信息碎片，只记录经过实战验证的叙事模型、一人公司探索与每日高密度策展。
-      </p>
+      <h2 class="section-title reveal">换了很多身份，但没换那条主线</h2>
 
-      <!-- 文章三列卡片流 -->
-      <div id="articles-grid" class="articles-grid reveal delay-1">
-        <!-- 由 js/main.js 自动从 matrix-data.js 注入 -->
+      <div id="closing-steps-wrap" class="closing-steps-wrap"></div>
+
+      <div class="closing-quote reveal delay-2">
+        “有用的东西，做得有人味；好玩的东西，做得有价值。这是我想一直做下去的事。”
       </div>
     </div>
   </section>
 
-  <!-- ── 10. 喝杯咖啡聊聊 (Coffee & Contact) ── -->
+  <!-- ── 13. 喝杯咖啡聊聊 (Coffee & Contact) ── -->
   <section id="contact" class="contact-section">
     <div class="container">
-      <!-- v2 经典漂浮海岛动效插画 -->
+      <!-- 经典漂浮海岛动效插画 -->
       <div class="island-scene reveal">
         <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- 海浪 -->
           <path class="wave" d="M10 100 Q 30 92, 50 100 T 90 100 T 130 100 T 170 100 T 200 100" stroke="var(--brand-primary)" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
           <path class="wave" d="M0 108 Q 20 102, 40 108 T 80 108 T 120 108 T 160 108 T 200 108" stroke="var(--brand-primary)" stroke-width="1.5" stroke-linecap="round" opacity="0.25"/>
-          <!-- 小岛山丘 -->
           <path d="M45 95 C 60 45, 140 45, 155 95 Z" fill="var(--bg-secondary)" stroke="var(--brand-primary)" stroke-width="2.5"/>
-          <!-- 椰子树/小旗帜 -->
           <line x1="100" y1="52" x2="100" y2="24" stroke="var(--brand-primary)" stroke-width="2.5" stroke-linecap="round"/>
           <polygon points="100,24 122,32 100,40" fill="var(--brand-primary)"/>
         </svg>
       </div>
 
-      <h2 class="section-title reveal delay-2">随时找岛主喝杯咖啡</h2>
-      <p class="section-subtitle reveal delay-2" style="margin-left: auto; margin-right: auto;">
-        无论是探讨 AI 漫剧工业化、一人公司产品矩阵合作，还是单纯聊聊故事与审美，随时欢迎联系。
+      <h2 class="section-title reveal delay-1">喝杯咖啡，聊聊？</h2>
+      <p class="section-subtitle reveal delay-1" style="margin-left: auto; margin-right: auto;">
+        AI 产品、AIGC 内容定制、IP 合作，或者只是想聊聊——岛上一直有位置。
       </p>
 
-      <div class="contact-card-box reveal delay-3">
-        <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--brand-primary); font-weight: 600; margin-bottom: 8px;">
-          ● 随时在线 · 欢迎交流合作
-        </div>
-        <div style="font-size: 1.05rem; color: var(--text-primary); margin-bottom: 24px;">
-          微信社群 · 1对1剧本急诊 · 独立产品共建
-        </div>
+      <div class="contact-card-box reveal delay-2">
+        <p style="font-size: 1.05rem; color: var(--text-primary); margin-bottom: 24px; line-height: 1.7;">
+          不管是找我做产品、做 AIGC 内容，还是想合作、想认识一下——发个消息，我们聊聊。
+        </p>
 
         <div class="contact-channels">
           <button data-open-modal="coffee" class="channel-btn">
             <div class="channel-icon">💬</div>
             <div>
               <div style="font-size: 0.8rem; color: var(--text-muted);">微信 / 合作</div>
-              <div>微信号: bl-free (点击扫码)</div>
+              <div><b>bl-free</b> · 岛主王仙客 (点击扫码)</div>
             </div>
           </button>
 
@@ -412,15 +467,37 @@
             <div class="channel-icon">✉️</div>
             <div>
               <div style="font-size: 0.8rem; color: var(--text-muted);">电子邮件</div>
-              <div>daozhu1993@gmail.com</div>
+              <div><b>daozhu1993@gmail.com</b></div>
             </div>
           </button>
+        </div>
+
+        <!-- 社交网络矩阵 -->
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 24px;">
+          <a href="https://daozhu1993-oss.github.io/v2/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="font-size: 0.86rem; padding: 6px 14px;">
+            <span>作品站 · 岛上 ↗</span>
+          </a>
+          <a href="https://www.zhihu.com/people/wang-xianke-52" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="font-size: 0.86rem; padding: 6px 14px;">
+            <span>知乎 ↗</span>
+          </a>
+          <a href="https://github.com/daozhu1993-oss" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="font-size: 0.86rem; padding: 6px 14px;">
+            <span>GitHub ↗</span>
+          </a>
+          <a href="https://www.zcool.com.cn/u/29262244" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="font-size: 0.86rem; padding: 6px 14px;">
+            <span>站酷 ↗</span>
+          </a>
+          <a href="https://web.okjike.com" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="font-size: 0.86rem; padding: 6px 14px;">
+            <span>🟡 即刻: 岛主</span>
+          </a>
+          <a href="https://x.com/daozhu_1" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="font-size: 0.86rem; padding: 6px 14px;">
+            <span>Twitter / X ↗</span>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── 11. 页脚 ── -->
+  <!-- ── 14. 页脚 ── -->
   <footer class="site-footer">
     <div class="container footer-content">
       <div style="display: flex; align-items: center; gap: 12px;">
@@ -429,75 +506,209 @@
       </div>
 
       <div class="footer-links font-mono">
-        <a href="https://daozhu-ai-daily.daozhu1993.workers.dev/" target="_blank" rel="noopener noreferrer">AI 日报</a>
-        <a href="https://daozhu1993-oss.github.io/daozhu-inspo/" target="_blank" rel="noopener noreferrer">设计灵感</a>
-        <a href="https://github.com/daozhu1993-oss/daozhu-script" target="_blank" rel="noopener noreferrer">编剧工坊</a>
+        <a href="https://dailyone.daozhuai.cn" target="_blank" rel="noopener noreferrer">AI 日报</a>
+        <a href="https://inspo.daozhuai.cn" target="_blank" rel="noopener noreferrer">灵感站</a>
+        <a href="https://script.daozhuai.cn" target="_blank" rel="noopener noreferrer">编剧工坊</a>
         <a href="https://github.com/daozhu1993-oss" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://daozhu1993-oss.github.io/v2/" target="_blank" rel="noopener noreferrer">作品站·岛上</a>
       </div>
     </div>
   </footer>
 
-  <!-- ── 12. 浮动海岛环境音效按钮 (Ambient Music Button from v2) ── -->
-  <button id="music-btn" class="music-btn" aria-label="播放/暂停海岛环境音效" title="播放/暂停海岛环境音效">
-    <!-- 音乐符图标 -->
-    <svg class="music-icon-note" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M9 18V5l12-2v13"></path>
-      <circle cx="6" cy="18" r="3"></circle>
-      <circle cx="18" cy="16" r="3"></circle>
-    </svg>
-    <!-- 播放中的均衡器跳动音波条 -->
-    <div class="music-bars">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </button>
+  <!-- ══════════════════════════════════════════════════════════
+       模态弹窗系统 (Modals)
+       ══════════════════════════════════════════════════════════ -->
 
-  <!-- ── 13. 微信与咖啡交流模态弹窗 ── -->
+  <!-- Modal 1: 摩比魔法七巧板 -->
+  <div id="m1" class="modal-overlay">
+    <div class="modal-box">
+      <button class="mclose" aria-label="关闭弹窗">×</button>
+      <div class="m-eyebrow">产品 · 0→1</div>
+      <h3>摩比魔法七巧板</h3>
+      <div class="m-role">我的角色：产品负责人 · 从产品到世界观（0-1 主导）</div>
+
+      <img class="m-hero" src="assets/mobi-hero.jpg" alt="摩比魔法七巧板 主视觉">
+
+      <h4>背景</h4>
+      <p>摩比魔法七巧板是一款需配合学而思学习机使用的智能启蒙硬件（适用 3–8 岁）：一副实体七巧板教具 + AI 老师 + 游戏化 App。用一副小小的七巧板，带孩子养成观察、专注、几何构建、逻辑推理等「十大能力」。我要解决的核心命题：怎么把「学」，藏进一个孩子真正愿意一直玩下去的东西里。</p>
+
+      <h4>我做了什么 · 产品侧</h4>
+      <p>从 0 主导完整产品方案：用户与市场研究、竞品拆解、产品定义与卖点、商业模式与定价策略，再到分阶段的上线与增长节奏——一套能落地的商业闭环。（涉及具体数据的部分属内部信息，此处从略。）</p>
+
+      <h4>我做了什么 · 世界观与内容</h4>
+      <p>以「产品型编剧」的身份，独立搭建原创世界观与故事系统，把学习拆进一个多场景的冒险世界：六级科学分阶、上百个关卡，孩子用七巧板与世界互动、建造、解谜，一路收集、拼出属于自己的「百科全书」，配合会「变身」的 AI 生成式互动，次次新体验。让「玩」和「学」，变成同一件事。（完整的故事与人物设定属未公开内容。）</p>
+
+      <h4>核心亮点</h4>
+      <p>从产品定义、商业模型，到世界观、关卡与 AI 互动体验，一个人同时扛起产品和内容两端，并拉通算法、Unity、教研、编剧、工业设计跨团队协同。这件事让我确认了自己最独特的位置——既能定义产品，又能给它注入让孩子留下来的灵魂。</p>
+
+      <p class="m-tagline">拼出奇思妙想，拼出思维潜能，<br>拼出孩子自己的百科全书，<br>打开七巧板的魔法之门。</p>
+
+      <h4>实战展台与产品细节</h4>
+      <div class="m-gallery">
+        <div class="m-gallery-item">
+          <img src="assets/mobi-tangram-case.jpg" alt="品质把控 · 实体七巧板与收纳">
+          <figcaption>品质把控 · 实体七巧板与收纳</figcaption>
+        </div>
+        <div class="m-gallery-item">
+          <img src="assets/mobi-encyclopedia.jpg" alt="拼出专属百科全书">
+          <figcaption>拼出专属百科全书</figcaption>
+        </div>
+        <div class="m-gallery-item">
+          <img src="assets/mobi-ai-guidance.jpg" alt="AI 实时指引">
+          <figcaption>AI 实时指引</figcaption>
+        </div>
+        <div class="m-gallery-item">
+          <img src="assets/mobi-ai-interaction.jpg" alt="AI 生成式互动">
+          <figcaption>AI 生成式互动</figcaption>
+        </div>
+        <div class="m-gallery-item">
+          <img src="assets/mobi-six-levels.jpg" alt="六级科学分阶">
+          <figcaption>六级科学分阶</figcaption>
+        </div>
+        <div class="m-gallery-item">
+          <img src="assets/mobi-ten-abilities.jpg" alt="十大能力养成">
+          <figcaption>十大能力养成</figcaption>
+        </div>
+      </div>
+      <div class="m-credit">产品图 © 学而思 · 摩比（展示本人参与主导的产品）</div>
+    </div>
+  </div>
+
+  <!-- Modal 2: 学而思「AI 小思」 -->
+  <div id="m2" class="modal-overlay">
+    <div class="modal-box">
+      <button class="mclose" aria-label="关闭弹窗">×</button>
+      <div class="m-eyebrow">AI 智能体 · IP</div>
+      <h3>学而思「AI 小思」</h3>
+      <div class="m-role">我的角色：AI 小思 IP 主创 · 从人格到世界观（0-1 主导）</div>
+
+      <img class="m-hero" src="assets/xiaosi-hero.jpg" alt="学而思 AI 小思 形象">
+
+      <h4>定位</h4>
+      <p>小思是学而思学习机上的 AI 伙伴——但它的定位从来不是“语音助手”。它是一个懂孩子、懂内容、懂知识，能陪着孩子一起学习、一起长大的伙伴，有属于自己的人格。</p>
+
+      <h4>我做了什么</h4>
+      <p>主导 AI 小思 IP 从 0 到 1：设定它的人格与说话方式、它与孩子的互动模型，并搭建起支撑它的整机世界观体系与应用规范——把它从一个功能，做成一个有性格、可延展的智能体 IP。</p>
+
+      <h4>它的不一样</h4>
+      <p>它既懂学科功能，更能在和孩子的交流中感知情绪、顺势引导学习习惯——让“用学习机”这件事，从被功能推着走，变成被一个伙伴陪着走。（支撑它的完整世界观与人物设定属未公开内容。）</p>
+
+      <h4>信念</h4>
+      <p>硬件是躯壳，真正能陪一个孩子长大的，是一个有人格、有温度的伙伴。这也是我最想做的产品。</p>
+
+      <h4>世界观编年史</h4>
+      <p>形象背后，是我搭建的一整套原创编年史与世界观——支撑这个 IP 能跨年级、跨故事持续生长的骨架。</p>
+      <img class="m-hero" src="assets/xiaosi-chronology.jpg" alt="未来大陆世界观编年史">
+      <div class="m-credit">小思形象与世界观资料 © 学而思 · AI 小思 IP（本人主导）</div>
+    </div>
+  </div>
+
+  <!-- Modal 3: 《风物中国》AIGC 纪录片 -->
+  <div id="m3" class="modal-overlay">
+    <div class="modal-box">
+      <button class="mclose" aria-label="关闭弹窗">×</button>
+      <div class="m-eyebrow">AIGC · 纪录片</div>
+      <h3>《风物中国》</h3>
+      <div class="m-role">我的角色：独立制作（全流程）</div>
+
+      <h4>背景</h4>
+      <p>想验证一件事——「人做策划与审美、AI 负责执行」，能不能做出成体系的文化内容。</p>
+
+      <h4>我做了什么</h4>
+      <p>搭建五系列 110 段的叙事矩阵（物、时、空、人、艺），确立纸工艺拼贴 + Vox 解说的统一视觉语言，并沉淀出一套可复用的提示词与叙事框架；已产出 3 部成片（含 4K）。</p>
+
+      <a class="m-link" href="https://daozhu1993-oss.github.io/fengwu/index.html" target="_blank" rel="noopener noreferrer">看专题页 →</a>
+    </div>
+  </div>
+
+  <!-- Modal 4: 乐乐趣「AI 乐乐」 -->
+  <div id="m4" class="modal-overlay">
+    <div class="modal-box">
+      <button class="mclose" aria-label="关闭弹窗">×</button>
+      <div class="m-eyebrow">AI 智能体 · 亲子</div>
+      <h3>乐乐趣「AI 乐乐」</h3>
+      <div class="m-role">我的角色：创新产品总监 · 0-1 产品框架</div>
+
+      <img class="m-hero" src="assets/lele-hero.jpg" alt="乐乐趣 AI 乐乐 产品与 IP 形象">
+
+      <h4>定位</h4>
+      <p>AI 乐乐是乐乐趣的 AI 育儿伙伴——一个懂内容、懂孩子，能陪孩子一起阅读、一起成长的 AI 智能体，落在点读笔、故事机、小程序等多种硬件与场景上。它的定位不是「点读工具」，而是有情感连接的育儿专家。</p>
+
+      <h4>我做了什么</h4>
+      <p>0→1 搭建「AI + 硬件点读笔 + 乐乐趣学习资源」的 AI 产品框架：从市场、行业、用户洞察，到战略规划、阶段性目标，推动产品落地上线并跟踪市场反馈；同时搭建亲子阅读课程产品框架（课程已上线）。</p>
+
+      <h4>洞察</h4>
+      <p>亲子阅读的双用户——家长要专业、省心、成长可见的阅读指导，孩子要有趣、有陪伴。我做的，是把一支「只能点读」的笔，升级成能语音交互、有情感连接的 AI 阅读伙伴。（内部市场数据、竞品策略与产品流程细节属未公开内容。）</p>
+
+      <h4>信念</h4>
+      <p>让一支点读笔、一个小程序，从工具变成能陪孩子一起长大的育儿伙伴。</p>
+      <div class="m-credit">AI 乐乐 IP 与产品形象 © 乐乐趣 · 荣信智趣（本人主导 AI 产品框架）</div>
+    </div>
+  </div>
+
+  <!-- Modal 5: 个人内容 IP「岛主」 -->
+  <div id="m5" class="modal-overlay">
+    <div class="modal-box">
+      <button class="mclose" aria-label="关闭弹窗">×</button>
+      <div class="m-eyebrow">内容 IP · 独立</div>
+      <h3>个人内容 IP「岛主」</h3>
+      <div class="m-role">我的角色：独立创作 + vibe coding</div>
+
+      <img class="m-hero" src="assets/daozhu-ip-hero.jpg" alt="岛主 · 个人内容站">
+
+      <h4>背景</h4>
+      <p>把个人创作沉淀成一个能持续生长的内容资产。</p>
+
+      <h4>我做了什么</h4>
+      <p>30 本原创绘本、82 首诗、11 篇神话新编、230 个思维模型知识库，原创 IP「芽芽兽」与品牌 VI；用 vibe coding 自研网站与两款内容工具（绘本导出器、诗歌排版）。内容、IP、工具，一个人全栈扛下来。</p>
+    </div>
+  </div>
+
+  <!-- Modal: 找岛主喝杯咖啡 (Coffee Modal) -->
   <div id="coffee-modal" class="modal-overlay">
     <div class="modal-card">
       <button id="modal-close-btn" class="modal-close-btn" aria-label="关闭弹窗">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
       </button>
 
       <div style="text-align: center;">
-        <span class="pill-badge" style="margin-bottom: 12px;">☕ CONNECT WITH DAOZHU</span>
+        <span class="pill-badge" style="background: rgba(180,90,60,0.2); color: var(--brand-primary); margin-bottom: 12px;">
+          ☕ COFFEE & CHAT
+        </span>
         <h3 style="font-family: var(--font-serif); font-size: 1.6rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">
-          加岛主微信，聊聊故事与产品
+          喝杯咖啡，聊聊？
         </h3>
-        <p style="font-size: 0.92rem; color: var(--text-secondary); max-width: 420px; margin: 0 auto 20px; line-height: 1.65;">
-          微信扫码直接添加「岛主王仙客」。请备注您的来意（如：AI漫剧交流、产品合作、一人公司探讨）。
+        <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px;">
+          AI 产品咨询、AIGC 影像共创、剧本世界观梳理，或是单纯聊聊天。<br>岛上随时留着座位。
         </p>
 
         <!-- 真实微信二维码展示卡 -->
-        <div style="max-width: 280px; margin: 0 auto 16px; border-radius: 20px; overflow: hidden; background: #FFFFFF; border: 2px solid var(--border-line); box-shadow: var(--shadow-md); padding: 12px; display: flex; flex-direction: column; align-items: center;">
-          <img src="assets/wechat-qr.png" alt="岛主微信二维码 (bl-free)" style="width: 100%; height: auto; border-radius: 12px; display: block;">
+        <div style="background: #ffffff; padding: 18px; border-radius: 20px; box-shadow: var(--shadow-md); display: inline-block; margin-bottom: 20px; border: 1px solid var(--border-line);">
+          <img src="assets/wechat-qr.png" alt="岛主王仙客 微信二维码" style="width: 200px; height: 200px; display: block; border-radius: 10px; object-fit: cover;">
+          <div style="margin-top: 10px; font-family: var(--font-mono); font-size: 0.82rem; color: #4a453d; font-weight: 600;">
+            微信扫一扫 · <span style="color: #b45a3c;">岛主王仙客</span>
+          </div>
         </div>
 
-        <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 6px;">
-          <span style="font-family: var(--font-mono); font-size: 0.95rem; color: var(--text-primary); font-weight: 700;">微信号: bl-free</span>
-          <button id="copy-wechat-btn" class="pill-badge" style="cursor: pointer; background: var(--brand-primary); color: #fff; border: none; padding: 4px 12px; font-size: 0.76rem;">复制微信号</button>
+        <div style="background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; max-width: 320px; margin: 0 auto 16px;">
+          <span style="font-family: var(--font-mono); font-size: 0.95rem; color: var(--text-primary); font-weight: 600;">bl-free</span>
+          <button id="copy-wechat-btn" class="btn btn-ghost" style="padding: 4px 12px; font-size: 0.78rem;">
+            复制微信号
+          </button>
         </div>
-        <div style="font-size: 0.8rem; color: var(--text-muted);">（扫码或搜索微信号添加，请备注来意）</div>
+
+        <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">
+          邮箱: daozhu1993@gmail.com
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- 返回顶部按钮 -->
-  <button id="back-to-top" class="back-to-top" aria-label="返回页面顶部">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="18 15 12 9 6 15"></polyline>
-    </svg>
-  </button>
-
-  <!-- 脚本加载 -->
-  <script src="js/audio.js"></script>
+  <!-- 脚本引用 -->
   <script src="js/matrix-data.js"></script>
-  <script src="js/animated-hero.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

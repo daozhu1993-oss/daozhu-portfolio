@@ -1,5 +1,5 @@
 /**
- * 数字群岛 · 岛主个人门户 - 核心交互与多矩阵聚合 (main.js)
+ * 数字群岛 · 岛主个人门户 - 核心交互与全矩阵聚合 (main.js)
  * Master Interaction & Dynamic Renderer
  */
 
@@ -48,7 +48,7 @@
     }
   };
 
-  // 2. 动态渲染 Bento Grid (群岛五大卫星矩阵，带真实视觉图片)
+  // 2. 动态渲染 Bento Grid (群岛卫星矩阵)
   function renderBentoGrid() {
     const grid = document.getElementById('ecosystem-bento-grid');
     if (!grid || !window.DAOZHU_DATA) return;
@@ -63,18 +63,18 @@
       let mediaContent = '';
       if (item.type === 'script') {
         mediaContent = `
-          <div class="bento-media-wrap aspect-widescreen">
-            <img src="${item.image}" alt="${item.name}" class="bento-media-img" onerror="this.style.display='none'">
-            <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,14,23,0.3) 0%, rgba(10,14,23,0.85) 100%);"></div>
-            <div style="position: absolute; inset: 0; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; z-index: 10;">
+          <div class="bento-media-wrap aspect-widescreen" style="background: linear-gradient(145deg, #2b110a 0%, #150604 100%);">
+            <div style="position: absolute; inset: 0; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; z-index: 10;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span class="pill-badge" style="background: rgba(180,90,60,0.4); color: #f4a261; border-color: rgba(244,162,97,0.5);">🎬 SCRIPT CRAFT</span>
-                <span style="font-family: var(--font-mono); font-size: 0.74rem; color: #ded2ba;">破亿播放 · 行业标杆</span>
+                <span class="pill-badge" style="background: rgba(180,90,60,0.35); color: #f4a261; border-color: rgba(244,162,97,0.5);">🖋️ STORY CRAFT</span>
+                <span style="font-family: var(--font-mono); font-size: 0.74rem; color: #f4a261;">● INDUSTRIAL</span>
               </div>
               <div>
-                <div style="font-family: var(--font-mono); font-size: 0.8rem; color: #f28c70; margin-bottom: 4px;">[SCENE 01 · 黄金 3 秒留存定律]</div>
-                <div style="font-family: var(--font-serif); font-size: 1.35rem; font-weight: 700; color: #FFFFFF; line-height: 1.35;">
-                  “从好莱坞救猫咪公式，到短剧每集 90 秒爽点反转与 AI 漫剧分镜”
+                <div style="font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: #FFFFFF; line-height: 1.35;">
+                  编剧手艺工坊
+                </div>
+                <div style="font-family: var(--font-mono); font-size: 0.8rem; color: #ded2ba; margin-top: 6px;">
+                  救猫咪重构 · 短剧断章卡 · AI 漫剧一致性分镜
                 </div>
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
@@ -224,7 +224,7 @@
     });
   }
 
-  // 3. 动态渲染四大履历里程碑 (Four Milestones from Master Portfolio)
+  // 3. 动态渲染履历主线与迷你里程碑
   function renderMilestones() {
     const container = document.getElementById('milestones-grid');
     if (!container || !window.DAOZHU_DATA) return;
@@ -238,9 +238,9 @@
       card.innerHTML = `
         <div class="milestone-num">${m.step}</div>
         <div class="milestone-body">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; flex-wrap: wrap; gap: 8px;">
             <span class="pill-badge font-mono" style="font-size: 0.72rem;">${m.period}</span>
-            <span style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-muted);">${m.org}</span>
+            <span style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-muted);">${m.org}</span>
           </div>
           <h3>${m.title}</h3>
           <div class="milestone-sub">${m.sub}</div>
@@ -252,9 +252,28 @@
       `;
       container.appendChild(card);
     });
+
+    const miniContainer = document.getElementById('mini-milestones-grid');
+    const mini = window.DAOZHU_DATA.miniMilestones || [];
+    if (miniContainer && mini.length) {
+      miniContainer.innerHTML = '';
+      mini.forEach(item => {
+        const el = document.createElement('div');
+        el.className = 'mini-milestone-item';
+        el.innerHTML = `
+          <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--brand-primary); margin-bottom: 4px;">
+            ${item.period} · ${item.org}
+          </div>
+          <div style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+            ${item.desc}
+          </div>
+        `;
+        miniContainer.appendChild(el);
+      });
+    }
   }
 
-  // 4. 动态渲染代表作战绩池 (Works Grid with Real Posters or Designed Placeholders)
+  // 4. 动态渲染代表作品 (Selected Works)
   function renderWorksGrid() {
     const grid = document.getElementById('works-grid');
     if (!grid || !window.DAOZHU_DATA) return;
@@ -264,18 +283,18 @@
 
     works.forEach(w => {
       const card = document.createElement('article');
-      card.className = 'work-card';
+      card.className = 'work-card clickable';
+      card.setAttribute('data-open-modal', w.modalId);
 
       let mediaHtml = '';
       if (w.image) {
         mediaHtml = `<img src="${w.image}" alt="${w.title}">`;
       } else {
-        const icon = w.id === 'mobi' ? '🧩' : w.id === 'lelequ' ? '📚' : '🎬';
         mediaHtml = `
           <div style="position: absolute; inset: 0; background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-card) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; border: 1px dashed var(--border-line);">
-            <div style="font-size: 2.2rem; margin-bottom: 8px;">${icon}</div>
-            <div style="font-family: var(--font-serif); font-size: 1.2rem; font-weight: 700; color: var(--text-primary); text-align: center; line-height: 1.35;">${w.title}</div>
-            <div style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--brand-primary); margin-top: 8px; font-weight: 600;">[ 📷 待配图 · 建议尺寸 16:10 ]</div>
+            <div style="font-size: 2.4rem; margin-bottom: 8px;">🎬</div>
+            <div style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700; color: var(--text-primary); text-align: center; line-height: 1.35;">${w.title}</div>
+            <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--brand-primary); margin-top: 8px; font-weight: 600;">全流程 4K AIGC · 纸工艺拼贴美学</div>
           </div>
         `;
       }
@@ -288,18 +307,83 @@
         <div class="work-tags">
           ${w.badges ? w.badges.map(b => `<span class="pill-badge">${b}</span>`).join('') : ''}
         </div>
-        <h3 class="work-title">${w.title}</h3>
+        <h3 class="work-title"><span style="color: var(--brand-primary); margin-right: 6px;">${w.num}</span>${w.title}</h3>
         <div class="work-role">${w.role}</div>
-        <div class="work-metrics-box">
-          📈 ${w.metrics}
-        </div>
         <p class="work-desc">${w.desc}</p>
       `;
       grid.appendChild(card);
     });
   }
 
-  // 5. 动态渲染独立游戏群岛 (Arcade Games Grid)
+  // 5. 动态渲染 AI 小项目
+  function renderProjectsGrid() {
+    const grid = document.getElementById('projects-grid');
+    if (!grid || !window.DAOZHU_DATA || !window.DAOZHU_DATA.projects) return;
+
+    const projects = window.DAOZHU_DATA.projects;
+    grid.innerHTML = '';
+
+    projects.forEach(p => {
+      const card = document.createElement('div');
+      card.className = `project-card ${p.status === 'soon' ? 'soon' : ''}`;
+      const actionHtml = p.url
+        ? `<a class="project-go" href="${p.url}" target="_blank" rel="noopener noreferrer">${p.status === 'work' ? '看专题页 →' : p.status === 'oss' ? 'GitHub 仓库 →' : '打开体验 →'}</a>`
+        : `<span class="project-go" style="color: var(--text-muted); cursor: default;">即将上线</span>`;
+
+      card.innerHTML = `
+        <div class="project-tag">${p.tag}</div>
+        <h3 class="project-title">${p.title}</h3>
+        <p class="project-desc">${p.desc}</p>
+        ${actionHtml}
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  // 6. 动态渲染思维模型图鉴网关
+  function renderModelsGateway() {
+    const container = document.getElementById('models-gateway-wrap');
+    if (!container || !window.DAOZHU_DATA || !window.DAOZHU_DATA.models) return;
+
+    const m = window.DAOZHU_DATA.models;
+    container.innerHTML = `
+      <div class="gateway-box reveal">
+        <div>
+          <div class="gateway-big">${m.count}</div>
+          <div class="gateway-text">${m.desc}</div>
+        </div>
+        <a class="btn btn-primary" href="${m.url}" target="_blank" rel="noopener noreferrer">
+          <span>翻翻思维模型图鉴 →</span>
+        </a>
+      </div>
+    `;
+  }
+
+  // 7. 动态渲染思考手记与追问矩阵
+  function renderFieldNotes() {
+    const container = document.getElementById('notes-content-wrap');
+    if (!container || !window.DAOZHU_DATA || !window.DAOZHU_DATA.notes) return;
+
+    const n = window.DAOZHU_DATA.notes;
+    container.innerHTML = `
+      <div class="gateway-box reveal" style="margin-bottom: 28px;">
+        <div class="gateway-text" style="max-width: 720px; font-size: 1.05rem; margin-top: 0;">
+          ${n.desc}
+        </div>
+        <a class="btn btn-primary" href="${n.url}" target="_blank" rel="noopener noreferrer">
+          <span>读岛主的 AI 思考 →</span>
+        </a>
+      </div>
+      <h3 class="font-serif reveal" style="font-size: 1.25rem; margin-bottom: 14px; color: var(--text-primary);">
+        我一直在追问这些问题：
+      </h3>
+      <div class="qgrid reveal delay-1">
+        ${n.questions.map(q => `<div class="qitem">${q}</div>`).join('')}
+      </div>
+    `;
+  }
+
+  // 8. 动态渲染独立街机
   function renderGamesGrid() {
     const grid = document.getElementById('games-grid');
     if (!grid || !window.DAOZHU_DATA || !window.DAOZHU_DATA.games) return;
@@ -319,7 +403,6 @@
           <div style="position: absolute; inset: 0; background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-card) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 18px; border: 1px dashed var(--border-line);">
             <div style="font-size: 2rem; margin-bottom: 6px;">🎭</div>
             <div style="font-family: var(--font-serif); font-size: 1.05rem; font-weight: 700; color: var(--text-primary); text-align: center;">${g.title}</div>
-            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--brand-primary); margin-top: 6px;">[ 📷 待配图 · 建议尺寸 4:3 ]</div>
           </div>
         `;
       }
@@ -349,177 +432,178 @@
     });
   }
 
-  // 6. 动态渲染“最近在做什么” (Now / Changelog from v2)
-  function renderNowList() {
-    const container = document.getElementById('now-list');
-    if (!container || !window.DAOZHU_DATA) return;
+  // 9. 动态渲染换了身份不换主线
+  function renderClosing() {
+    const container = document.getElementById('closing-steps-wrap');
+    if (!container || !window.DAOZHU_DATA || !window.DAOZHU_DATA.closing) return;
 
-    const items = window.DAOZHU_DATA.nowList;
-    container.innerHTML = '';
-
-    items.forEach(it => {
-      const li = document.createElement('li');
-      li.className = 'now-item';
-      li.innerHTML = `
-        <span class="now-date">${it.date}</span>
-        <p class="now-text">
-          ${it.text}
-          <a href="${it.url}" class="now-link">${it.linkText}</a>
-        </p>
-      `;
-      container.appendChild(li);
-    });
-  }
-
-  // 7. 动态渲染思考手记与今日日刊 (Articles Grid)
-  function renderArticlesGrid() {
-    const grid = document.getElementById('articles-grid');
-    if (!grid || !window.DAOZHU_DATA) return;
-
-    const articles = window.DAOZHU_DATA.articles;
-    grid.innerHTML = '';
-
-    articles.forEach(a => {
-      const card = document.createElement('article');
-      card.className = 'article-card';
-      card.innerHTML = `
-        <div class="article-meta">
-          <time>${a.date}</time>
-          <span>·</span>
-          <span class="pill-badge" style="font-size: 0.68rem;">${a.category}</span>
-          <span>·</span>
-          <span>${a.readTime || '5 min'}</span>
+    const steps = window.DAOZHU_DATA.closing;
+    container.innerHTML = steps.map(s => `
+      <div class="closing-step reveal">
+        <div class="step-num">${s.step}</div>
+        <div>
+          <h4>${s.title}</h4>
+          <p>${s.desc}</p>
         </div>
-        <h3 class="article-title">${a.title}</h3>
-        <p class="article-excerpt">${a.excerpt}</p>
-        <div class="article-link">
-          <span>阅读全文</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </div>
-        <a href="${a.url}" target="_blank" rel="noopener noreferrer" style="position: absolute; inset: 0; z-index: 20;">
-          <span style="display: none;">${a.title}</span>
-        </a>
-      `;
-      grid.appendChild(card);
-    });
+      </div>
+    `).join('');
   }
 
-  // 8. 旅程右侧导航滚动监听 (Journey Nav Scroll Spy from v2)
-  function initJourneyNav() {
-    const dots = document.querySelectorAll('.journey-dot');
-    if (!dots.length) return;
-
-    const sections = ['hero', 'ecosystem', 'milestones', 'works', 'arcade-section', 'about', 'now', 'writing', 'contact'];
-
-    function onScroll() {
-      const scrollPos = window.scrollY + window.innerHeight * 0.35;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const sec = document.getElementById(sections[i]);
-        if (sec && sec.offsetTop <= scrollPos) {
-          dots.forEach(d => d.classList.remove('active'));
-          const activeDot = document.querySelector(`.journey-dot[data-target="${sections[i]}"]`);
-          if (activeDot) activeDot.classList.add('active');
-          break;
-        }
-      }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    dots.forEach(d => {
-      d.addEventListener('click', () => {
-        const targetId = d.getAttribute('data-target');
-        const targetEl = document.getElementById(targetId);
-        if (targetEl) {
-          targetEl.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
-  }
-
-  // 9. 海岛环境声效开关 (Ambient Music Integration)
-  function initMusicToggle() {
-    const musicBtn = document.getElementById('music-btn');
-    if (!musicBtn || !window.IslandAudio) return;
-
-    musicBtn.addEventListener('click', () => {
-      const playing = window.IslandAudio.toggle();
-      if (playing) {
-        musicBtn.classList.add('playing');
-      } else {
-        musicBtn.classList.remove('playing');
-      }
-    });
-  }
-
-  // 10. 模态弹窗与联系通道 (Coffee & Contact Modal)
+  // 10. 模态弹窗管理 (All Modals)
   function initModals() {
-    const triggers = document.querySelectorAll('[data-open-modal="coffee"]');
-    const overlay = document.getElementById('coffee-modal');
-    const closeBtn = document.getElementById('modal-close-btn');
+    document.addEventListener('click', (e) => {
+      const trigger = e.target.closest('[data-open-modal]');
+      if (!trigger) return;
+      e.preventDefault();
 
-    if (!overlay) return;
-
-    triggers.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        overlay.classList.add('open');
+      const modalId = trigger.getAttribute('data-open-modal');
+      const targetModal = document.getElementById(modalId) || (modalId === 'coffee' ? document.getElementById('coffee-modal') : null);
+      if (targetModal) {
+        targetModal.classList.add('open');
         document.body.style.overflow = 'hidden';
-      });
+      }
     });
 
-    const closeModal = () => {
-      overlay.classList.remove('open');
-      document.body.style.overflow = '';
-    };
+    document.addEventListener('click', (e) => {
+      const closeBtn = e.target.closest('.modal-close-btn, .mclose');
+      if (!closeBtn) return;
+      e.preventDefault();
+      const modal = closeBtn.closest('.modal-overlay');
+      if (modal) {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
 
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) closeModal();
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && overlay.classList.contains('open')) {
-        closeModal();
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.open').forEach(m => {
+          m.classList.remove('open');
+          document.body.style.overflow = '';
+        });
       }
     });
 
-    // 复制微信号按钮反馈
     const copyWechatBtn = document.getElementById('copy-wechat-btn');
     if (copyWechatBtn) {
       copyWechatBtn.addEventListener('click', () => {
         const wechat = "bl-free";
         navigator.clipboard.writeText(wechat).then(() => {
-          const originalText = copyWechatBtn.innerText;
+          const orig = copyWechatBtn.innerText;
           copyWechatBtn.innerText = "已复制 ✓";
-          setTimeout(() => {
-            copyWechatBtn.innerText = originalText;
-          }, 2000);
+          setTimeout(() => { copyWechatBtn.innerText = orig; }, 2000);
         });
       });
     }
 
-    // 复制邮箱按钮反馈
     const copyEmailBtn = document.getElementById('copy-email-btn');
     if (copyEmailBtn) {
       copyEmailBtn.addEventListener('click', () => {
         const email = "daozhu1993@gmail.com";
         navigator.clipboard.writeText(email).then(() => {
-          const originalText = copyEmailBtn.innerText;
+          const orig = copyEmailBtn.innerText;
           copyEmailBtn.innerText = "已复制到剪贴板 ✓";
-          setTimeout(() => {
-            copyEmailBtn.innerText = originalText;
-          }, 2000);
+          setTimeout(() => { copyEmailBtn.innerText = orig; }, 2000);
         });
       });
     }
   }
 
-  // 11. 滚动渐显观察器 (Scroll Reveal)
+  // 11. 戏剧节拍实时波形发生器 (Story Tension Wave Generator)
+  function initStoryWave() {
+    const path = document.getElementById('story-wave-path');
+    const area = document.getElementById('story-wave-area');
+    if (!path || !area) return;
+
+    let step = 0;
+    const pointsCount = 30;
+    const width = 500;
+    const height = 130;
+
+    function generateWave() {
+      step += 0.04;
+      const points = [];
+      for (let i = 0; i <= pointsCount; i++) {
+        const x = (width / pointsCount) * i;
+        const progress = i / pointsCount;
+        const baseArch = Math.sin(progress * Math.PI) * 45;
+        const wave1 = Math.sin(progress * 10 + step) * 14;
+        const wave2 = Math.cos(progress * 6 - step * 1.5) * 8;
+        const y = height - (35 + baseArch + wave1 + wave2);
+        points.push({ x, y });
+      }
+
+      let d = `M ${points[0].x} ${points[0].y}`;
+      for (let i = 1; i < points.length; i++) {
+        const prev = points[i - 1];
+        const curr = points[i];
+        const midX = (prev.x + curr.x) / 2;
+        const midY = (prev.y + curr.y) / 2;
+        d += ` Q ${prev.x} ${prev.y}, ${midX} ${midY}`;
+      }
+      const last = points[points.length - 1];
+      d += ` L ${last.x} ${last.y}`;
+
+      path.setAttribute('d', d);
+      const areaD = d + ` L ${width} ${height} L 0 ${height} Z`;
+      area.setAttribute('d', areaD);
+
+      requestAnimationFrame(generateWave);
+    }
+
+    generateWave();
+  }
+
+  // 12. 右侧旅程航标指示器 (Journey Navigation Active Tracker)
+  function initJourneyNav() {
+    const dots = document.querySelectorAll('.journey-dot');
+    const sections = [];
+
+    dots.forEach(dot => {
+      const targetId = dot.getAttribute('data-target');
+      const section = document.getElementById(targetId);
+      if (section) {
+        sections.push({ dot, section });
+      }
+
+      dot.addEventListener('click', () => {
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      const scrollPos = window.scrollY + window.innerHeight * 0.35;
+
+      let currentActive = null;
+      sections.forEach(({ dot, section }) => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        if (scrollPos >= top && scrollPos < top + height) {
+          currentActive = dot;
+        }
+      });
+
+      dots.forEach(dot => dot.classList.remove('active'));
+      if (currentActive) {
+        currentActive.classList.add('active');
+      } else if (dots.length > 0 && window.scrollY < 200) {
+        dots[0].classList.add('active');
+      }
+    }, { passive: true });
+  }
+
+  // 13. 滚动进入视口渐入动画
   function initScrollReveal() {
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
@@ -529,45 +613,27 @@
         }
       });
     }, {
-      threshold: 0.08,
-      rootMargin: '0px 0px -40px 0px'
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.08
     });
 
     reveals.forEach(el => observer.observe(el));
   }
 
-  // 12. 返回顶部按钮
-  function initBackToTop() {
-    const btn = document.getElementById('back-to-top');
-    if (!btn) return;
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 350) {
-        btn.classList.add('visible');
-      } else {
-        btn.classList.remove('visible');
-      }
-    });
-
-    btn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  // 初始化总调度
+  // 14. 页面初始化
   document.addEventListener('DOMContentLoaded', () => {
     ThemeManager.init();
     renderBentoGrid();
     renderMilestones();
     renderWorksGrid();
+    renderProjectsGrid();
+    renderModelsGateway();
+    renderFieldNotes();
     renderGamesGrid();
-    renderNowList();
-    renderArticlesGrid();
-    initJourneyNav();
-    initMusicToggle();
+    renderClosing();
     initModals();
+    initStoryWave();
+    initJourneyNav();
     initScrollReveal();
-    initBackToTop();
   });
-
 })();

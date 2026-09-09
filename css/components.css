@@ -1217,3 +1217,425 @@ html.dark .floating-tool-badge {
     grid-template-columns: 1fr;
   }
 }
+
+/* ── 6.9 AI 小项目 (AI Projects) ── */
+.projects-section {
+  padding: clamp(65px, 10vh, 100px) 0;
+  background: linear-gradient(180deg, transparent 0%, var(--bg-tertiary) 50%, transparent 100%);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-line);
+  border-radius: 20px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--brand-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.project-card.soon {
+  opacity: 0.75;
+  border-style: dashed;
+}
+
+.project-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: #2a9d8f;
+  background: rgba(42, 157, 143, 0.12);
+  border: 1px solid rgba(42, 157, 143, 0.25);
+  border-radius: 6px;
+  padding: 3px 10px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+.project-title {
+  font-family: var(--font-serif);
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.project-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.project-go {
+  font-size: 0.88rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+}
+
+/* ── 6.10 思维模型图鉴 (Mental Models Gateway) ── */
+.models-section {
+  padding: clamp(65px, 10vh, 100px) 0;
+}
+
+.gateway-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-line);
+  border-radius: 24px;
+  padding: 36px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow-md);
+}
+
+.gateway-big {
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: clamp(48px, 6vw, 64px);
+  color: var(--brand-primary);
+  line-height: 1;
+}
+
+.gateway-text {
+  font-size: 1.02rem;
+  color: var(--text-secondary);
+  max-width: 620px;
+  line-height: 1.8;
+  margin-top: 10px;
+}
+
+/* ── 6.11 思考手记问答矩阵 (Field Notes Questions) ── */
+.qgrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 36px;
+  margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+  .qgrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.qitem {
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  padding: 16px 20px 16px 42px;
+  position: relative;
+  line-height: 1.75;
+  background: var(--bg-card);
+  border: 1px solid var(--border-line);
+  border-radius: 14px;
+  transition: all 0.25s ease;
+}
+
+.qitem:hover {
+  border-color: var(--brand-primary);
+  transform: translateX(4px);
+  color: var(--text-primary);
+}
+
+.qitem::before {
+  content: "?";
+  position: absolute;
+  left: 18px;
+  top: 14px;
+  color: var(--brand-primary);
+  font-weight: 900;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+/* ── 6.12 公开分享 (Public Speaking) ── */
+.speaking-section {
+  padding: clamp(50px, 8vh, 80px) 0;
+}
+
+.scaffold-box {
+  border: 1px dashed var(--border-line);
+  border-radius: 18px;
+  padding: 28px 32px;
+  color: var(--text-muted);
+  font-size: 0.96rem;
+  line-height: 1.75;
+  background: var(--bg-tertiary);
+  text-align: center;
+}
+
+/* ── 6.13 换了身份，不换主线 (Closing 4-Step Narrative) ── */
+.closing-section {
+  padding: clamp(65px, 10vh, 100px) 0;
+  background: linear-gradient(180deg, transparent 0%, var(--bg-tertiary) 50%, transparent 100%);
+}
+
+.closing-steps-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.closing-step {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 20px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border-line);
+  align-items: baseline;
+}
+
+@media (max-width: 640px) {
+  .closing-step {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+.closing-step .step-num {
+  font-family: var(--font-serif);
+  color: var(--brand-primary);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.closing-step h4 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.closing-step p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+.closing-quote {
+  margin-top: 36px;
+  font-family: var(--font-serif);
+  font-size: 1.22rem;
+  line-height: 1.85;
+  color: var(--text-primary);
+  border-left: 3px solid var(--brand-primary);
+  padding-left: 20px;
+  font-style: italic;
+}
+
+/* ── 6.14 作品详情模态弹窗富媒体样式 (Work Detail Modals) ── */
+.work-card.clickable {
+  cursor: pointer;
+}
+
+.work-card.clickable::after {
+  content: "点击查看深度复盘与展台 →";
+  display: block;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border-subtle);
+  font-size: 0.85rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  font-family: var(--font-mono);
+  transition: transform 0.2s ease;
+}
+
+.work-card.clickable:hover::after {
+  transform: translateX(4px);
+}
+
+.modal-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-line);
+  border-radius: 24px;
+  max-width: 760px;
+  width: 100%;
+  padding: 38px 42px 46px;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 640px) {
+  .modal-box {
+    padding: 26px 20px 32px;
+  }
+}
+
+.modal-box .mclose {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 32px;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.2s ease;
+}
+
+.modal-box .mclose:hover {
+  color: var(--brand-primary);
+}
+
+.modal-box .m-eyebrow {
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  color: #2a9d8f;
+  background: rgba(42, 157, 143, 0.12);
+  display: inline-block;
+  border-radius: 6px;
+  padding: 3px 10px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  border: 1px solid rgba(42, 157, 143, 0.25);
+}
+
+.modal-box h3 {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.modal-box .m-role {
+  font-size: 0.88rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+  font-family: var(--font-mono);
+  margin-bottom: 16px;
+}
+
+.modal-box h4 {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  margin: 22px 0 8px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+.modal-box p {
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+
+.modal-box a.m-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  color: var(--brand-primary);
+  font-weight: 600;
+  font-size: 0.96rem;
+  border-bottom: 1.5px solid var(--brand-primary);
+  padding-bottom: 2px;
+}
+
+.modal-box .m-hero {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--border-line);
+  margin: 18px 0 6px;
+  object-fit: cover;
+  box-shadow: var(--shadow-sm);
+}
+
+.modal-box .m-tagline {
+  font-family: var(--font-serif);
+  font-size: 1.08rem;
+  line-height: 1.85;
+  color: var(--brand-primary);
+  text-align: center;
+  margin: 24px 0 16px;
+  padding: 16px 20px;
+  background: var(--brand-primary-soft);
+  border-radius: 14px;
+  border: 1px solid var(--brand-primary-border);
+}
+
+.modal-box .m-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 10px;
+}
+
+@media (max-width: 640px) {
+  .modal-box .m-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.modal-box .m-gallery-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-box .m-gallery-item img {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--border-line);
+  aspect-ratio: 16 / 11;
+  object-fit: cover;
+}
+
+.modal-box .m-gallery-item figcaption {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+}
+
+.modal-box .m-credit {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 18px;
+  font-family: var(--font-mono);
+}
