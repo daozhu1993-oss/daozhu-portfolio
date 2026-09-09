@@ -238,9 +238,9 @@ window.DAOZHU_DATA = {
       title: "《阿Q正传》心理互动剧场",
       subtitle: "鲁迅文学角色心理模拟器",
       tag: "文学互动 · 精神胜利法",
-      image: null,
+      image: "assets/aq.jpg",
       desc: "以深度互动的选择分支拆解阿Q的「精神胜利法」与未庄众生相，将严肃文学转化为可交互、有张力的心理叙事剧场。",
-      url: "https://github.com/daozhu1993-oss"
+      url: "https://aq.daozhuai.cn"
     }
   ],
 
