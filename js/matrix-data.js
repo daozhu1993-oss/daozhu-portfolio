@@ -5,8 +5,8 @@
 
 window.DAOZHU_DATA = {
   profile: {
-    name: "郭轩 · 岛主",
-    enName: "Guo Xuan · Daozhu",
+    name: "岛主",
+    enName: "Daozhu",
     title: "十年编剧 × AI 产品经理 · 独立全栈创造者",
     slogan: "用故事思维，驱动用户价值。",
     motto: "“别人做产品，我讲故事——只是我的故事，恰好能落地、能生长。”",
@@ -25,7 +25,7 @@ window.DAOZHU_DATA = {
     socials: [
       { name: "GitHub", handle: "@daozhu1993-oss", url: "https://github.com/daozhu1993-oss" },
       { name: "X (Twitter)", handle: "@daozhu_1", url: "https://x.com/daozhu_1" },
-      { name: "即刻", handle: "岛主郭轩", url: "https://web.okjike.com" },
+      { name: "即刻", handle: "岛主", url: "https://web.okjike.com" },
       { name: "微信专栏", handle: "岛主的故事工坊", url: "https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzIxOTE5OTczNA==&action=getalbum&album_id=4578372974411530241&scene=21#wechat_redirect" },
       { name: "个人微信", handle: "bl-free", url: "#contact" }
     ]
