@@ -45,7 +45,7 @@ window.DAOZHU_DATA = {
       posterOverlay: "55集商业爆款短剧《一纸还乡》实战提炼 · 前3秒留存断章定律",
       desc: "这不是泛资讯，而是十年一线编剧亲历提炼的可复现工业化手艺。收录好莱坞救猫咪重构公式、短剧爽点反转卡、每集90秒悬念卡点与 AI 漫剧一致性分镜全链路实战工作流。",
       highlights: ["55集短剧《一纸还乡》破亿战绩", "33集短剧《冲喜后》", "分集断章节奏卡"],
-      link: "https://github.com/daozhu1993-oss/daozhu-script",
+      link: "https://script.daozhuai.cn",
       ctaText: "进入编剧手艺库 ↗",
       themeColor: "#B45A3C",
       type: "script"
@@ -61,7 +61,7 @@ window.DAOZHU_DATA = {
       image: null,
       desc: "自动化精准检索过去 24 小时全球前沿进展，覆盖 7 大领域（AI资讯、一人公司、产品设计、审美提升、产品营销、AI漫剧、AI协作）。每期精选 10 篇高密度图文，100% 真实有效外链与价值沉淀。",
       highlights: ["每期 10 篇高密度精萃", "岛主策展主线叙事", "分镜剧场沉淀"],
-      link: "https://daozhu-ai-daily.daozhu1993.workers.dev/",
+      link: "https://dailyone.daozhuai.cn",
       ctaText: "阅读今日日报 ↗",
       themeColor: "#2A9D8F",
       type: "daily"
@@ -77,7 +77,7 @@ window.DAOZHU_DATA = {
       image: null,
       desc: "复古暖灰米黄机身、金属螺丝、呼吸绿灯与立体内阴影。内置原生 Web Audio 物理机械微动按键音效，收录全球 478+ 篇前沿动效交互、3D 纵深、排版审美与 11 大类设计工具库。",
       highlights: ["Web Audio 物理微动音效", "视口自动播放循环视频", "工控终端质感"],
-      link: "https://daozhu1993-oss.github.io/daozhu-inspo/",
+      link: "https://inspo.daozhuai.cn",
       ctaText: "打开工控终端 ↗",
       themeColor: "#D4883A",
       type: "inspo"
@@ -109,7 +109,7 @@ window.DAOZHU_DATA = {
       image: null,
       desc: "“做再多商业与前沿 AI，心中始终留着一座小岛——留给童话、给女儿的画，和慢悠悠的时光。”坚持为女儿一一手绘成长绘本 30 册，沉淀原创 IP「芽芽兽」与 230 个思维模型。",
       highlights: ["原创成长绘本 30 册", "诗歌与海岛哲学", "一杯随时能聊的咖啡"],
-      link: "https://daozhu1993-oss.github.io/v2/",
+      link: "https://me.daozhuai.cn",
       ctaText: "漫步小岛手记 ↗",
       themeColor: "#3B72DE",
       type: "picturebook"
@@ -256,13 +256,13 @@ window.DAOZHU_DATA = {
       date: "2026.08",
       text: "发布「岛主灵感 · Daozhu's Inspo」复古工控硬件设计终端，收录全球 478+ 篇前沿交互分镜与 Web Audio 机械按键音效。",
       linkText: "访问灵感终端 ↗",
-      url: "https://daozhu1993-oss.github.io/daozhu-inspo/"
+      url: "https://inspo.daozhuai.cn"
     },
     {
       date: "2026.07",
       text: "搭建短剧与 AI 漫剧工业化手艺库「编剧工坊 · StoryCraft」，系统梳理爆款前 3 秒黄金反转与断章节拍卡。",
-      linkText: "查看仓库 ↗",
-      url: "https://github.com/daozhu1993-oss/daozhu-script"
+      linkText: "进入工坊 ↗",
+      url: "https://script.daozhuai.cn"
     },
     {
       date: "2026.06",
@@ -280,7 +280,7 @@ window.DAOZHU_DATA = {
       category: "故事思维",
       readTime: "6 min",
       excerpt: "市面上的很多 AI 工具像一把精密的螺丝刀，但用户需要的是一栋装满故事与温度的木屋。如何把戏剧张力与情绪唤醒注入产品的每一步交互？",
-      url: "https://daozhu1993-oss.github.io/v2/index.html#notes"
+      url: "https://me.daozhuai.cn/#notes"
     },
     {
       title: "一人公司的审美护城河：为什么我坚持做复古工控终端？",
@@ -288,7 +288,7 @@ window.DAOZHU_DATA = {
       category: "审美提升",
       readTime: "8 min",
       excerpt: "在模版泛滥与扁平同质化的今天，具有物理触感、机械声学微动与视觉深度的产品，才能在用户脑海里扎下一根刺。",
-      url: "https://daozhu1993-oss.github.io/daozhu-inspo/"
+      url: "https://inspo.daozhuai.cn"
     },
     {
       title: "短剧与 AI 漫剧黄金前 3 秒留存公式拆解",
@@ -296,7 +296,7 @@ window.DAOZHU_DATA = {
       category: "编剧手艺",
       readTime: "5 min",
       excerpt: "从破亿短剧《一纸还乡》到爆款 AI 漫剧，我们拆解了 100 部头部短剧的节拍波形图。记住：用户不是为你买单，是为他被唤醒的情绪买单。",
-      url: "https://github.com/daozhu1993-oss/daozhu-script"
+      url: "https://script.daozhuai.cn"
     }
   ]
 };
