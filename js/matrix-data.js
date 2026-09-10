@@ -25,11 +25,10 @@ window.DAOZHU_DATA = {
       { icon: "👧", label: "陪一一" }
     ],
     socials: [
-      { name: "作品站 · 岛上", handle: "v2 站点", url: "https://daozhu1993-oss.github.io/v2/" },
+      { name: "作品站 · 岛上", handle: "v2 站点", url: "https://me.daozhuai.cn/v2/" },
       { name: "知乎", handle: "岛主王仙客", url: "https://www.zhihu.com/people/wang-xianke-52" },
       { name: "GitHub", handle: "@daozhu1993-oss", url: "https://github.com/daozhu1993-oss" },
       { name: "小红书", handle: "岛主", url: "https://xhslink.cn/o/7NfUNVTdCrr" },
-      { name: "即刻", handle: "岛主", url: "https://web.okjike.com" },
       { name: "X (Twitter)", handle: "@daozhu_1", url: "https://x.com/daozhu_1" },
       { name: "微信专栏", handle: "岛主的故事工坊", url: "https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzIxOTE5OTczNA==&action=getalbum&album_id=4578372974411530241&scene=21#wechat_redirect" },
       { name: "个人微信", handle: "bl-free", url: "#contact" }
@@ -133,7 +132,7 @@ window.DAOZHU_DATA = {
       overlaySubtitle: "给女儿的绘本连载 · 原创 IP 芽芽兽 · 慢生活",
       desc: "“做再多商业与前沿 AI，心中始终留着一座小岛——留给童话、给女儿的画，和慢悠悠的时光。”女儿的成长绘本在持续更新，原创 IP「芽芽兽」系列绘本也在持续生长，伴随手写诗歌与海岛哲学。",
       highlights: ["女儿成长绘本 (持续更新)", "芽芽兽 IP 绘本连载", "诗歌与慢调海岛生活"],
-      link: "https://daozhu1993-oss.github.io/v2/",
+      link: "https://me.daozhuai.cn/v2/",
       ctaText: "漫步小岛手记 ↗",
       themeColor: "#3B72DE",
       type: "picturebook"
@@ -248,6 +247,7 @@ window.DAOZHU_DATA = {
       title: "个人内容 IP「岛主」",
       role: "我的角色：独立创作 + vibe coding",
       image: "assets/daozhu-ip-hero.jpg",
+      directUrl: "https://me.daozhuai.cn/v2/",
       desc: "30 本原创绘本、诗、神话新编、230 个思维模型知识库，原创 IP「芽芽兽」与品牌 VI，网站与内容工具自研全栈落地。",
       meta: "独立创作者 · 个人内容站",
       badges: ["30本手绘成长绘本", "82首诗 / 11篇神话", "230+思维模型", "芽芽兽 IP"],
@@ -390,9 +390,9 @@ window.DAOZHU_DATA = {
       title: "《岛主卡丁车 (Daozhu Kart)》",
       subtitle: "3D 极速网页竞速街机",
       tag: "3D Arcade · WebGL",
-      image: "assets/kart-girl.png",
+      image: "assets/kart-real.jpg",
       desc: "纯前端 WebGL + Three.js 打造的轻量级 3D 赛车小游戏。支持即开即跑、动态镜头与道具加速漂移，体验丝滑街机感。",
-      url: "https://daozhu1993-oss.github.io/kart/"
+      url: "https://kart.daozhuai.cn"
     },
     {
       id: "cuzhi",
