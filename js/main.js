@@ -255,12 +255,14 @@
     });
   }
 
-  // 6. 动态渲染思维模型图鉴网关
+  // 6. 动态渲染思维模型图鉴网关与精选模型预览
   function renderModelsGateway() {
     const container = document.getElementById('models-gateway-wrap');
     if (!container || !window.DAOZHU_DATA || !window.DAOZHU_DATA.models) return;
 
     const m = window.DAOZHU_DATA.models;
+    const featured = m.featured || [];
+
     container.innerHTML = `
       <div class="gateway-box reveal">
         <div>
@@ -271,17 +273,44 @@
           <span>翻翻思维模型图鉴 →</span>
         </a>
       </div>
+
+      ${featured.length ? `
+        <div class="preview-block-header reveal delay-1" style="margin-top: 32px; display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+          <h3 class="font-serif" style="font-size: 1.28rem; font-weight: 700; color: var(--text-primary); margin: 0;">
+            精选单页笔记预览 · 一眼看懂模型本质
+          </h3>
+          <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted);">
+            商业 · 决策 · 沟通 · 认知
+          </span>
+        </div>
+        <div class="models-preview-grid reveal delay-1">
+          ${featured.map(item => `
+            <a class="model-preview-card" href="${item.url}" target="_blank" rel="noopener noreferrer">
+              <div class="model-preview-header">
+                <span class="model-preview-idx">${item.num}</span>
+                <span class="model-preview-cat">${item.cat}</span>
+              </div>
+              <h3 class="model-preview-title">${item.title}</h3>
+              <div class="model-preview-en">${item.en}</div>
+              <p class="model-preview-desc">${item.desc}</p>
+              <span class="model-preview-go">翻开单页笔记 ↗</span>
+            </a>
+          `).join('')}
+        </div>
+      ` : ''}
     `;
   }
 
-  // 7. 动态渲染思考手记与追问矩阵
+  // 7. 动态渲染思考手记、精选长文与追问矩阵
   function renderFieldNotes() {
     const container = document.getElementById('notes-content-wrap');
     if (!container || !window.DAOZHU_DATA || !window.DAOZHU_DATA.notes) return;
 
     const n = window.DAOZHU_DATA.notes;
+    const featured = n.featured || [];
+
     container.innerHTML = `
-      <div class="gateway-box reveal" style="margin-bottom: 28px;">
+      <div class="gateway-box reveal" style="margin-bottom: 24px;">
         <div class="gateway-text" style="max-width: 720px; font-size: 1.05rem; margin-top: 0;">
           ${n.desc}
         </div>
@@ -289,10 +318,35 @@
           <span>读岛主的 AI 思考 →</span>
         </a>
       </div>
-      <h3 class="font-serif reveal" style="font-size: 1.25rem; margin-bottom: 14px; color: var(--text-primary);">
+
+      ${featured.length ? `
+        <div class="preview-block-header reveal delay-1" style="margin-top: 32px; display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+          <h3 class="font-serif" style="font-size: 1.28rem; font-weight: 700; color: var(--text-primary); margin: 0;">
+            代表长文手记预览 · 一手复盘与判断
+          </h3>
+          <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted);">
+            7 阶段演进 · 68 篇持续更新
+          </span>
+        </div>
+        <div class="notes-preview-grid reveal delay-1">
+          ${featured.map(item => `
+            <a class="note-preview-card" href="${item.url}" target="_blank" rel="noopener noreferrer">
+              <div class="note-preview-header">
+                <span class="note-preview-num">${item.num}</span>
+                <span class="note-preview-stage">${item.stage}</span>
+              </div>
+              <h3 class="note-preview-title">${item.title}</h3>
+              <p class="note-preview-desc">${item.desc}</p>
+              <span class="note-preview-go">阅读长文手记 ↗</span>
+            </a>
+          `).join('')}
+        </div>
+      ` : ''}
+
+      <h3 class="font-serif reveal" style="font-size: 1.25rem; margin-top: 36px; margin-bottom: 14px; color: var(--text-primary);">
         我一直在追问这些问题：
       </h3>
-      <div class="qgrid reveal delay-1">
+      <div class="qgrid reveal delay-2">
         ${n.questions.map(q => `<div class="qitem">${q}</div>`).join('')}
       </div>
     `;

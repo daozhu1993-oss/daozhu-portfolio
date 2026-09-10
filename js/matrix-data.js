@@ -272,13 +272,6 @@ window.DAOZHU_DATA = {
       status: "live"
     },
     {
-      tag: "AIGC · 作品",
-      title: "《风物中国》AIGC 纪录片",
-      desc: "用 AI 生成 + 编剧脚本做的中国传统文化系列纪录片，全流程 AIGC、4K 成片。五系列 110 段，已出 3 部。",
-      url: "https://daozhu1993-oss.github.io/fengwu/index.html",
-      status: "work"
-    },
-    {
       tag: "产品实验 · 开源",
       title: "现实判断战略参谋",
       desc: "把商业战略方法论做成一个可安装的 AI 专家包，帮普通人做现实判断与决策，已开源免费分享。",
@@ -301,21 +294,85 @@ window.DAOZHU_DATA = {
     }
   ],
 
-  // 5. 思维模型图鉴 (Mental Models Gateway)
+  // 5. 思维模型图鉴 (Mental Models Gateway & Featured Previews)
   models: {
     count: "230+",
     title: "思维模型 · 每日一模型",
     subtitle: "与其追每一个新工具，不如把常用的思维模型沉淀成能随时调用的上下文。我把它们做成单页笔记，慢慢汇成一座知识库。",
     desc: "230+ 个思维模型，做成随时能翻、能用的单文件笔记：MECE、第一性原理、黄金圈、BLM、PARA、SCQA……商业、表达、决策一路收着。",
-    url: "https://daozhu1993-oss.github.io/models/index.html"
+    url: "https://daozhu1993-oss.github.io/models/index.html",
+    featured: [
+      {
+        num: "No.01",
+        cat: "原则型",
+        title: "MECE 原则",
+        en: "Mutually Exclusive, Collectively Exhaustive",
+        desc: "分类做到「不重叠、不遗漏」，你的分析才站得住脚。麦肯锡顾问最底层的结构化思考底座。",
+        url: "https://daozhu1993-oss.github.io/models/model-mece.html"
+      },
+      {
+        num: "No.02",
+        cat: "框架型",
+        title: "RIDE 说服模型",
+        en: "Risk · Interest · Difference · Effect",
+        desc: "从建立信任到促成行动的四季说服框架：风险、利益、差异、效果，向上汇报与跨部门协同利器。",
+        url: "https://daozhu1993-oss.github.io/models/model-ride.html"
+      },
+      {
+        num: "No.03",
+        cat: "原则型",
+        title: "金字塔原理",
+        en: "Pyramid Principle",
+        desc: "结论先行、以上统下、归类分组、逻辑递进。让长文汇报与复杂业务架构一目了然、直击要害。",
+        url: "https://daozhu1993-oss.github.io/models/model-pyramid.html"
+      },
+      {
+        num: "No.04",
+        cat: "框架型",
+        title: "SCQA 架构",
+        en: "Situation · Complication · Question · Answer",
+        desc: "用「情境-冲突-问题-答案」将复杂推演讲成引人入胜的好故事，把话说进决策者心里，告别听不懂。",
+        url: "https://daozhu1993-oss.github.io/models/model-scqa.html"
+      }
+    ]
   },
 
-  // 6. 思考手记 (Field Notes & Questions)
+  // 6. 思考手记 (Field Notes & Featured Articles)
   notes: {
     title: "思考手记",
     subtitle: "关于 AI、产品，与普通人怎么用好工具的思考。把还没完全想透的问题，也放在阳光下慢慢长。",
-    desc: "我把关于 AI 与内容的长文、判断和还在发酵的想法，陆续写在这里，持续更新。",
+    desc: "我把关于 AI 与内容的长文、判断和还在发酵的想法，陆续写在这里，按 7 阶段编排，已沉淀 68 篇长文手记。",
     url: "https://daozhu1993-oss.github.io/ai-thinking/index.html",
+    featured: [
+      {
+        num: "01",
+        stage: "① 认知重启",
+        title: "你还在纠结要不要学 AI，有人已经用「说人话」给自己造了门生意",
+        desc: "普通人最该学的不是复杂的 prompt，而是 vibe coding——用自然语言让 AI 帮你把想法变成真正能跑的产品。",
+        url: "https://daozhu1993-oss.github.io/ai-thinking/ai-vibe-coding.html"
+      },
+      {
+        num: "02",
+        stage: "① 认知重启",
+        title: "AI 工具层，正在重做这六门老生意",
+        desc: "皮肤、模板、插件、素材包、工作流、教程。每次平台跃迁时，这六类轻量生意都会重新长出来一次。",
+        url: "https://daozhu1993-oss.github.io/ai-thinking/ai-six-old-businesses.html"
+      },
+      {
+        num: "04",
+        stage: "② 判断与品味",
+        title: "AI 一天能产一千条内容，可你凭什么说哪条好？",
+        desc: "当产能与制作门槛不再稀缺，「知道什么才是真正的好内容」成了创作者最坚固的护城河。",
+        url: "https://daozhu1993-oss.github.io/ai-thinking/ai-judgment.html"
+      },
+      {
+        num: "05",
+        stage: "② 判断与品味",
+        title: "AI 越强，人的品味越值钱",
+        desc: "十秒出一张能发的图，人人都能批量产出。但工具越强，会做取舍、会挑、懂共情的人越贵。",
+        url: "https://daozhu1993-oss.github.io/ai-thinking/ai-taste-worth-more.html"
+      }
+    ],
     questions: [
       "AI 能写、能画、能拍之后，一个内容人真正不可替代的是什么？",
       "怎么让 AI 做出来的东西，还带着人味、还打得动人？",

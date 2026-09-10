@@ -31,8 +31,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Serif+SC:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- 核心样式 (带版本时间戳防浏览器缓存) -->
-  <link rel="stylesheet" href="css/style.css?v=20260910_v4">
-  <link rel="stylesheet" href="css/components.css?v=20260910_v4">
+  <link rel="stylesheet" href="css/style.css?v=20260910_v5">
+  <link rel="stylesheet" href="css/components.css?v=20260910_v5">
 </head>
 <body>
 
@@ -384,7 +384,7 @@
         不追求完美代码，追求从 0 到 1 的创造快感。全部附带真实可体验链接。
       </p>
 
-      <!-- 6个 AI 项目卡片 -->
+      <!-- 5个 AI 项目卡片 -->
       <div id="projects-grid" class="projects-grid reveal delay-1"></div>
     </div>
   </section>
@@ -400,7 +400,69 @@
         与其追每一个新工具，不如把常用的思维模型沉淀成能随时调用的上下文。我把它们做成单页笔记，慢慢汇成一座知识库。
       </p>
 
-      <div id="models-gateway-wrap"></div>
+      <!-- 思维模型网关与精选单页笔记预览 -->
+      <div id="models-gateway-wrap">
+        <div class="gateway-box reveal">
+          <div>
+            <div class="gateway-big">230+</div>
+            <div class="gateway-text">230+ 个思维模型，做成随时能翻、能用的单文件笔记：MECE、第一性原理、黄金圈、BLM、PARA、SCQA……商业、表达、决策一路收着。</div>
+          </div>
+          <a class="btn btn-primary" href="https://daozhu1993-oss.github.io/models/index.html" target="_blank" rel="noopener noreferrer">
+            <span>翻翻思维模型图鉴 →</span>
+          </a>
+        </div>
+
+        <div class="preview-block-header reveal delay-1" style="margin-top: 32px; display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+          <h3 class="font-serif" style="font-size: 1.28rem; font-weight: 700; color: var(--text-primary); margin: 0;">
+            精选单页笔记预览 · 一眼看懂模型本质
+          </h3>
+          <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted);">
+            商业 · 决策 · 沟通 · 认知
+          </span>
+        </div>
+        <div class="models-preview-grid reveal delay-1">
+          <a class="model-preview-card" href="https://daozhu1993-oss.github.io/models/model-mece.html" target="_blank" rel="noopener noreferrer">
+            <div class="model-preview-header">
+              <span class="model-preview-idx">No.01</span>
+              <span class="model-preview-cat">原则型</span>
+            </div>
+            <h3 class="model-preview-title">MECE 原则</h3>
+            <div class="model-preview-en">Mutually Exclusive, Collectively Exhaustive</div>
+            <p class="model-preview-desc">分类做到「不重叠、不遗漏」，你的分析才站得住脚。麦肯锡顾问最底层的结构化思考底座。</p>
+            <span class="model-preview-go">翻开单页笔记 ↗</span>
+          </a>
+          <a class="model-preview-card" href="https://daozhu1993-oss.github.io/models/model-ride.html" target="_blank" rel="noopener noreferrer">
+            <div class="model-preview-header">
+              <span class="model-preview-idx">No.02</span>
+              <span class="model-preview-cat">框架型</span>
+            </div>
+            <h3 class="model-preview-title">RIDE 说服模型</h3>
+            <div class="model-preview-en">Risk · Interest · Difference · Effect</div>
+            <p class="model-preview-desc">从建立信任到促成行动的四季说服框架：风险、利益、差异、效果，向上汇报与跨部门协同利器。</p>
+            <span class="model-preview-go">翻开单页笔记 ↗</span>
+          </a>
+          <a class="model-preview-card" href="https://daozhu1993-oss.github.io/models/model-pyramid.html" target="_blank" rel="noopener noreferrer">
+            <div class="model-preview-header">
+              <span class="model-preview-idx">No.03</span>
+              <span class="model-preview-cat">原则型</span>
+            </div>
+            <h3 class="model-preview-title">金字塔原理</h3>
+            <div class="model-preview-en">Pyramid Principle</div>
+            <p class="model-preview-desc">结论先行、以上统下、归类分组、逻辑递进。让长文汇报与复杂业务架构一目了然、直击要害。</p>
+            <span class="model-preview-go">翻开单页笔记 ↗</span>
+          </a>
+          <a class="model-preview-card" href="https://daozhu1993-oss.github.io/models/model-scqa.html" target="_blank" rel="noopener noreferrer">
+            <div class="model-preview-header">
+              <span class="model-preview-idx">No.04</span>
+              <span class="model-preview-cat">框架型</span>
+            </div>
+            <h3 class="model-preview-title">SCQA 架构</h3>
+            <div class="model-preview-en">Situation · Complication · Question · Answer</div>
+            <p class="model-preview-desc">用「情境-冲突-问题-答案」将复杂推演讲成引人入胜的好故事，把话说进决策者心里，告别听不懂。</p>
+            <span class="model-preview-go">翻开单页笔记 ↗</span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -466,7 +528,76 @@
         关于 AI、产品，与普通人怎么用好工具的深度复盘与持续追问。
       </p>
 
-      <div id="notes-content-wrap"></div>
+      <!-- 思考手记网关、精选长文预览与追问矩阵 -->
+      <div id="notes-content-wrap">
+        <div class="gateway-box reveal" style="margin-bottom: 24px;">
+          <div class="gateway-text" style="max-width: 720px; font-size: 1.05rem; margin-top: 0;">
+            我把关于 AI 与内容的长文、判断和还在发酵的想法，陆续写在这里，按 7 阶段编排，已沉淀 68 篇长文手记。
+          </div>
+          <a class="btn btn-primary" href="https://daozhu1993-oss.github.io/ai-thinking/index.html" target="_blank" rel="noopener noreferrer">
+            <span>读岛主的 AI 思考 →</span>
+          </a>
+        </div>
+
+        <div class="preview-block-header reveal delay-1" style="margin-top: 32px; display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+          <h3 class="font-serif" style="font-size: 1.28rem; font-weight: 700; color: var(--text-primary); margin: 0;">
+            代表长文手记预览 · 一手复盘与判断
+          </h3>
+          <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted);">
+            7 阶段演进 · 68 篇持续更新
+          </span>
+        </div>
+        <div class="notes-preview-grid reveal delay-1">
+          <a class="note-preview-card" href="https://daozhu1993-oss.github.io/ai-thinking/ai-vibe-coding.html" target="_blank" rel="noopener noreferrer">
+            <div class="note-preview-header">
+              <span class="note-preview-num">01</span>
+              <span class="note-preview-stage">① 认知重启</span>
+            </div>
+            <h3 class="note-preview-title">你还在纠结要不要学 AI，有人已经用「说人话」给自己造了门生意</h3>
+            <p class="note-preview-desc">普通人最该学的不是复杂的 prompt，而是 vibe coding——用自然语言让 AI 帮你把想法变成真正能跑的产品。</p>
+            <span class="note-preview-go">阅读长文手记 ↗</span>
+          </a>
+          <a class="note-preview-card" href="https://daozhu1993-oss.github.io/ai-thinking/ai-six-old-businesses.html" target="_blank" rel="noopener noreferrer">
+            <div class="note-preview-header">
+              <span class="note-preview-num">02</span>
+              <span class="note-preview-stage">① 认知重启</span>
+            </div>
+            <h3 class="note-preview-title">AI 工具层，正在重做这六门老生意</h3>
+            <p class="note-preview-desc">皮肤、模板、插件、素材包、工作流、教程。每次平台跃迁时，这六类轻量生意都会重新长出来一次。</p>
+            <span class="note-preview-go">阅读长文手记 ↗</span>
+          </a>
+          <a class="note-preview-card" href="https://daozhu1993-oss.github.io/ai-thinking/ai-judgment.html" target="_blank" rel="noopener noreferrer">
+            <div class="note-preview-header">
+              <span class="note-preview-num">04</span>
+              <span class="note-preview-stage">② 判断与品味</span>
+            </div>
+            <h3 class="note-preview-title">AI 一天能产一千条内容，可你凭什么说哪条好？</h3>
+            <p class="note-preview-desc">当产能与制作门槛不再稀缺，「知道什么才是真正的好内容」成了创作者最坚固的护城河。</p>
+            <span class="note-preview-go">阅读长文手记 ↗</span>
+          </a>
+          <a class="note-preview-card" href="https://daozhu1993-oss.github.io/ai-thinking/ai-taste-worth-more.html" target="_blank" rel="noopener noreferrer">
+            <div class="note-preview-header">
+              <span class="note-preview-num">05</span>
+              <span class="note-preview-stage">② 判断与品味</span>
+            </div>
+            <h3 class="note-preview-title">AI 越强，人的品味越值钱</h3>
+            <p class="note-preview-desc">十秒出一张能发的图，人人都能批量产出。但工具越强，会做取舍、会挑、懂共情的人越贵。</p>
+            <span class="note-preview-go">阅读长文手记 ↗</span>
+          </a>
+        </div>
+
+        <h3 class="font-serif reveal" style="font-size: 1.25rem; margin-top: 36px; margin-bottom: 14px; color: var(--text-primary);">
+          我一直在追问这些问题：
+        </h3>
+        <div class="qgrid reveal delay-2">
+          <div class="qitem">AI 能写、能画、能拍之后，一个内容人真正不可替代的是什么？</div>
+          <div class="qitem">怎么让 AI 做出来的东西，还带着人味、还打得动人？</div>
+          <div class="qitem">一个好故事，凭什么能变成一个能赚钱、能长大的产品？</div>
+          <div class="qitem">给孩子做东西，怎么既让他真的爱，又对他真的好？</div>
+          <div class="qitem">一个人加上 AI，能不能顶得上一支小团队？边界在哪？</div>
+          <div class="qitem">机器越强，哪些事反而越该由人亲手去做？</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -795,7 +926,7 @@
   </div>
 
   <!-- 脚本引用 (带版本时间戳强制刷新浏览器缓存) -->
-  <script src="js/matrix-data.js?v=20260910_v4"></script>
-  <script src="js/main.js?v=20260910_v4"></script>
+  <script src="js/matrix-data.js?v=20260910_v5"></script>
+  <script src="js/main.js?v=20260910_v5"></script>
 </body>
 </html>
