@@ -30,9 +30,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Serif+SC:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- 核心样式 -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/components.css">
+  <!-- 核心样式 (带版本时间戳防浏览器缓存) -->
+  <link rel="stylesheet" href="css/style.css?v=20260910_v3">
+  <link rel="stylesheet" href="css/components.css?v=20260910_v3">
 </head>
 <body>
 
@@ -264,11 +264,96 @@
         从影视剧本到教育硬件，再到 AI 时代独立超级个体。身份在变，但用故事驱动用户价值的核心主线从未改变。
       </p>
 
-      <!-- 三大核心履历里程碑 -->
-      <div id="milestones-grid" class="milestones-grid reveal delay-1"></div>
+      <!-- 三大核心履历里程碑 (预渲染确保零闪烁与即时生效) -->
+      <div id="milestones-grid" class="milestones-grid reveal delay-1">
+        <!-- 01: 独立内容创作者 -->
+        <div class="milestone-card">
+          <div class="milestone-num">01</div>
+          <div class="milestone-body">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; flex-wrap: wrap; gap: 8px;">
+              <span class="pill-badge font-mono" style="font-size: 0.72rem;">2025.5 – 至今</span>
+              <span style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-muted);">个人内容站</span>
+            </div>
+            <h3>独立 AI 内容创作者 · 个人 IP「岛主」</h3>
+            <div class="milestone-sub">INDEPENDENT AI CREATOR · 个人内容站</div>
+            <p>独立制作全流程 AIGC 系列纪录片《风物中国》——纸工艺拼贴 + 编剧级脚本，规划 110 段，已产出 3 部成片（含 4K）；持续运营内容 IP「岛主」：30 本原创绘本、诗、神话新编、230 个思维模型知识库，原创 IP「芽芽兽」；以 vibe coding 独立上线个人网站与多款内容工具。</p>
+            <div class="milestone-tags" style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px;">
+              <span class="pill-badge" style="font-size: 0.7rem;">全流程 4K AIGC</span>
+              <span class="pill-badge" style="font-size: 0.7rem;">30本手绘绘本</span>
+              <span class="pill-badge" style="font-size: 0.7rem;">芽芽兽 IP</span>
+              <span class="pill-badge" style="font-size: 0.7rem;">Vibe Coding</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02: 学而思四年融合 (2020.1 - 2024.5) -->
+        <div class="milestone-card">
+          <div class="milestone-num">02</div>
+          <div class="milestone-body">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; flex-wrap: wrap; gap: 8px;">
+              <span class="pill-badge font-mono" style="font-size: 0.72rem;">2020.1 – 2024.5</span>
+              <span style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-muted);">好未来 / 学而思</span>
+            </div>
+            <h3>创新产品策划 / 游戏编剧 · 学而思</h3>
+            <div class="milestone-sub">INNOVATIVE PRODUCT & WORLDVIEW · 主导 AI 小思、摩比七巧板与小猴 IP</div>
+            <p>在学而思（好未来）四年多历任不同核心团队：前期担任「学而思小猴」儿童动画编剧（团队 owner），统筹人设、世界观构建与全流程剧本规范；随后转入智能硬件团队，主导学习机世界观体系与「AI 小思」IP 从 0 到 1，落地大量 AI 智能体人设，建立可延展的 IP 应用规范；主导「摩比魔法七巧板」3–6 岁智能启蒙硬件全案：市场测算、竞品拆解、产品定义、799 元定价与约 80% 毛利模型、版本节奏（图像识别 90%→98%）；从用户体验视角落地 3 款儿童互动游戏；跨 UI/UX/产品/研发协同推动上线。</p>
+            <div class="milestone-tags" style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px;">
+              <span class="pill-badge" style="font-size: 0.7rem;">摩比魔法七巧板</span>
+              <span class="pill-badge" style="font-size: 0.7rem;">AI 小思 IP 规范</span>
+              <span class="pill-badge" style="font-size: 0.7rem;">学而思小猴动画</span>
+              <span class="pill-badge" style="font-size: 0.7rem;">799元定价 / 80%毛利</span>
+              <span class="pill-badge" style="font-size: 0.7rem;">图像识别98%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03: 乐乐趣 -->
+        <div class="milestone-card">
+          <div class="milestone-num">03</div>
+          <div class="milestone-body">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; flex-wrap: wrap; gap: 8px;">
+              <span class="pill-badge font-mono" style="font-size: 0.72rem;">2024.9 – 2025.5</span>
+              <span style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-muted);">乐乐趣 AI 数字研究院</span>
+            </div>
+            <h3>创新产品总监 · 乐乐趣 AI 数字研究院</h3>
+            <div class="milestone-sub">PARENT-CHILD READING × AI AGENTS · 亲子阅读 × AI 智能体</div>
+            <p>主导亲子阅读场景「AI 乐乐」IP 从 0 到 1，输出 AI 智能体驱动的阅读课程解决方案；带队完成用户研究 → 产品定义 → 策略 → 跨部门落地，推动第二曲线创新产品上线。</p>
+            <div class="milestone-tags" style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px;">
+              <span class="pill-badge" style="font-size: 0.7rem;">AI 乐乐 伴读智能体</span>
+              <span class="pill-badge" style="font-size: 0.7rem;">0→1 课程产品方案</span>
+              <span class="pill-badge" style="font-size: 0.7rem;">亲子分级阅读</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- 精选经历卡片 -->
-      <div id="mini-milestones-grid" class="mini-milestones-grid reveal delay-2"></div>
+      <div id="mini-milestones-grid" class="mini-milestones-grid reveal delay-2">
+        <div class="mini-milestone-item">
+          <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--brand-primary); margin-bottom: 4px;">
+            2025.11 – 2026.4 · 西安航科智能 · 产品营销经理
+          </div>
+          <div style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+            品牌顶层设计、漫剧与 AI 智能体衍生内容
+          </div>
+        </div>
+        <div class="mini-milestone-item">
+          <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--brand-primary); margin-bottom: 4px;">
+            2019 · 历史自媒体「诸葛呈像」联合创始人
+          </div>
+          <div style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+            0→40 万粉、单条最高 68 万播放
+          </div>
+        </div>
+        <div class="mini-milestone-item">
+          <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--brand-primary); margin-bottom: 4px;">
+            2016.7 – 2018.11 · 西安启明星影视 · 策划部主管
+          </div>
+          <div style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+            售出电影剧本 5 部、百万字小说
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -707,8 +792,8 @@
     </div>
   </div>
 
-  <!-- 脚本引用 -->
-  <script src="js/matrix-data.js"></script>
-  <script src="js/main.js"></script>
+  <!-- 脚本引用 (带版本时间戳强制刷新浏览器缓存) -->
+  <script src="js/matrix-data.js?v=20260910_v3"></script>
+  <script src="js/main.js?v=20260910_v3"></script>
 </body>
 </html>
