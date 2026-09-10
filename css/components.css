@@ -1499,6 +1499,10 @@ html.dark .floating-tool-badge {
   transition: transform 0.2s ease;
 }
 
+.work-card.clickable[data-direct-url]::after {
+  content: "点击查看深度复盘与展台 ↗";
+}
+
 .work-card.clickable:hover::after {
   transform: translateX(4px);
 }

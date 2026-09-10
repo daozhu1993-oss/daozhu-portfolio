@@ -184,7 +184,22 @@
     works.forEach(w => {
       const card = document.createElement('article');
       card.className = 'work-card clickable';
-      card.setAttribute('data-open-modal', w.modalId);
+      if (w.directUrl) {
+        card.setAttribute('data-direct-url', w.directUrl);
+        card.setAttribute('role', 'link');
+        card.setAttribute('tabindex', '0');
+        card.addEventListener('click', () => {
+          window.open(w.directUrl, '_blank', 'noopener,noreferrer');
+        });
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            window.open(w.directUrl, '_blank', 'noopener,noreferrer');
+          }
+        });
+      } else {
+        card.setAttribute('data-open-modal', w.modalId);
+      }
 
       let mediaHtml = '';
       if (w.image) {
