@@ -610,6 +610,28 @@ html.dark .floating-tool-badge {
   line-height: 1.7;
 }
 
+.mini-milestones-grid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.mini-milestone-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-line);
+  border-radius: 16px;
+  padding: 18px 20px;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.mini-milestone-item:hover {
+  border-color: var(--brand-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
 /* ── 5. 最近在做什么 (Now / Changelog from v2) ── */
 .now-section {
   padding: clamp(60px, 9vh, 90px) 0;
@@ -1195,7 +1217,7 @@ html.dark .floating-tool-badge {
   .bento-card.col-8, .bento-card.col-4, .bento-card.col-6 {
     grid-column: span 12;
   }
-  .milestones-grid, .works-grid, .articles-grid {
+  .milestones-grid, .works-grid, .articles-grid, .mini-milestones-grid {
     grid-template-columns: 1fr;
   }
   .games-grid {
