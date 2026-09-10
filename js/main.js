@@ -48,7 +48,7 @@
     }
   };
 
-  // 2. 动态渲染 Bento Grid (群岛卫星矩阵)
+  // 2. 动态渲染 Bento Grid (群岛卫星矩阵 - 依据各岛灵魂调性定制封面与微交互)
   function renderBentoGrid() {
     const grid = document.getElementById('ecosystem-bento-grid');
     if (!grid || !window.DAOZHU_DATA) return;
@@ -60,138 +60,38 @@
       const card = document.createElement('article');
       card.className = `bento-card col-${item.colSpan}`;
 
-      let mediaContent = '';
-      if (item.type === 'script') {
-        mediaContent = `
-          <div class="bento-media-wrap aspect-widescreen" style="background: linear-gradient(145deg, #2b110a 0%, #150604 100%);">
-            <div style="position: absolute; inset: 0; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; z-index: 10;">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span class="pill-badge" style="background: rgba(180,90,60,0.35); color: #f4a261; border-color: rgba(244,162,97,0.5);">🖋️ STORY CRAFT</span>
-                <span style="font-family: var(--font-mono); font-size: 0.74rem; color: #f4a261;">● INDUSTRIAL</span>
-              </div>
-              <div>
-                <div style="font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: #FFFFFF; line-height: 1.35;">
-                  编剧手艺工坊
-                </div>
-                <div style="font-family: var(--font-mono); font-size: 0.8rem; color: #ded2ba; margin-top: 6px;">
-                  救猫咪重构 · 短剧断章卡 · AI 漫剧一致性分镜
-                </div>
-              </div>
-              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                ${item.highlights.map(h => `<span class="pill-badge" style="background: rgba(255,255,255,0.15); color: #ded2ba; font-size: 0.7rem; border-color: rgba(255,255,255,0.2);">${h}</span>`).join('')}
-              </div>
+      const imgHtml = item.image ? `<img src="${item.image}" alt="${item.name}" class="bento-media-img" loading="lazy">` : '';
+
+      const mediaContent = `
+        <div class="bento-media-wrap ${item.aspect}">
+          ${imgHtml}
+          <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,14,23,0.35) 0%, rgba(10,14,23,0.1) 40%, rgba(10,14,23,0.85) 100%); z-index: 5;"></div>
+          <div style="position: absolute; inset: 0; padding: 20px 22px; display: flex; flex-direction: column; justify-content: space-between; z-index: 10;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="pill-badge" style="background: rgba(0,0,0,0.65); backdrop-filter: blur(8px); color: #ded2ba; border-color: rgba(255,255,255,0.2);">${item.topPill}</span>
+              <span class="font-mono" style="font-size: 0.74rem; color: #ded2ba; font-weight: 600; text-shadow: 0 1px 4px rgba(0,0,0,0.8);">${item.topStatus}</span>
             </div>
-            <div class="center-hover-action">
-              <div class="center-hover-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            <div>
+              <div style="font-family: var(--font-serif); font-size: ${item.colSpan === 8 ? '1.5rem' : '1.25rem'}; font-weight: 700; color: #FFFFFF; line-height: 1.35; text-shadow: 0 2px 10px rgba(0,0,0,0.85);">
+                ${item.overlayTitle}
               </div>
+              <div style="font-family: var(--font-mono); font-size: 0.76rem; color: #e4dccb; margin-top: 6px; text-shadow: 0 1px 6px rgba(0,0,0,0.9);">
+                ${item.overlaySubtitle}
+              </div>
+              ${item.highlights && item.colSpan === 8 ? `
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;">
+                  ${item.highlights.map(h => `<span class="pill-badge" style="background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); color: #ded2ba; font-size: 0.68rem; border-color: rgba(255,255,255,0.25);">${h}</span>`).join('')}
+                </div>
+              ` : ''}
             </div>
           </div>
-        `;
-      } else if (item.type === 'daily') {
-        mediaContent = `
-          <div class="bento-media-wrap aspect-square" style="background: linear-gradient(150deg, #0e2a27 0%, #051413 100%);">
-            <div style="position: absolute; inset: 0; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; z-index: 10;">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span class="pill-badge" style="background: rgba(42,157,143,0.35); color: #48cae4; border-color: rgba(72,202,228,0.5);">🛰️ RADAR</span>
-                <span style="font-family: var(--font-mono); font-size: 0.74rem; color: #22c55e;">● 24H LIVE</span>
-              </div>
-              <div style="text-align: left;">
-                <div style="font-family: var(--font-mono); font-size: 0.76rem; color: #a0c4bf;">全球前沿雷达 · 7大板块</div>
-                <div style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700; color: #FFFFFF; margin-top: 6px; line-height: 1.35;">
-                  一人公司 × AI 漫剧 × 审美提升
-                </div>
-              </div>
-              <div style="font-family: var(--font-mono); font-size: 0.74rem; color: #94d2bd; border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 10px;">
-                每期 10 篇高密度价值沉淀 · 100% 真实外链
-              </div>
-            </div>
-            <div class="center-hover-action">
-              <div class="center-hover-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </div>
+          <div class="center-hover-action">
+            <div class="center-hover-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
             </div>
           </div>
-        `;
-      } else if (item.type === 'inspo') {
-        mediaContent = `
-          <div class="bento-media-wrap aspect-square" style="background: #18181b; border: 2.5px solid #ded2ba; box-shadow: inset 0 0 24px rgba(0,0,0,0.85);">
-            <div style="position: absolute; inset: 0; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; z-index: 10;">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-family: var(--font-mono); font-size: 0.72rem; color: #ded2ba; font-weight: 700;">CRT-DECK // 478+</span>
-                <span style="width: 8px; height: 8px; border-radius: 50%; background: #22ff22; box-shadow: 0 0 8px #22ff22;"></span>
-              </div>
-              <div style="text-align: center; padding: 8px 0;">
-                <svg viewBox="0 0 32 32" style="width: 48px; height: 48px; margin: 0 auto;">
-                  <rect width="32" height="32" rx="6" fill="#ded2ba"/>
-                  <rect x="3" y="3" width="26" height="26" rx="4" fill="#18181b"/>
-                  <circle cx="16" cy="27" r="1.5" fill="#22ff22"/>
-                  <path d="M9 14l4-4 4 4 4-4" stroke="#ded2ba" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                </svg>
-                <div style="font-family: var(--font-mono); font-size: 0.78rem; color: #ded2ba; margin-top: 8px; font-weight: 600;">WEB AUDIO 机械微动音效</div>
-              </div>
-              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: #a1a1aa; text-align: center; border-top: 1px dashed rgba(255,255,255,0.15); padding-top: 8px;">
-                复古工控硬件排版与动效
-              </div>
-            </div>
-            <div class="center-hover-action">
-              <div class="center-hover-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </div>
-            </div>
-          </div>
-        `;
-      } else if (item.type === 'arcade') {
-        mediaContent = `
-          <div class="bento-media-wrap aspect-square" style="background: linear-gradient(145deg, #3d1222 0%, #17070e 100%);">
-            <div style="position: absolute; inset: 0; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; z-index: 10;">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span class="pill-badge" style="background: rgba(224,122,95,0.35); color: #f4a261; border-color: rgba(244,162,97,0.5);">🕹️ ARCADE</span>
-                <span style="font-family: var(--font-mono); font-size: 0.74rem; color: #f4a261;">P1 READY</span>
-              </div>
-              <div style="text-align: center;">
-                <div style="font-size: 2.4rem; line-height: 1;">🏎️ ⚔️</div>
-                <div style="font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; color: #FFFFFF; margin-top: 8px;">
-                  《卡丁车》与《促织》
-                </div>
-              </div>
-              <div style="font-family: var(--font-mono); font-size: 0.74rem; color: #d4887b; text-align: center; border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 8px;">
-                3D WebGL · 古典博弈 · 即开即玩
-              </div>
-            </div>
-            <div class="center-hover-action">
-              <div class="center-hover-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </div>
-            </div>
-          </div>
-        `;
-      } else {
-        mediaContent = `
-          <div class="bento-media-wrap aspect-square" style="background: linear-gradient(145deg, #1b263b 0%, #0d1b2a 100%);">
-            <div style="position: absolute; inset: 0; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; z-index: 10;">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span class="pill-badge" style="background: rgba(59,114,222,0.35); color: #60a5fa; border-color: rgba(96,165,250,0.5);">📖 HUMAN SOUL</span>
-                <span style="font-family: var(--font-serif); font-size: 0.75rem; color: #93c5fd;">在岛上慢慢生长</span>
-              </div>
-              <div style="text-align: center;">
-                <div style="font-size: 2.4rem;">🏝️ ✨</div>
-                <div style="font-family: var(--font-serif); font-size: 1.2rem; font-weight: 700; color: #FFFFFF; margin-top: 8px;">
-                  30 册成长绘本与慢咖啡
-                </div>
-              </div>
-              <div style="font-family: var(--font-serif); font-size: 0.74rem; color: #bfdbfe; text-align: center; border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 8px;">
-                文和图独立创作 · 守住心底小岛
-              </div>
-            </div>
-            <div class="center-hover-action">
-              <div class="center-hover-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </div>
-            </div>
-          </div>
-        `;
-      }
+        </div>
+      `;
 
       card.innerHTML = `
         ${mediaContent}
