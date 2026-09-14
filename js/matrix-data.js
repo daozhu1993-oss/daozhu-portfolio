@@ -136,7 +136,7 @@ window.DAOZHU_DATA = {
       ctaText: "漫步小岛手记 ↗",
       extraLink: {
         text: "📖 3D立体绘本馆 ↗",
-        url: "https://daozhu1993-oss.github.io/yiyi-storybook/"
+        url: "https://storybook.daozhuai.cn/"
       },
       themeColor: "#3B72DE",
       type: "picturebook"
@@ -290,10 +290,10 @@ window.DAOZHU_DATA = {
       status: "live"
     },
     {
-      tag: "3D 翻页 · 可体验",
+      tag: "3D 翻页 · 专属域名",
       title: "一一与芽芽兽 · 3D 立体绘本馆",
       desc: "深度复刻 StoryComet 3D 精装纸张物理曲面翻页引擎。收录 36 本《一一成长绘本》（严格按出生成长月龄 1-36 编年史排列）与 10 本《芽芽兽绘本》，支持中文儿童伴读、逐词点亮与全景三维交互。",
-      url: "https://daozhu1993-oss.github.io/yiyi-storybook/",
+      url: "https://storybook.daozhuai.cn/",
       status: "live"
     }
   ],
