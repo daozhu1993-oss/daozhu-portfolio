@@ -120,20 +120,20 @@ window.DAOZHU_DATA = {
     {
       id: "picturebook",
       name: "在岛上，慢慢长出来的东西",
-      subtitle: "给女儿的成长绘本 · 原创 IP「芽芽兽」· 慢生活 (持续生长更新中)",
-      tags: ["海岛人文", "成长绘本连载", "芽芽兽宇宙", "慢调生活"],
-      badge: "HUMAN SOUL",
+      subtitle: "给女儿的一一成长绘本 · 原创 IP「芽芽兽」· 3D 绘本馆已上线",
+      tags: ["3D立体翻页", "一一成长编年史", "芽芽兽宇宙", "慢调生活"],
+      badge: "3D STORYBOOK",
       colSpan: 4,
       aspect: "aspect-square",
       image: "assets/bento-island.jpg",
       topPill: "🌿 HUMAN SOUL",
-      topStatus: "● 持续生长中",
-      overlayTitle: "成长绘本与芽芽兽宇宙",
-      overlaySubtitle: "给女儿的绘本连载 · 原创 IP 芽芽兽 · 慢生活",
-      desc: "“做再多商业与前沿 AI，心中始终留着一座小岛——留给童话、给女儿的画，和慢悠悠的时光。”女儿的成长绘本在持续更新，原创 IP「芽芽兽」系列绘本也在持续生长，伴随手写诗歌与海岛哲学。",
-      highlights: ["女儿成长绘本 (持续更新)", "芽芽兽 IP 绘本连载", "诗歌与慢调海岛生活"],
-      link: "https://me.daozhuai.cn/v2/",
-      ctaText: "漫步小岛手记 ↗",
+      topStatus: "● 3D 绘本馆已上线",
+      overlayTitle: "3D 立体绘本馆与芽芽兽宇宙",
+      overlaySubtitle: "给女儿的一一成长绘本 · 原创 IP 芽芽兽 · 慢生活",
+      desc: "“做再多商业与前沿 AI，心中始终留着一座小岛——留给童话、给女儿的画，和慢悠悠的时光。”3D 立体纸张翻页绘本馆已正式上线，完整收录 36 本《一一成长绘本》（严谨按 1-36 编年史排序）与 10 本《芽芽兽绘本》。",
+      highlights: ["3D 物理纸张曲面翻页", "一一成长绘本 1-36 编年史", "芽芽兽 IP 绘本连载"],
+      link: "https://daozhu1993-oss.github.io/yiyi-storybook/",
+      ctaText: "进入 3D 绘本馆 ↗",
       themeColor: "#3B72DE",
       type: "picturebook"
     }
@@ -286,11 +286,11 @@ window.DAOZHU_DATA = {
       status: "live"
     },
     {
-      tag: "创作中",
-      title: "绘本生成网站",
-      desc: "一个还在做的项目——让更多人能用 AI 做出属于自己的绘本。做好后加进来。",
-      url: null,
-      status: "soon"
+      tag: "3D 翻页 · 可体验",
+      title: "一一与芽芽兽 · 3D 立体绘本馆",
+      desc: "深度复刻 StoryComet 3D 精装纸张物理曲面翻页引擎。收录 36 本《一一成长绘本》（严格按出生成长月龄 1-36 编年史排列）与 10 本《芽芽兽绘本》，支持中文儿童伴读、逐词点亮与全景三维交互。",
+      url: "https://daozhu1993-oss.github.io/yiyi-storybook/",
+      status: "live"
     }
   ],
 
