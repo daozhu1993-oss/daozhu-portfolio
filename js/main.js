@@ -107,12 +107,19 @@
           </div>
           <h3 class="bento-title">${item.name}</h3>
           <p class="bento-desc">${item.desc}</p>
-          <div class="bento-link-action">
-            <span>${item.ctaText}</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
+          <div class="bento-actions-row" style="margin-top: auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+            <div class="bento-link-action" style="margin-top: 0;">
+              <span>${item.ctaText}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+            ${item.extraLink ? `
+              <a href="${item.extraLink.url}" ${item.extraLink.url.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''} class="bento-extra-pill" style="position: relative; z-index: 40; display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 99px; background: rgba(59, 114, 222, 0.12); color: #3b72de; font-size: 0.82rem; font-weight: 600; border: 1px solid rgba(59, 114, 222, 0.35); text-decoration: none; transition: all 0.25s ease;" onclick="event.stopPropagation();">
+                <span>${item.extraLink.text}</span>
+              </a>
+            ` : ''}
           </div>
         </div>
         <a href="${item.link}" ${item.link.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''} style="position: absolute; inset: 0; z-index: 30;">
