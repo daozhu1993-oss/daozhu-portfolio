@@ -23,6 +23,13 @@ class CustomHandler(http.server.SimpleHTTPRequestHandler):
         self.send_response(200)
         self.end_headers()
 
+    def do_POST(self):
+        content_len = int(self.headers.get('Content-Length', 0))
+        body = self.rfile.read(content_len).decode('utf-8')
+        print(f"📥 CLIENT_LOG: {body}")
+        self.send_response(200)
+        self.end_headers()
+
     def guess_type(self, path):
         if path.endswith('.js'):
             return 'application/javascript; charset=utf-8'

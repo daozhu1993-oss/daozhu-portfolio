@@ -31,10 +31,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Serif+SC:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- 核心样式 (带版本时间戳防浏览器缓存) -->
-  <link rel="stylesheet" href="css/style.css?v=20260911_v1">
-  <link rel="stylesheet" href="css/components.css?v=20260911_v1">
+  <link rel="stylesheet" href="css/style.css?v=20261007_awwwards_v1">
+  <link rel="stylesheet" href="css/components.css?v=20261007_awwwards_v1">
 </head>
 <body>
+
+  <!-- 顶部滚动进度指示器 (Modern Web Guidance 规范) -->
+  <div id="siteScrollProgress" class="site-scroll-progress" aria-hidden="true"></div>
 
   <!-- 氛围背景网格与顶部柔光 (Rico UI 标志性设计) -->
   <div class="ambient-grid" aria-hidden="true"></div>
@@ -46,13 +49,14 @@
     <button class="journey-dot" data-target="ecosystem" data-label="01 生态"></button>
     <button class="journey-dot" data-target="milestones" data-label="02 履历"></button>
     <button class="journey-dot" data-target="works" data-label="03 代表作"></button>
-    <button class="journey-dot" data-target="projects" data-label="04 项目"></button>
-    <button class="journey-dot" data-target="models" data-label="05 模型"></button>
-    <button class="journey-dot" data-target="about" data-label="06 我是谁"></button>
-    <button class="journey-dot" data-target="notes" data-label="07 手记"></button>
-    <button class="journey-dot" data-target="arcade-section" data-label="08 街机"></button>
-    <button class="journey-dot" data-target="closing" data-label="09 结语"></button>
-    <button class="journey-dot" data-target="contact" data-label="10 咖啡"></button>
+    <button class="journey-dot" data-target="services" data-label="04 交付"></button>
+    <button class="journey-dot" data-target="projects" data-label="05 项目"></button>
+    <button class="journey-dot" data-target="models" data-label="06 模型"></button>
+    <button class="journey-dot" data-target="about" data-label="07 我是谁"></button>
+    <button class="journey-dot" data-target="notes" data-label="08 手记"></button>
+    <button class="journey-dot" data-target="arcade-section" data-label="09 街机"></button>
+    <button class="journey-dot" data-target="closing" data-label="10 结语"></button>
+    <button class="journey-dot" data-target="contact" data-label="11 预约"></button>
   </aside>
 
   <!-- ── 1. 浮动毛玻璃胶囊导航 (Floating Island Header) ── -->
@@ -64,36 +68,43 @@
           <img src="assets/avatar.jpg" alt="岛主头像" onerror="this.src='assets/favicon.svg'">
           <span class="brand-status-dot"></span>
         </div>
-        <span class="font-serif">岛主</span>
+        <span class="font-serif brand-name">岛主</span>
       </a>
 
-      <!-- 桌面端导航链接 -->
-      <nav>
+      <!-- 桌面端导航链接 (Streamlined, White-space nowrap) -->
+      <nav aria-label="全站导航">
         <ul class="nav-links">
           <li><a href="#hero" class="nav-link active">首页</a></li>
           <li><a href="#ecosystem" class="nav-link">群岛</a></li>
           <li><a href="#milestones" class="nav-link">履历</a></li>
           <li><a href="#works" class="nav-link">代表作</a></li>
-          <li><a href="#projects" class="nav-link">AI项目</a></li>
-          <li><a href="#models" class="nav-link">模型</a></li>
-          <li><a href="#about" class="nav-link">关于</a></li>
-          <li><a href="#notes" class="nav-link">手记</a></li>
-          <li><a href="#arcade-section" class="nav-link">街机</a></li>
-          <li><a href="#contact" class="nav-link">联系</a></li>
+          <li><a href="#services" class="nav-link nav-link-special">商业交付</a></li>
+          <li><a href="#models" class="nav-link">思维模型</a></li>
+          <li><a href="#notes" class="nav-link">思考手记</a></li>
+          <li><a href="#arcade-section" class="nav-link">独立街机</a></li>
+          <li><a href="#contact" class="nav-link">预约</a></li>
         </ul>
       </nav>
 
-      <!-- 操作区：日夜切换 + 聊聊合作 -->
+      <!-- 操作区：声音开关 + 日夜切换 + 商业预约 CTA -->
       <div class="nav-actions">
+        <!-- 原生 Web Audio 程序化原声与微触控音效开关 -->
+        <button id="soundToggleBtn" class="sound-toggle-btn" aria-label="切换海岛环境原声与音效" aria-pressed="false" title="开启/关闭 海岛环境音效">
+          <div class="sound-bars" aria-hidden="true">
+            <span class="bar bar-1"></span>
+            <span class="bar bar-2"></span>
+            <span class="bar bar-3"></span>
+          </div>
+          <span class="sound-label font-mono">Audio</span>
+        </button>
+
         <!-- Rico UI 风格日夜切换器 -->
         <button class="theme-toggle-btn" aria-label="切换主题模式">
           <div class="toggle-icon-sphere">
-            <!-- 太阳 SVG -->
             <svg class="theme-sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="4"></circle>
               <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
             </svg>
-            <!-- 月亮 SVG -->
             <svg class="theme-moon-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
             </svg>
@@ -101,10 +112,10 @@
           <span class="theme-label-text font-mono">Day</span>
         </button>
 
-        <!-- 聊聊合作 CTA -->
-        <a href="#contact" data-open-modal="coffee" class="nav-cta-btn">
-          <span>聊聊合作</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <!-- 商业咨询 / 预约 CTA -->
+        <a href="#services" class="nav-cta-btn">
+          <span>商业咨询</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="7" y1="17" x2="17" y2="7"></line>
             <polyline points="7 7 17 7 17 17"></polyline>
           </svg>
@@ -125,8 +136,8 @@
           </div>
 
           <h1 class="hero-title">
-            <span class="animated-text" data-delay="0.1" data-stagger="0.06" data-text="嗨，我是岛主。">嗨，我是岛主。</span><br>
-            <span class="animated-text" data-delay="0.3" data-stagger="0.06" data-text="用故事思维驱动用户价值。">用故事思维<em>驱动用户价值</em>。</span>
+            <span class="hero-title-greeting">嗨，我是岛主。</span>
+            <span class="hero-title-statement">用故事思维<em>驱动用户价值</em>。</span>
           </h1>
 
           <div class="hero-role-tags font-mono reveal">
@@ -136,7 +147,7 @@
           </div>
 
           <p class="hero-lead reveal delay-1">
-            十年编剧 × AI 产品 × 内容创作。我把内容创作力，转化成能落地、能生长的产品——尤其在 <b>AI 智能体、IP 孵化与内容变现</b> 三个方向。
+            十年编剧 × AI 产品 × 内容创作。现开放面向企业与个人的 <b>3 大专项商业交付与咨询</b>：AI 硬件/伴读人设全案、AI 漫剧工业化工作流、家庭专属定制成长绘本。
           </p>
 
           <blockquote class="hero-motto reveal delay-2">
@@ -144,15 +155,18 @@
           </blockquote>
 
           <div style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--brand-primary); margin-bottom: 24px;" class="reveal delay-2">
-            独立 AI 内容创作者 · 前学而思 / 乐乐趣 创新产品 · 个人 IP「岛主」
+            独立 AI 内容创作者 · 前学而思 / 乐乐趣 创新产品操盘手 · 个人 IP「岛主」
           </div>
 
           <div class="hero-actions reveal delay-3">
-            <a href="#works" class="btn btn-primary">
+            <a href="#services" class="btn btn-primary">
+              <span>商业交付方案 ↓</span>
+            </a>
+            <a href="#works" class="btn btn-ghost">
               <span>看代表作品 →</span>
             </a>
-            <a href="#contact" data-open-modal="coffee" class="btn btn-ghost">
-              <span>☕ 找岛主喝杯咖啡</span>
+            <a href="#contact" data-open-modal="coffee" class="btn btn-ghost" style="padding: 10px 16px;">
+              <span>☕ 预约咨询</span>
             </a>
           </div>
 
@@ -180,31 +194,36 @@
           </div>
         </div>
 
-        <!-- 右侧展台：Rico 风格 4角 Figma 标线框架 + 视觉肖像海报 + 浮动磨砂工具组件 -->
+        <!-- 右侧展台：Awwwards 专属 3D 遥测展台 + 视觉肖像 + 实时故事节拍 HUD -->
         <div class="showcase-wrapper reveal delay-2">
           <div class="case-solid">
-            <!-- 4 个角标对齐方块 (case-square) -->
+            <!-- 4 个精密取景 L 标 (case-square) -->
             <div class="case-square top-l"></div>
             <div class="case-square top-r"></div>
             <div class="case-square bot-l"></div>
             <div class="case-square bot-r"></div>
 
-            <div class="hero-showcase-card">
+            <div class="hero-showcase-card" data-cursor="view">
               <div class="hero-poster-canvas">
                 <!-- 岛主肖像主图 -->
-                <img src="assets/avatar.jpg" alt="岛主">
+                <img src="assets/avatar.jpg" alt="岛主 · 十年编剧 × AI产品">
                 <div class="hero-canvas-overlay"></div>
 
-                <!-- 浮动组件 1: 左上角在线状态 -->
-                <div class="floating-tool-badge pos-top-left">
-                  <span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e;"></span>
-                  <span style="font-family: var(--font-mono); font-size: 0.74rem; font-weight: 700; color: var(--text-primary);">岛主在线 · 数字群岛枢纽</span>
+                <!-- 顶部 HUD: 在线状态与群岛实时遥测 -->
+                <div class="showcase-top-hud">
+                  <div class="hud-status-badge">
+                    <span class="hud-ping-dot"></span>
+                    <span class="font-mono">🟢 岛主在线 · 群岛枢纽</span>
+                  </div>
+                  <div class="hud-stat-chip font-mono">
+                    <span>ARCHIPELAGO · 8 ISLES</span>
+                  </div>
                 </div>
 
-                <!-- 浮动组件 2: 戏剧节拍实时波形发生器 -->
-                <div class="floating-tool-badge floating-wave-tool pos-mid-right">
+                <!-- 浮动组件: 戏剧节拍实时波形发生器 (右上通透区) -->
+                <div class="floating-tool-badge floating-wave-tool pos-mid-upper-right">
                   <div>
-                    <div class="tool-title">STORY TENSION · 98.4%</div>
+                    <div class="tool-title font-mono">STORY TENSION · 98.4%</div>
                     <svg id="story-wave-svg" viewBox="0 0 500 130" preserveAspectRatio="none">
                       <defs>
                         <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -220,11 +239,15 @@
 
                 <!-- 展台底部文字与背书 -->
                 <div class="hero-canvas-footer">
-                  <span class="pill-badge" style="background: rgba(180,90,60,0.45); color: #fff; border-color: rgba(255,255,255,0.4); margin-bottom: 8px;">
-                    在岛上，慢慢长出东西
-                  </span>
+                  <div class="hero-canvas-meta font-mono">
+                    <span>10Y WRITING</span>
+                    <span>•</span>
+                    <span>230+ MODELS</span>
+                    <span>•</span>
+                    <span>68 ESSAYS</span>
+                  </div>
                   <div class="hero-canvas-title">岛主</div>
-                  <div class="hero-canvas-sub">十年编剧 × AI 产品 · 用故事思维驱动价值</div>
+                  <div class="hero-canvas-sub">用故事思维驱动用户价值 · 在岛上慢慢生长</div>
                 </div>
               </div>
             </div>
@@ -365,6 +388,23 @@
 
       <!-- 5个真实代表作栅格 (点击弹出对应详细 modal) -->
       <div id="works-grid" class="works-grid reveal delay-1"></div>
+    </div>
+  </section>
+
+  <!-- ── 5.5 商业合作与专项交付 (Commercial Offers & Services) ── -->
+  <section id="services" class="services-section">
+    <div class="container">
+      <div class="eyebrow reveal">
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e; display: inline-block;"></span>
+        <span>COMMERCIAL OFFERS · 商业合作与专项交付</span>
+      </div>
+      <h2 class="section-title reveal">把过往实战操盘经验，转化为你的确定性增长</h2>
+      <p class="section-subtitle reveal">
+        不做概念包装，只交付真正能落地、能打动用户、带来真实商业转化的系统级解决方案。
+      </p>
+
+      <!-- 动态注入 3 大商业 Offer 栅格 -->
+      <div id="services-grid" class="services-grid"></div>
     </div>
   </section>
 
@@ -913,9 +953,9 @@
     </div>
   </div>
 
-  <!-- Modal: 找岛主喝杯咖啡 (Coffee Modal) -->
+  <!-- Modal: 商业合作与咨询预约 (Commercial & Coffee Modal) -->
   <div id="coffee-modal" class="modal-overlay">
-    <div class="modal-card">
+    <div class="modal-card" style="max-width: 500px;">
       <button id="modal-close-btn" class="modal-close-btn" aria-label="关闭弹窗">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -925,40 +965,55 @@
 
       <div style="text-align: center;">
         <span class="pill-badge" style="background: rgba(180,90,60,0.2); color: var(--brand-primary); margin-bottom: 12px;">
-          ☕ COFFEE & CHAT
+          🤝 COMMERCIAL & CONSULTATION
         </span>
-        <h3 style="font-family: var(--font-serif); font-size: 1.6rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">
-          喝杯咖啡，聊聊？
+        <h3 style="font-family: var(--font-serif); font-size: 1.55rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">
+          预约商业合作与深度咨询
         </h3>
-        <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px;">
-          AI 产品咨询、AIGC 影像共创、剧本世界观梳理，或是单纯聊聊天。<br>岛上随时留着座位。
+        <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55; margin-bottom: 14px;">
+          请选择您的合作或咨询意向，扫码或添加微信直连岛主
         </p>
 
+        <!-- 意向标签选择器 -->
+        <div class="modal-service-tabs">
+          <button type="button" class="modal-service-tab" data-tab-service="hardware">🤖 AI硬件/伴读人设</button>
+          <button type="button" class="modal-service-tab" data-tab-service="storycraft">🎬 AI漫剧/短剧工作流</button>
+          <button type="button" class="modal-service-tab" data-tab-service="storybook">📖 专属成长绘本定制</button>
+          <button type="button" class="modal-service-tab default active" data-tab-service="coffee">☕ 深度交流 / 喝杯咖啡</button>
+        </div>
+
+        <div id="modal-wechat-hint" style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--brand-primary); margin-bottom: 14px; font-weight: 600; min-height: 20px;">
+          添加微信时请备注合作意向，以便高效沟通
+        </div>
+
         <!-- 真实微信二维码展示卡 -->
-        <div style="background: #ffffff; padding: 18px; border-radius: 20px; box-shadow: var(--shadow-md); display: inline-block; margin-bottom: 20px; border: 1px solid var(--border-line);">
-          <img src="assets/wechat-qr.png" alt="岛主王仙客 微信二维码" style="width: 200px; height: 200px; display: block; border-radius: 10px; object-fit: cover;">
-          <div style="margin-top: 10px; font-family: var(--font-mono); font-size: 0.82rem; color: #4a453d; font-weight: 600;">
+        <div style="background: #ffffff; padding: 16px; border-radius: 20px; box-shadow: var(--shadow-md); display: inline-block; margin-bottom: 16px; border: 1px solid var(--border-line);">
+          <img src="assets/wechat-qr.png" alt="岛主王仙客 微信二维码" style="width: 180px; height: 180px; display: block; border-radius: 10px; object-fit: cover;">
+          <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.82rem; color: #4a453d; font-weight: 600;">
             微信扫一扫 · <span style="color: #b45a3c;">岛主王仙客</span>
           </div>
         </div>
 
-        <div style="background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; max-width: 320px; margin: 0 auto 16px;">
+        <div style="background: var(--bg-tertiary); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; max-width: 300px; margin: 0 auto 12px;">
           <span style="font-family: var(--font-mono); font-size: 0.95rem; color: var(--text-primary); font-weight: 600;">bl-free</span>
           <button id="copy-wechat-btn" class="btn btn-ghost" style="padding: 4px 12px; font-size: 0.78rem;">
             复制微信号
           </button>
         </div>
 
-        <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">
-          邮箱: daozhu1993@gmail.com
+        <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted);">
+          商务邮箱: daozhu1993@gmail.com
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 脚本引用 (带版本时间戳强制刷新浏览器缓存) -->
-  <script src="js/matrix-data.js?v=20260911_v1"></script>
-  <script src="js/main.js?v=20260911_v1"></script>
+  <!-- 核心交互与动效脚本 (解析完 DOM 即刻执行，杜绝白屏) -->
+  <script src="js/matrix-data.js?v=20261007_awwwards_v1"></script>
+  <script src="js/audio.js?v=20261007_awwwards_v1"></script>
+  <script src="js/ambient-canvas.js?v=20261007_awwwards_v1"></script>
+  <script src="js/cursor-fx.js?v=20261007_awwwards_v1"></script>
+  <script src="js/main.js?v=20261007_awwwards_v1"></script>
 
   <!-- Cloudflare Web Analytics -->
   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b8e37091d51741298f0a92a2a566d5f2"}'></script>

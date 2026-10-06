@@ -78,6 +78,26 @@ window.DAOZHU_DATA = {
       type: "daily"
     },
     {
+      id: "journal",
+      name: "岛主的 AI 思考 · The Daozhu Journal",
+      subtitle: "独立数字杂志 · 68 篇手记穿透 AI 浪潮",
+      tags: ["独立杂志", "68篇手记", "7阶段演进", "期刊美学"],
+      badge: "MAGAZINE",
+      colSpan: 8,
+      aspect: "aspect-widescreen",
+      image: "assets/bento-journal.jpg",
+      topPill: "📖 THE JOURNAL",
+      topStatus: "● 68 ESSAYS",
+      overlayTitle: "岛主的 AI 思考 · 独立数字杂志",
+      overlaySubtitle: "aifa.one 经典刊物版式 · 7 阶段演进 · 真实肉身记录",
+      desc: "从底层认知到一人公司工业化。全站 68 篇长文采用经典独立数字期刊大刊版式，配备首字下沉、Dek 导语、进度条与字号调节，已全线上线独立专属域名 ai.daozhuai.cn。",
+      highlights: ["68 篇深度实战手记", "经典刊物排版体验", "专属独立域名 ai.daozhuai.cn"],
+      link: "https://ai.daozhuai.cn",
+      ctaText: "翻开数字杂志 ↗",
+      themeColor: "#B45A3C",
+      type: "journal"
+    },
+    {
       id: "inspo",
       name: "岛主灵感 · Design & Motion",
       subtitle: "复古 CRT 工控美学的全球前沿设计分镜工坊",
@@ -103,8 +123,8 @@ window.DAOZHU_DATA = {
       subtitle: "AI 协同全栈驱动的独立游戏与互动故事合集",
       tags: ["Mini Games", "3D赛车", "互动小说博弈"],
       badge: "ARCADE PLAY",
-      colSpan: 4,
-      aspect: "aspect-square",
+      colSpan: 6,
+      aspect: "aspect-widescreen",
       image: "assets/bento-arcade.jpg",
       topPill: "🕹️ ARCADE",
       topStatus: "P1 READY",
@@ -123,8 +143,8 @@ window.DAOZHU_DATA = {
       subtitle: "给女儿的成长绘本 · 原创 IP「芽芽兽」· 慢生活 (持续生长更新中)",
       tags: ["海岛人文", "成长绘本连载", "芽芽兽宇宙", "慢调生活"],
       badge: "HUMAN SOUL",
-      colSpan: 4,
-      aspect: "aspect-square",
+      colSpan: 6,
+      aspect: "aspect-widescreen",
       image: "assets/bento-island.jpg",
       topPill: "🌿 HUMAN SOUL",
       topStatus: "● 持续生长中",
@@ -256,6 +276,82 @@ window.DAOZHU_DATA = {
       meta: "独立创作者 · 个人内容站",
       badges: ["30本手绘成长绘本", "82首诗 / 11篇神话", "230+思维模型", "芽芽兽 IP"],
       modalId: "m5"
+    }
+  ],
+
+  // 3.5 商业合作与专项交付 (Commercial Offers & Services)
+  services: [
+    {
+      id: "ai-hardware-ip",
+      num: "OFFER 01",
+      target: "面向 AI 硬件出海 / 智能玩具厂 / 早教母婴品牌",
+      title: "AI 硬件与玩具 · 智能体人设与世界观全案",
+      subtitle: "让冰冷的对话硬件，变成孩子舍不得撒手的成长伙伴",
+      tag: "B端专项交付",
+      badge: "核心操盘交付",
+      painPoint: "产品像说明书一样无趣、三天就吃灰退货、只有百科问答没有角色情感牵绊。",
+      highlights: [
+        "好未来「AI 小思」与乐乐趣「AI 乐乐」同源方法论体系",
+        "智能体人格 Prompt 系统与情绪状态机规范",
+        "可拓展的世界观编年史与孩子好奇心对话引导库",
+        "软硬件结合的多模态音画对齐与行为激励系统"
+      ],
+      deliverables: [
+        "智能体人设详细定义白皮书与情绪应答矩阵",
+        "分阶世界观背景剧本与 100+ 核心对白范式",
+        "软硬件交互场景流程图与原型对齐验收"
+      ],
+      mode: "1对1 架构诊断 / 专项全案设计（咨询 + 落地陪跑）",
+      serviceCode: "hardware",
+      themeColor: "#B45A3C"
+    },
+    {
+      id: "ai-storycraft-mcn",
+      num: "OFFER 02",
+      target: "面向 短剧出海 / AI 漫剧团队 / 网文改编方 / MCN",
+      title: "AI 漫剧与短剧 · 故事工业化与分镜工作流",
+      subtitle: "用 10 年编剧戏剧底盘，为 AIGC 视觉注入留存与爆款基因",
+      tag: "内容工业化",
+      badge: "爆款叙事提效",
+      painPoint: "画面酷炫但节奏稀烂、完播率断崖下滑、角色多镜头不一致、缺乏工业化剧本节拍。",
+      highlights: [
+        "10 年一线影视与短剧编剧实战，重构黄金前 3 分钟致命钩子",
+        "商业情绪反转卡点表与救猫咪工业化节拍器",
+        "角色一致性分镜提示词系统与影视级运镜语法",
+        "从小说文本到高留存分镜脚本的 SOP 全流程搭建"
+      ],
+      deliverables: [
+        "定制化短剧/漫剧工业化剧本模板与断章卡点表",
+        "角色资产库与全套分镜 Prompt 提示词架构",
+        "团队内训工作坊或 0-1 样片分镜全流程示范"
+      ],
+      mode: "剧本诊断与精修 / 工业化工作流团队内训与搭建",
+      serviceCode: "storycraft",
+      themeColor: "#2A9D8F"
+    },
+    {
+      id: "custom-storybook",
+      num: "OFFER 03",
+      target: "面向 2–8 岁孩子的高净值家庭 · 父母专属成长礼物",
+      title: "专属儿童成长绘本定制 · 限量内测",
+      subtitle: "把孩子写进童话冒险，把爸爸妈妈的声音变成一辈子的陪伴",
+      tag: "C端高情感",
+      badge: "首期限量 20 席",
+      painPoint: "市面绘本千篇一律、父母加班忙碌有陪伴内疚、成长瞬间缺乏有温度的实体记录。",
+      highlights: [
+        "为女儿一一手绘 30 本绘本同款美学，原创「芽芽兽」画风",
+        "提取孩子真实生活小趣事，专属定制英雄探险剧情",
+        "爸爸妈妈声音克隆伴读音频，随时随地给孩子讲故事",
+        "精装硬壳纪念绘本实体装帧，包邮寄送珍藏"
+      ],
+      deliverables: [
+        "独家定制 3D 翻页电子互动绘本（微信即开即读）",
+        "家长音色驱动的专属睡前伴读纯净音频",
+        "精装大开本硬壳纪念画册（实体装订寄送）"
+      ],
+      mode: "1对1 故事访谈采集 + 全流程手工精修定制",
+      serviceCode: "storybook",
+      themeColor: "#3B72DE"
     }
   ],
 
@@ -414,7 +510,7 @@ window.DAOZHU_DATA = {
       tag: "文字策略 · 蒸汽朋克",
       image: "assets/reform_club.jpg",
       desc: "改编自儒勒·凡尔纳经典小说。玩家化身斐利亚·福格或万事通，在伦敦改良俱乐部立下两万英镑赌注，穿越苏伊士运河与大西洋风暴。",
-      url: "https://daozhu1993-oss.github.io/foggs-bet/"
+      url: "https://fogg.daozhuai.cn"
     },
     {
       id: "aq",

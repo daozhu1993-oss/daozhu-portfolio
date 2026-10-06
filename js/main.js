@@ -237,6 +237,67 @@
     });
   }
 
+  // 4.5 动态渲染商业合作与专项交付 (Commercial Services & Offers)
+  function renderServicesSection() {
+    const grid = document.getElementById('services-grid');
+    if (!grid || !window.DAOZHU_DATA || !window.DAOZHU_DATA.services) return;
+
+    const services = window.DAOZHU_DATA.services;
+    grid.innerHTML = '';
+
+    services.forEach(s => {
+      const card = document.createElement('article');
+      card.className = 'service-offer-card reveal';
+
+      card.innerHTML = `
+        <div class="service-card-top">
+          <span class="service-code-num">${s.num}</span>
+          <span class="service-badge-pill">${s.badge}</span>
+        </div>
+        <div class="service-target-audience">${s.target}</div>
+        <h3 class="service-card-title">${s.title}</h3>
+        <p class="service-card-subtitle">${s.subtitle}</p>
+
+        <div class="service-pain-box">
+          <div class="service-pain-label">突破核心痛点</div>
+          <div class="service-pain-text">${s.painPoint}</div>
+        </div>
+
+        <ul class="service-features-list">
+          ${s.highlights.map(h => `
+            <li class="service-feature-item">
+              <span class="service-check-icon">✓</span>
+              <span>${h}</span>
+            </li>
+          `).join('')}
+        </ul>
+
+        <div class="service-deliverable-wrap">
+          <div class="service-deliverable-title">
+            <span>📦</span>
+            <span>核心交付成果物清单</span>
+          </div>
+          <ul class="service-deliverable-items">
+            ${s.deliverables.map(d => `<li>${d}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="service-footer-area">
+          <div class="service-mode-hint">${s.mode}</div>
+          <button class="service-action-btn" data-open-modal="coffee" data-service-code="${s.serviceCode}">
+            <span>立即咨询此方案</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+      `;
+
+      grid.appendChild(card);
+    });
+  }
+
   // 5. 动态渲染 AI 小项目
   function renderProjectsGrid() {
     const grid = document.getElementById('projects-grid');
@@ -437,6 +498,50 @@
       if (targetModal) {
         targetModal.classList.add('open');
         document.body.style.overflow = 'hidden';
+
+        // 如果点击带有商业服务代号，自动激活对应服务 Tab
+        const serviceCode = trigger.getAttribute('data-service-code');
+        if (targetModal.id === 'coffee-modal') {
+          const tabs = targetModal.querySelectorAll('.modal-service-tab');
+          const hint = document.getElementById('modal-wechat-hint');
+          let found = false;
+
+          if (serviceCode && tabs.length > 0) {
+            tabs.forEach(t => {
+              if (t.getAttribute('data-tab-service') === serviceCode) {
+                t.classList.add('active');
+                found = true;
+                if (hint) hint.innerText = `已选意向：【${t.innerText}】· 添加微信时请备注此项`;
+              } else {
+                t.classList.remove('active');
+              }
+            });
+          }
+
+          if (!found && tabs.length > 0) {
+            // 默认选中第一个或通用
+            const defaultTab = targetModal.querySelector('.modal-service-tab.default') || tabs[0];
+            tabs.forEach(t => t.classList.remove('active'));
+            defaultTab.classList.add('active');
+            if (hint) hint.innerText = `添加微信时请备注具体合作意向，以便高效沟通`;
+          }
+        }
+      }
+    });
+
+    // 模态窗服务 Tab 点击交互
+    document.addEventListener('click', (e) => {
+      const tab = e.target.closest('.modal-service-tab');
+      if (!tab) return;
+      const parentModal = tab.closest('#coffee-modal');
+      if (!parentModal) return;
+
+      parentModal.querySelectorAll('.modal-service-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const hint = document.getElementById('modal-wechat-hint');
+      if (hint) {
+        hint.innerText = `已选意向：【${tab.innerText}】· 添加微信时请备注此项`;
       }
     });
 
@@ -475,7 +580,7 @@
         const wechat = "bl-free";
         navigator.clipboard.writeText(wechat).then(() => {
           const orig = copyWechatBtn.innerText;
-          copyWechatBtn.innerText = "已复制 ✓";
+          copyWechatBtn.innerText = "微信号已复制 ✓";
           setTimeout(() => { copyWechatBtn.innerText = orig; }, 2000);
         });
       });
@@ -579,21 +684,42 @@
     }, { passive: true });
   }
 
-  // 13. 滚动进入视口渐入动画
+  // 13. 滚动进入视口渐入动画 (Awwwards Fluid Viewport Observer with Zero-Lag Fallback)
   function initScrollReveal() {
     const reveals = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      reveals.forEach(el => el.classList.add('in'));
+      return;
+    }
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('in');
+          observer.unobserve(entry.target);
         }
       });
     }, {
-      rootMargin: '0px 0px -40px 0px',
-      threshold: 0.08
+      rootMargin: '120px 0px 120px 0px',
+      threshold: 0
     });
 
     reveals.forEach(el => observer.observe(el));
+
+    function checkVisible() {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      reveals.forEach(el => {
+        if (!el.classList.contains('in')) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= vh + 100) {
+            el.classList.add('in');
+          }
+        }
+      });
+    }
+
+    checkVisible();
+    window.addEventListener('scroll', checkVisible, { passive: true });
   }
 
   // 14. 页面初始化
@@ -602,6 +728,7 @@
     renderBentoGrid();
     renderMilestones();
     renderWorksGrid();
+    renderServicesSection();
     renderProjectsGrid();
     renderModelsGateway();
     renderFieldNotes();
@@ -610,6 +737,14 @@
     initModals();
     initStoryWave();
     initJourneyNav();
+
+    // 支持 instant scroll 偏移参数以便进行高保真视觉审计与定位
+    const urlParams = new URLSearchParams(window.location.search);
+    const scrollTarget = parseInt(urlParams.get('scroll') || '0', 10);
+    if (scrollTarget > 0) {
+      window.scrollTo({ top: scrollTarget, behavior: 'instant' });
+    }
+
     initScrollReveal();
   });
 })();
