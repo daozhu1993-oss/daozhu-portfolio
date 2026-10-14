@@ -113,6 +113,8 @@
       });
     }
 
+    window.refreshCursorHovers = setupCursorHovers;
+
     // Initialize after DOM is ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', setupCursorHovers);

@@ -35,27 +35,27 @@ window.DAOZHU_DATA = {
     ]
   },
 
-  // 1. 五大群岛矩阵卫星站 (Ecosystem Satellites Bento Grid)
+  // 1. 七大群岛矩阵卫星站 (Ecosystem Satellites Bento Grid)
   satellites: [
     {
-      id: "script",
-      name: "编剧手艺工坊 · StoryCraft",
-      subtitle: "短剧 / AI 漫剧工业化叙事变现手艺库",
-      tags: ["核心手艺", "短剧/漫剧", "叙事变现", "工业化分镜"],
-      badge: "CORE CRAFT",
+      id: "myth",
+      name: "《神话》· MYTHOS MAGAZINE",
+      subtitle: "中华神话重构系列 · 30期独立数字文学杂志",
+      tags: ["独立数字杂志", "30期全集", "14.3万字", "五大卷册", "宣纸美学"],
+      badge: "NEW · MYTHOS",
       colSpan: 8,
       aspect: "aspect-widescreen",
-      image: "assets/bento-storycraft.jpg",
-      topPill: "🖋️ STORY CRAFT",
-      topStatus: "● INDUSTRIAL",
-      overlayTitle: "编剧手艺工坊",
-      overlaySubtitle: "救猫咪重构 · 短剧断章卡 · AI 漫剧一致性分镜",
-      desc: "十年一线电影、儿童动画与商业短剧编剧亲历提炼的可复现工业化手艺。收录救猫咪结构重构公式、快节奏情绪反转卡点与 AI 漫剧角色一致性分镜全链路工作流。",
-      highlights: ["工业化剧本工作流", "AI 漫剧一致性分镜", "分集悬念与反转卡"],
-      link: "https://script.daozhuai.cn",
-      ctaText: "进入编剧手艺库 ↗",
-      themeColor: "#B45A3C",
-      type: "script"
+      image: "assets/bento-myth.jpg",
+      topPill: "📜 MYTHOS",
+      topStatus: "● 30 ISSUES FULL",
+      overlayTitle: "《神话》· MYTHOS 独立文学杂志",
+      overlaySubtitle: "中华神话重构全集 · 30 期 · 14.3 万字 · 五大卷册典藏",
+      desc: "将中国经典神话进行当代人性重构的独立数字文学大刊。包含《共工怒触不周山》《仓颉造字》《白蛇雷峰塔》等 30 篇完整篇章，配备宋代手造宣纸肌理、全画幅电影镜头推近、翻页音效与专属定制水墨原画。",
+      highlights: ["30 期完整神话重构", "宋代手造宣纸肌理", "专属独立域名 myth.daozhuai.cn"],
+      link: "https://myth.daozhuai.cn",
+      ctaText: "翻开神话杂志 ↗",
+      themeColor: "#B23A2B",
+      type: "myth"
     },
     {
       id: "daily",
@@ -120,18 +120,18 @@ window.DAOZHU_DATA = {
     {
       id: "arcade",
       name: "岛上街机 · Daozhu Arcade",
-      subtitle: "AI 协同全栈驱动的独立游戏与互动故事合集",
-      tags: ["Mini Games", "3D赛车", "互动小说博弈"],
+      subtitle: "AI 协同全栈驱动的 8 款独立游戏与互动故事合集",
+      tags: ["8款已上线", "梵高星空NEW", "3D极速赛车", "博弈冒险"],
       badge: "ARCADE PLAY",
       colSpan: 6,
       aspect: "aspect-widescreen",
       image: "assets/bento-arcade.jpg",
       topPill: "🕹️ ARCADE",
-      topStatus: "P1 READY",
+      topStatus: "● 8 GAMES ONLINE",
       overlayTitle: "独立街机游戏群岛",
-      overlaySubtitle: "3D 卡丁车 · 聊斋蟋蟀博弈 · 文学互动",
-      desc: "纯前端与 AI 深度协作打造的独立游戏集：包含 3D 极速赛道《岛主卡丁车 (Daozhu Kart)》、聊斋古典斗蟋蟀策略博弈《促织》、凡尔纳小说衍生《福格的赌约》与《阿Q正传》心理剧场。",
-      highlights: ["《岛主卡丁车》3D赛道", "《促织》古风策略博弈", "《阿Q正传》心理剧场"],
+      overlaySubtitle: "梵高星空 · 3D 卡丁车 · 聊斋蟋蟀 · 8款独立游戏",
+      desc: "纯前端与 AI 深度协作打造的 8 款独立游戏实验：最新作《梵高的星空》3D 漫步探索、3D 极速赛道《岛主卡丁车》、聊斋斗蟋蟀《促织》、《福格的赌约》以及掌机游戏匣子。",
+      highlights: ["最新作《梵高的星空》", "《岛主卡丁车》3D 赛道", "8款独立游戏全上线"],
       link: "#arcade-section",
       ctaText: "体验街机合集 ↗",
       themeColor: "#E07A5F",
@@ -160,6 +160,26 @@ window.DAOZHU_DATA = {
       },
       themeColor: "#3B72DE",
       type: "picturebook"
+    },
+    {
+      id: "script",
+      name: "编剧手艺工坊 · StoryCraft",
+      subtitle: "短剧 / AI 漫剧工业化叙事变现手艺库",
+      tags: ["核心底盘", "短剧/漫剧", "叙事变现", "工业化分镜"],
+      badge: "CORE CRAFT",
+      colSpan: 12,
+      aspect: "aspect-banner",
+      image: "assets/bento-storycraft.jpg",
+      topPill: "🖋️ STORY CRAFT",
+      topStatus: "● INDUSTRIAL",
+      overlayTitle: "编剧手艺工坊 · 全链路工业化叙事底盘",
+      overlaySubtitle: "救猫咪重构 · 短剧断章卡 · AI 漫剧角色一致性分镜 · 用故事思维驱动价值",
+      desc: "十年一线电影、儿童动画与商业短剧编剧亲历提炼的可复现工业化手艺。收录救猫咪结构重构公式、快节奏情绪反转卡点与 AI 漫剧角色一致性分镜全链路工作流。",
+      highlights: ["工业化剧本工作流", "AI 漫剧一致性分镜", "分集悬念与反转卡", "专属独立域名 script.daozhuai.cn"],
+      link: "https://script.daozhuai.cn",
+      ctaText: "进入编剧手艺库 ↗",
+      themeColor: "#B45A3C",
+      type: "script"
     }
   ],
 
@@ -483,13 +503,24 @@ window.DAOZHU_DATA = {
     ]
   },
 
-  // 7. 独立游戏与互动故事合集 (Arcade Games)
+  // 7. 独立游戏与互动故事合集 (8 款独立游戏实验，支持横向丝滑滑动)
   games: [
+    {
+      id: "starry",
+      title: "《梵高的星空 · 星月孤岛》",
+      subtitle: "梵高《星月夜》3D 漫步与星核探索",
+      tag: "3D 艺术交互 · WebGL",
+      badge: "✨ 2026 最新作",
+      image: "assets/starry.jpg",
+      desc: "漫步走进梵高名画《星月夜》，在沉睡的小镇与麦田里寻找并点燃十一颗散落的星核。油画后处理着色器与诗意原声。",
+      url: "https://starry.daozhuai.cn/"
+    },
     {
       id: "kart",
       title: "《岛主卡丁车 (Daozhu Kart)》",
       subtitle: "3D 极速网页竞速街机",
       tag: "3D Arcade · WebGL",
+      badge: "经典竞速",
       image: "assets/kart-real.jpg",
       desc: "纯前端 WebGL + Three.js 打造的轻量级 3D 赛车小游戏。支持即开即跑、动态镜头与道具加速漂移，体验丝滑街机感。",
       url: "https://kart.daozhuai.cn"
@@ -499,6 +530,7 @@ window.DAOZHU_DATA = {
       title: "《促织 · 聊斋蟋蟀决斗》",
       subtitle: "古典工笔古瓷盆斗蟋蟀博弈",
       tag: "博弈策略 · 国风沉浸",
+      badge: "聊斋古典",
       image: "assets/arena_ceramic_bowl.jpg",
       desc: "取材自蒲松龄《聊斋志异·促织》。包含明代宣德青花瓷盆赛场、钢丝与蟹壳青蟋蟀养成、搏斗节拍与戏剧化命运抉择。",
       url: "https://cuzhi.daozhuai.cn"
@@ -508,6 +540,7 @@ window.DAOZHU_DATA = {
       title: "《福格的赌约》80天环游地球",
       subtitle: "凡尔纳小说衍生策略冒险",
       tag: "文字策略 · 蒸汽朋克",
+      badge: "凡尔纳原著",
       image: "assets/reform_club.jpg",
       desc: "改编自儒勒·凡尔纳经典小说。玩家化身斐利亚·福格或万事通，在伦敦改良俱乐部立下两万英镑赌注，穿越苏伊士运河与大西洋风暴。",
       url: "https://fogg.daozhuai.cn"
@@ -517,9 +550,40 @@ window.DAOZHU_DATA = {
       title: "《阿Q正传》心理互动剧场",
       subtitle: "鲁迅文学角色心理模拟器",
       tag: "文学互动 · 精神胜利法",
+      badge: "鲁迅原著",
       image: "assets/aq.jpg",
       desc: "以深度互动的选择分支拆解阿Q的「精神胜利法」与未庄众生相，将严肃文学转化为可交互、有张力的心理叙事剧场。",
-      url: "https://daozhu1993-oss.github.io/aq-game/"
+      url: "https://aq.daozhuai.cn"
+    },
+    {
+      id: "pelican",
+      title: "《海风信使 · 3D单车漫游》",
+      subtitle: "鹈鹕信使海岛海岸线慢漫游",
+      tag: "3D 自由漫游 · 昼夜流转",
+      badge: "海风慢生活",
+      image: "assets/pelican.jpg",
+      desc: "一只头戴复古骑行盔、系暖阳围巾的白鹈鹕信使，踩着单车沿海岛海岸线漫游捕鱼。落日晚霞、动态海浪、电影运镜与生成音乐。",
+      url: "https://pocket.daozhuai.cn/games/pelican/"
+    },
+    {
+      id: "shanhai",
+      title: "《山海灵感图鉴 · 异兽对决》",
+      subtitle: "《山海经》× 经典像素冒险复刻",
+      tag: "像素RPG · 回合遇怪",
+      badge: "山海异兽",
+      image: "assets/shanhai.jpg",
+      desc: "漫步山海海岛大地图，踩草丛遭遇九尾狐、饕餮、毕方与心魔异兽，压低血量投掷收妖葫芦，点亮全套山海图鉴！",
+      url: "https://pocket.daozhuai.cn/games/shanhai/"
+    },
+    {
+      id: "tetris",
+      title: "《GB 俄罗斯方块 1989》",
+      subtitle: "任天堂 Game Boy 初代点阵复刻",
+      tag: "8-Bit 像素 · 芯片原声",
+      badge: "GB经典",
+      image: "assets/tetris.jpg",
+      desc: "原汁原味 1989 初代点阵绿调、7大经典骨牌、Web Audio 原生合成喀秋莎芯片音乐，支持暂存与打榜记分。",
+      url: "https://pocket.daozhuai.cn/games/tetris/"
     }
   ],
 

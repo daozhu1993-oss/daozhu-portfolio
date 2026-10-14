@@ -1052,18 +1052,121 @@ html.dark .floating-tool-badge {
   line-height: 1.7;
 }
 
-/* ── 6.5 独立街机与游戏群岛 (Arcade Games Section) ── */
+/* ── 6.5 独立街机与游戏群岛 (Arcade Games Section & Horizontal Slider) ── */
 .games-section {
   padding: clamp(65px, 10vh, 100px) 0;
+  position: relative;
 }
 
-.games-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.games-header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.games-header-info {
+  max-width: 780px;
+}
+
+.games-header-info .section-title {
+  margin-bottom: 8px;
+}
+
+.games-header-info .section-subtitle {
+  margin-bottom: 0;
+}
+
+.games-slider-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.slider-arrow-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-line);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s var(--ease-smooth);
+  box-shadow: var(--shadow-sm);
+}
+
+.slider-arrow-btn:hover:not(:disabled) {
+  background: var(--brand-primary);
+  color: #ffffff;
+  border-color: var(--brand-primary);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 18px var(--brand-glow);
+}
+
+.slider-arrow-btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.96);
+}
+
+.slider-arrow-btn:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+}
+
+.slider-indicator {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 0 4px;
+  user-select: none;
+  display: flex;
+  align-items: center;
+}
+
+.slider-indicator #games-current-page {
+  color: var(--brand-primary);
+  font-weight: 700;
+}
+
+.indicator-divider {
+  margin: 0 4px;
+  opacity: 0.4;
+}
+
+/* 滑动视窗与卡片轨道 */
+.games-slider-viewport {
+  position: relative;
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 10px 0 16px 0;
+  overflow: visible;
+}
+
+.games-slider-track {
+  display: flex;
   gap: 22px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 6px 4px 10px 4px;
+}
+
+.games-slider-track::-webkit-scrollbar {
+  display: none;
 }
 
 .game-card {
+  flex: 0 0 calc((100% - 3 * 22px) / 4);
+  min-width: 270px;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
   background: var(--bg-card);
   border: 1px solid var(--border-line);
   border-radius: 22px;
@@ -1074,10 +1177,11 @@ html.dark .floating-tool-badge {
   transition: all 0.35s var(--ease-smooth);
   position: relative;
   overflow: hidden;
+  user-select: none;
 }
 
 .game-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
   border-color: var(--brand-primary);
   box-shadow: var(--shadow-lg), var(--shadow-glow);
 }
@@ -1101,6 +1205,22 @@ html.dark .floating-tool-badge {
 
 .game-card:hover .game-media img {
   transform: scale(1.08);
+}
+
+.game-badge-new {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 9px;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #f2c230 0%, #b45a3c 100%);
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(242, 194, 48, 0.45);
+  letter-spacing: 0.02em;
+  z-index: 2;
 }
 
 .game-title {
@@ -1134,6 +1254,88 @@ html.dark .floating-tool-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  transition: gap 0.2s ease;
+}
+
+.game-card:hover .game-link {
+  gap: 10px;
+}
+
+/* 底部状态提示与点位导航 */
+.games-slider-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  padding: 0 6px;
+}
+
+.games-swipe-hint {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.swipe-hint-icon {
+  font-size: 0.95rem;
+  color: var(--brand-primary);
+  animation: pulseSwipe 2s infinite ease-in-out;
+}
+
+@keyframes pulseSwipe {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+.games-slider-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-line);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.slider-dot:hover {
+  background: var(--text-muted);
+}
+
+.slider-dot.active {
+  width: 24px;
+  border-radius: 9999px;
+  background: var(--brand-primary);
+}
+
+@media (max-width: 1024px) {
+  .game-card {
+    flex: 0 0 calc((100% - 22px) / 2);
+    min-width: 250px;
+  }
+}
+
+@media (max-width: 640px) {
+  .games-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .games-slider-controls {
+    align-self: flex-end;
+  }
+  .game-card {
+    flex: 0 0 84%;
+    min-width: 240px;
+  }
 }
 
 /* ── 6.8 我是谁与人文小岛 (About & Humanist Island) ── */
@@ -1473,14 +1675,11 @@ html.dark .floating-tool-badge {
     padding-left: 0;
     padding-top: 10px;
   }
-  .bento-card.col-8, .bento-card.col-4, .bento-card.col-6 {
+  .bento-card.col-8, .bento-card.col-4, .bento-card.col-6, .bento-card.col-12 {
     grid-column: span 12;
   }
   .milestones-grid, .works-grid, .articles-grid, .mini-milestones-grid {
     grid-template-columns: 1fr;
-  }
-  .games-grid {
-    grid-template-columns: repeat(2, 1fr);
   }
   .about-grid {
     grid-template-columns: 1fr;
@@ -1492,9 +1691,6 @@ html.dark .floating-tool-badge {
     display: none;
   }
   .contact-channels {
-    grid-template-columns: 1fr;
-  }
-  .games-grid {
     grid-template-columns: 1fr;
   }
 }

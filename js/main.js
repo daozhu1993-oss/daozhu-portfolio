@@ -72,13 +72,13 @@
               <span class="font-mono" style="font-size: 0.74rem; color: #ded2ba; font-weight: 600; text-shadow: 0 1px 4px rgba(0,0,0,0.8);">${item.topStatus}</span>
             </div>
             <div>
-              <div style="font-family: var(--font-serif); font-size: ${item.colSpan === 8 ? '1.5rem' : '1.25rem'}; font-weight: 700; color: #FFFFFF; line-height: 1.35; text-shadow: 0 2px 10px rgba(0,0,0,0.85);">
+              <div style="font-family: var(--font-serif); font-size: ${item.colSpan >= 8 ? '1.5rem' : '1.25rem'}; font-weight: 700; color: #FFFFFF; line-height: 1.35; text-shadow: 0 2px 10px rgba(0,0,0,0.85);">
                 ${item.overlayTitle}
               </div>
               <div style="font-family: var(--font-mono); font-size: 0.76rem; color: #e4dccb; margin-top: 6px; text-shadow: 0 1px 6px rgba(0,0,0,0.9);">
                 ${item.overlaySubtitle}
               </div>
-              ${item.highlights && item.colSpan === 8 ? `
+              ${item.highlights && item.colSpan >= 8 ? `
                 <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;">
                   ${item.highlights.map(h => `<span class="pill-badge" style="background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); color: #ded2ba; font-size: 0.68rem; border-color: rgba(255,255,255,0.25);">${h}</span>`).join('')}
                 </div>
@@ -421,6 +421,7 @@
   }
 
   // 8. 动态渲染独立街机
+  // 8. 动态渲染独立街机 (8 款独立游戏实验 · 丝滑横向滑动与触控流)
   function renderGamesGrid() {
     const grid = document.getElementById('games-grid');
     if (!grid || !window.DAOZHU_DATA || !window.DAOZHU_DATA.games) return;
@@ -434,39 +435,208 @@
 
       let gameMediaHtml = '';
       if (g.image) {
-        gameMediaHtml = `<img src="${g.image}" alt="${g.title}">`;
+        gameMediaHtml = `<img src="${g.image}" alt="${g.title}" loading="lazy">`;
       } else {
         gameMediaHtml = `
           <div style="position: absolute; inset: 0; background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-card) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 18px; border: 1px dashed var(--border-line);">
-            <div style="font-size: 2rem; margin-bottom: 6px;">🎭</div>
+            <div style="font-size: 2rem; margin-bottom: 6px;">🎮</div>
             <div style="font-family: var(--font-serif); font-size: 1.05rem; font-weight: 700; color: var(--text-primary); text-align: center;">${g.title}</div>
           </div>
         `;
       }
 
+      const badgeHtml = g.badge ? `<span class="game-badge-new">${g.badge}</span>` : '';
+
       card.innerHTML = `
         <div class="game-media">
           ${gameMediaHtml}
-          <div style="position: absolute; top: 10px; left: 10px;">
-            <span class="pill-badge" style="background: rgba(0,0,0,0.65); color: #fff; border-color: rgba(255,255,255,0.2); font-size: 0.68rem;">${g.tag}</span>
+          <div style="position: absolute; top: 10px; left: 10px; z-index: 2;">
+            <span class="pill-badge" style="background: rgba(0,0,0,0.68); color: #fff; border-color: rgba(255,255,255,0.22); font-size: 0.68rem; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">${g.tag}</span>
           </div>
+          ${badgeHtml}
         </div>
         <h3 class="game-title">${g.title}</h3>
         <div class="game-subtitle">${g.subtitle}</div>
         <p class="game-desc">${g.desc}</p>
         <div class="game-link">
           <span>进入游戏体验</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
           </svg>
         </div>
-        <a href="${g.url}" target="_blank" rel="noopener noreferrer" style="position: absolute; inset: 0; z-index: 20;">
+        <a href="${g.url}" target="_blank" rel="noopener noreferrer" style="position: absolute; inset: 0; z-index: 20;" aria-label="进入体验 ${g.title}">
           <span style="display: none;">${g.title}</span>
         </a>
       `;
       grid.appendChild(card);
     });
+
+    // ─────────────────────────────────────────────────────────────
+    // 横向滑动器交互控制 (Horizontal Slider Controller)
+    // ─────────────────────────────────────────────────────────────
+    const prevBtn = document.getElementById('games-slide-prev');
+    const nextBtn = document.getElementById('games-slide-next');
+    const currentPageEl = document.getElementById('games-current-page');
+    const totalPagesEl = document.getElementById('games-total-pages');
+    const dotsContainer = document.getElementById('games-dots');
+
+    function getVisibleCards() {
+      const card = grid.querySelector('.game-card');
+      if (!card || grid.clientWidth === 0) return 4;
+      const cardWidth = card.offsetWidth + 22;
+      return Math.max(1, Math.round(grid.clientWidth / cardWidth));
+    }
+
+    function getTotalPages() {
+      const visible = getVisibleCards();
+      return Math.max(1, Math.ceil(games.length / visible));
+    }
+
+    function renderDots() {
+      if (!dotsContainer) return;
+      dotsContainer.innerHTML = '';
+      const totalPages = getTotalPages();
+      if (totalPagesEl) {
+        totalPagesEl.textContent = String(totalPages).padStart(2, '0');
+      }
+
+      for (let i = 0; i < totalPages; i++) {
+        const dot = document.createElement('button');
+        dot.className = `slider-dot ${i === 0 ? 'active' : ''}`;
+        dot.setAttribute('aria-label', `跳转到第 ${i + 1} 页`);
+        dot.addEventListener('click', () => {
+          window.DAOZHU_AUDIO?.playClick();
+          const targetScroll = i * (grid.clientWidth * 0.95);
+          grid.scrollTo({ left: targetScroll, behavior: 'smooth' });
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function updateSliderState() {
+      const scrollLeft = grid.scrollLeft;
+      const maxScroll = Math.max(0, grid.scrollWidth - grid.clientWidth);
+      const totalPages = getTotalPages();
+
+      if (maxScroll <= 10) {
+        if (prevBtn) prevBtn.disabled = true;
+        if (nextBtn) nextBtn.disabled = true;
+        if (currentPageEl) currentPageEl.textContent = '01';
+        return;
+      }
+
+      const ratio = scrollLeft / maxScroll;
+      const pageIndex = Math.min(
+        totalPages,
+        Math.max(1, Math.round(ratio * (totalPages - 1)) + 1)
+      );
+
+      if (currentPageEl) {
+        currentPageEl.textContent = String(pageIndex).padStart(2, '0');
+      }
+
+      if (prevBtn) {
+        prevBtn.disabled = scrollLeft <= 8;
+      }
+      if (nextBtn) {
+        nextBtn.disabled = scrollLeft >= maxScroll - 8;
+      }
+
+      const dots = dotsContainer?.querySelectorAll('.slider-dot');
+      if (dots && dots.length > 0) {
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('active', idx === pageIndex - 1);
+        });
+      }
+    }
+
+    // Prev / Next 按钮点击事件
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        window.DAOZHU_AUDIO?.playClick();
+        const step = grid.clientWidth * 0.88;
+        grid.scrollBy({ left: -step, behavior: 'smooth' });
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        window.DAOZHU_AUDIO?.playClick();
+        const step = grid.clientWidth * 0.88;
+        grid.scrollBy({ left: step, behavior: 'smooth' });
+      });
+    }
+
+    // 监听滚动与防抖更新
+    let scrollRaf = null;
+    grid.addEventListener('scroll', () => {
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = requestAnimationFrame(updateSliderState);
+    }, { passive: true });
+
+    // 窗口尺寸变化重新计算页数与点位
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        renderDots();
+        updateSliderState();
+      }, 150);
+    });
+
+    // 鼠标拖拽横向滚动 (Desktop Drag-to-Scroll)
+    let isMouseDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let dragThresholdMet = false;
+
+    grid.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+      isMouseDown = true;
+      dragThresholdMet = false;
+      startX = e.pageX - grid.offsetLeft;
+      scrollStart = grid.scrollLeft;
+      grid.style.scrollSnapType = 'none';
+      grid.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!isMouseDown) return;
+      isMouseDown = false;
+      grid.style.scrollSnapType = 'x mandatory';
+      grid.style.cursor = '';
+      setTimeout(() => { dragThresholdMet = false; }, 60);
+    });
+
+    grid.addEventListener('mousemove', (e) => {
+      if (!isMouseDown) return;
+      e.preventDefault();
+      const x = e.pageX - grid.offsetLeft;
+      const walk = (x - startX) * 1.35;
+      if (Math.abs(walk) > 6) {
+        dragThresholdMet = true;
+      }
+      grid.scrollLeft = scrollStart - walk;
+    });
+
+    // 防止在拖拽滚动过程中误触链接
+    grid.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', (e) => {
+        if (dragThresholdMet) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      });
+    });
+
+    // 初始化渲染指示点与当前状态
+    renderDots();
+    updateSliderState();
+
+    // 重新连接光标高阶微动效与 3D 拟态透视倾斜
+    window.refreshCursorHovers?.();
+    window.refresh3DTilt?.();
   }
 
   // 9. 动态渲染换了身份不换主线
