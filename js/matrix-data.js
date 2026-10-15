@@ -217,11 +217,6 @@ window.DAOZHU_DATA = {
   // 迷你履历履历卡片 (Mini Milestones)
   miniMilestones: [
     {
-      period: "2025.11 – 2026.4",
-      org: "西安航科智能 · 产品营销经理",
-      desc: "品牌顶层设计、漫剧与 AI 智能体衍生内容"
-    },
-    {
       period: "2019",
       org: "历史自媒体「诸葛呈像」联合创始人",
       desc: "0→40 万粉、单条最高 68 万播放"
