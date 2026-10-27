@@ -538,7 +538,7 @@ window.DAOZHU_DATA = {
       badge: "凡尔纳原著",
       image: "assets/reform_club.jpg",
       desc: "改编自儒勒·凡尔纳经典小说。玩家化身斐利亚·福格或万事通，在伦敦改良俱乐部立下两万英镑赌注，穿越苏伊士运河与大西洋风暴。",
-      url: "https://fogg.daozhuai.cn"
+      url: "https://daozhu-fogg.pages.dev/"
     },
     {
       id: "aq",
