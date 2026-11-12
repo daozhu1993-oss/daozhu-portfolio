@@ -25,14 +25,15 @@
     })();
   </script>
 
-  <!-- 预连接与字体加载 -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Serif+SC:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- 预连接与非阻塞字体加载 (国内直连 googleapis.cn 加速 + preload 异步降级) -->
+  <link rel="preconnect" href="https://fonts.googleapis.cn">
+  <link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.cn/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Serif+SC:wght@500;700;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.cn/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Serif+SC:wght@500;700;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
 
   <!-- 核心样式 (带版本时间戳防浏览器缓存) -->
-  <link rel="stylesheet" href="css/style.css?v=20261007_awwwards_v1">
-  <link rel="stylesheet" href="css/components.css?v=20261015_clean_v1">
+  <link rel="stylesheet" href="css/style.css?v=20261111_perf_v1">
+  <link rel="stylesheet" href="css/components.css?v=20261111_perf_v1">
 </head>
 <body>
 
@@ -65,7 +66,11 @@
       <!-- 品牌与在线状态 -->
       <a href="#hero" class="nav-brand">
         <div class="brand-avatar">
-          <img src="assets/avatar.jpg" alt="岛主头像" onerror="this.src='assets/favicon.svg'">
+          <picture>
+            <source type="image/avif" srcset="assets/avatar.avif">
+            <source type="image/webp" srcset="assets/avatar.webp">
+            <img src="assets/avatar.jpg" alt="岛主头像" width="620" height="930" decoding="async" onerror="this.onerror=null;this.closest('picture')?.querySelectorAll('source').forEach(s=>s.remove());this.src='assets/favicon.svg'">
+          </picture>
           <span class="brand-status-dot"></span>
         </div>
         <span class="font-serif brand-name">岛主</span>
@@ -205,8 +210,12 @@
 
             <div class="hero-showcase-card" data-cursor="view">
               <div class="hero-poster-canvas">
-                <!-- 岛主肖像主图 -->
-                <img src="assets/avatar.jpg" alt="岛主 · 十年编剧 × AI产品">
+                <!-- 岛主肖像主图 (LCP 首屏主视觉高优先级) -->
+                <picture>
+                  <source type="image/avif" srcset="assets/avatar.avif">
+                  <source type="image/webp" srcset="assets/avatar.webp">
+                  <img src="assets/avatar.jpg" alt="岛主 · 十年编剧 × AI产品" width="620" height="930" fetchpriority="high" loading="eager" decoding="async">
+                </picture>
                 <div class="hero-canvas-overlay"></div>
 
                 <!-- 顶部 HUD: 在线状态与群岛实时遥测 -->
@@ -717,7 +726,11 @@
         </div>
         <div class="pocket-banner-media">
           <a href="https://pocket.daozhuai.cn/" target="_blank" rel="noopener noreferrer" class="pocket-media-link" title="点击体验岛主模拟掌机">
-            <img src="assets/pocket-console-banner.jpg" alt="DAOZHU POCKET 模拟掌机游戏匣子" class="pocket-media-img" loading="lazy">
+            <picture>
+              <source type="image/avif" srcset="assets/pocket-console-banner.avif">
+              <source type="image/webp" srcset="assets/pocket-console-banner.webp">
+              <img src="assets/pocket-console-banner.jpg" alt="DAOZHU POCKET 模拟掌机游戏匣子" class="pocket-media-img" width="960" height="536" loading="lazy" decoding="async">
+            </picture>
             <div class="pocket-media-overlay">
               <span class="pocket-play-icon">▶</span>
               <span class="pocket-play-text font-mono">PLAY IN CONSOLE</span>
@@ -838,7 +851,11 @@
       <h3>摩比魔法七巧板</h3>
       <div class="m-role">我的角色：产品负责人 · 从产品到世界观（0-1 主导）</div>
 
-      <img class="m-hero" src="assets/mobi-hero.jpg" alt="摩比魔法七巧板 主视觉">
+      <picture>
+        <source type="image/avif" data-srcset="assets/mobi-hero.avif">
+        <source type="image/webp" data-srcset="assets/mobi-hero.webp">
+        <img class="m-hero" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/mobi-hero.jpg" alt="摩比魔法七巧板 主视觉" width="801" height="800" fetchpriority="low" decoding="async">
+      </picture>
 
       <h4>背景</h4>
       <p>摩比魔法七巧板是一款需配合学而思学习机使用的智能启蒙硬件（适用 3–8 岁）：一副实体七巧板教具 + AI 老师 + 游戏化 App。用一副小小的七巧板，带孩子养成观察、专注、几何构建、逻辑推理等「十大能力」。我要解决的核心命题：怎么把「学」，藏进一个孩子真正愿意一直玩下去的东西里。</p>
@@ -857,27 +874,51 @@
       <h4>实战展台与产品细节</h4>
       <div class="m-gallery">
         <div class="m-gallery-item">
-          <img src="assets/mobi-tangram-case.jpg" alt="品质把控 · 实体七巧板与收纳">
+          <picture>
+            <source type="image/avif" data-srcset="assets/mobi-tangram-case.avif">
+            <source type="image/webp" data-srcset="assets/mobi-tangram-case.webp">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/mobi-tangram-case.jpg" alt="品质把控 · 实体七巧板与收纳" width="540" height="540" fetchpriority="low" decoding="async">
+          </picture>
           <figcaption>品质把控 · 实体七巧板与收纳</figcaption>
         </div>
         <div class="m-gallery-item">
-          <img src="assets/mobi-encyclopedia.jpg" alt="拼出专属百科全书">
+          <picture>
+            <source type="image/avif" data-srcset="assets/mobi-encyclopedia.avif">
+            <source type="image/webp" data-srcset="assets/mobi-encyclopedia.webp">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/mobi-encyclopedia.jpg" alt="拼出专属百科全书" width="540" height="540" fetchpriority="low" decoding="async">
+          </picture>
           <figcaption>拼出专属百科全书</figcaption>
         </div>
         <div class="m-gallery-item">
-          <img src="assets/mobi-ai-guidance.jpg" alt="AI 实时指引">
+          <picture>
+            <source type="image/avif" data-srcset="assets/mobi-ai-guidance.avif">
+            <source type="image/webp" data-srcset="assets/mobi-ai-guidance.webp">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/mobi-ai-guidance.jpg" alt="AI 实时指引" width="540" height="540" fetchpriority="low" decoding="async">
+          </picture>
           <figcaption>AI 实时指引</figcaption>
         </div>
         <div class="m-gallery-item">
-          <img src="assets/mobi-ai-interaction.jpg" alt="AI 生成式互动">
+          <picture>
+            <source type="image/avif" data-srcset="assets/mobi-ai-interaction.avif">
+            <source type="image/webp" data-srcset="assets/mobi-ai-interaction.webp">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/mobi-ai-interaction.jpg" alt="AI 生成式互动" width="540" height="540" fetchpriority="low" decoding="async">
+          </picture>
           <figcaption>AI 生成式互动</figcaption>
         </div>
         <div class="m-gallery-item">
-          <img src="assets/mobi-six-levels.jpg" alt="六级科学分阶">
+          <picture>
+            <source type="image/avif" data-srcset="assets/mobi-six-levels.avif">
+            <source type="image/webp" data-srcset="assets/mobi-six-levels.webp">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/mobi-six-levels.jpg" alt="六级科学分阶" width="540" height="540" fetchpriority="low" decoding="async">
+          </picture>
           <figcaption>六级科学分阶</figcaption>
         </div>
         <div class="m-gallery-item">
-          <img src="assets/mobi-ten-abilities.jpg" alt="十大能力养成">
+          <picture>
+            <source type="image/avif" data-srcset="assets/mobi-ten-abilities.avif">
+            <source type="image/webp" data-srcset="assets/mobi-ten-abilities.webp">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/mobi-ten-abilities.jpg" alt="十大能力养成" width="540" height="540" fetchpriority="low" decoding="async">
+          </picture>
           <figcaption>十大能力养成</figcaption>
         </div>
       </div>
@@ -893,7 +934,11 @@
       <h3>学而思「AI 小思」</h3>
       <div class="m-role">我的角色：AI 小思 IP 主创 · 从人格到世界观（0-1 主导）</div>
 
-      <img class="m-hero" src="assets/xiaosi-hero.jpg" alt="学而思 AI 小思 形象">
+      <picture>
+        <source type="image/avif" data-srcset="assets/xiaosi-hero.avif">
+        <source type="image/webp" data-srcset="assets/xiaosi-hero.webp">
+        <img class="m-hero" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/xiaosi-hero.jpg" alt="学而思 AI 小思 形象" width="900" height="497" fetchpriority="low" decoding="async">
+      </picture>
 
       <h4>定位</h4>
       <p>小思是学而思学习机上的 AI 伙伴——但它的定位从来不是“语音助手”。它是一个懂孩子、懂内容、懂知识，能陪着孩子一起学习、一起长大的伙伴，有属于自己的人格。</p>
@@ -909,7 +954,11 @@
 
       <h4>世界观编年史</h4>
       <p>形象背后，是我搭建的一整套原创编年史与世界观——支撑这个 IP 能跨年级、跨故事持续生长的骨架。</p>
-      <img class="m-hero" src="assets/xiaosi-chronology.jpg" alt="未来大陆世界观编年史">
+      <picture>
+        <source type="image/avif" data-srcset="assets/xiaosi-chronology.avif">
+        <source type="image/webp" data-srcset="assets/xiaosi-chronology.webp">
+        <img class="m-hero" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/xiaosi-chronology.jpg" alt="未来大陆世界观编年史" width="960" height="528" fetchpriority="low" decoding="async">
+      </picture>
       <div class="m-credit">小思形象与世界观资料 © 学而思 · AI 小思 IP（本人主导）</div>
     </div>
   </div>
@@ -922,7 +971,11 @@
       <h3>《风物中国》</h3>
       <div class="m-role">我的角色：独立制作（全流程）</div>
 
-      <img class="m-hero" src="assets/fengwu-hero.jpg" alt="《风物中国》AIGC 纪录片 纸工艺拼贴封面">
+      <picture>
+        <source type="image/avif" data-srcset="assets/fengwu-hero.avif">
+        <source type="image/webp" data-srcset="assets/fengwu-hero.webp">
+        <img class="m-hero" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/fengwu-hero.jpg" alt="《风物中国》AIGC 纪录片 纸工艺拼贴封面" width="900" height="502" fetchpriority="low" decoding="async">
+      </picture>
 
       <h4>背景</h4>
       <p>想验证一件事——「人做策划与审美、AI 负责执行」，能不能做出成体系的文化内容。</p>
@@ -942,7 +995,11 @@
       <h3>乐乐趣「AI 乐乐」</h3>
       <div class="m-role">我的角色：创新产品总监 · 0-1 产品框架</div>
 
-      <img class="m-hero" src="assets/lele-hero.jpg" alt="乐乐趣 AI 乐乐 产品与 IP 形象">
+      <picture>
+        <source type="image/avif" data-srcset="assets/lele-hero.avif">
+        <source type="image/webp" data-srcset="assets/lele-hero.webp">
+        <img class="m-hero" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/lele-hero.jpg" alt="乐乐趣 AI 乐乐 产品与 IP 形象" width="730" height="349" fetchpriority="low" decoding="async">
+      </picture>
 
       <h4>定位</h4>
       <p>AI 乐乐是乐乐趣的 AI 育儿伙伴——一个懂内容、懂孩子，能陪孩子一起阅读、一起成长的 AI 智能体，落在点读笔、故事机、小程序等多种硬件与场景上。它的定位不是「点读工具」，而是有情感连接的育儿专家。</p>
@@ -967,7 +1024,11 @@
       <h3>个人内容 IP「岛主」</h3>
       <div class="m-role">我的角色：独立创作 + vibe coding</div>
 
-      <img class="m-hero" src="assets/daozhu-ip-hero.jpg" alt="岛主 · 个人内容站">
+      <picture>
+        <source type="image/avif" data-srcset="assets/daozhu-ip-hero.avif">
+        <source type="image/webp" data-srcset="assets/daozhu-ip-hero.webp">
+        <img class="m-hero" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/daozhu-ip-hero.jpg" alt="岛主 · 个人内容站" width="960" height="597" fetchpriority="low" decoding="async">
+      </picture>
 
       <h4>背景</h4>
       <p>把个人创作沉淀成一个能持续生长的内容资产。</p>
@@ -1012,7 +1073,7 @@
 
         <!-- 真实微信二维码展示卡 -->
         <div style="background: #ffffff; padding: 16px; border-radius: 20px; box-shadow: var(--shadow-md); display: inline-block; margin-bottom: 16px; border: 1px solid var(--border-line);">
-          <img src="assets/wechat-qr.png" alt="岛主王仙客 微信二维码" style="width: 180px; height: 180px; display: block; border-radius: 10px; object-fit: cover;">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/wechat-qr.png" alt="岛主王仙客 微信二维码" width="400" height="593" fetchpriority="low" decoding="async" style="width: 180px; height: 180px; display: block; border-radius: 10px; object-fit: cover;">
           <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.82rem; color: #4a453d; font-weight: 600;">
             微信扫一扫 · <span style="color: #b45a3c;">岛主王仙客</span>
           </div>
@@ -1032,12 +1093,12 @@
     </div>
   </div>
 
-  <!-- 核心交互与动效脚本 (解析完 DOM 即刻执行，杜绝白屏) -->
-  <script src="js/matrix-data.js?v=20261027_fogg_v1"></script>
-  <script src="js/audio.js?v=20261007_awwwards_v1"></script>
-  <script src="js/ambient-canvas.js?v=20261007_awwwards_v1"></script>
-  <script src="js/cursor-fx.js?v=20261015_clean_v1"></script>
-  <script src="js/main.js?v=20261015_clean_v1"></script>
+  <!-- 核心交互与动效脚本 (defer 并行拉取按序执行，不阻塞首屏解析) -->
+  <script defer src="js/matrix-data.js?v=20261111_perf_v1"></script>
+  <script defer src="js/audio.js?v=20261111_perf_v1"></script>
+  <script defer src="js/ambient-canvas.js?v=20261111_perf_v1"></script>
+  <script defer src="js/cursor-fx.js?v=20261111_perf_v1"></script>
+  <script defer src="js/main.js?v=20261111_perf_v1"></script>
 
   <!-- Cloudflare Web Analytics -->
   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b8e37091d51741298f0a92a2a566d5f2"}'></script>

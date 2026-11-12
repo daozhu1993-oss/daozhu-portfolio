@@ -2261,6 +2261,7 @@ html.dark .floating-tool-badge {
 
 .modal-box .m-hero {
   width: 100%;
+  height: auto;
   border-radius: 14px;
   border: 1px solid var(--border-line);
   margin: 18px 0 6px;
@@ -2301,6 +2302,7 @@ html.dark .floating-tool-badge {
 
 .modal-box .m-gallery-item img {
   width: 100%;
+  height: auto;
   border-radius: 10px;
   border: 1px solid var(--border-line);
   aspect-ratio: 16 / 11;

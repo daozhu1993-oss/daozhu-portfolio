@@ -6,6 +6,38 @@
 (function () {
   'use strict';
 
+  const IMAGE_DIMENSIONS = {
+    'assets/bento-myth.jpg': [1100, 688],
+    'assets/bento-daily.jpg': [720, 720],
+    'assets/bento-journal.jpg': [1100, 733],
+    'assets/bento-inspo.jpg': [720, 720],
+    'assets/bento-arcade.jpg': [900, 900],
+    'assets/bento-island.jpg': [900, 900],
+    'assets/bento-storycraft.jpg': [1200, 670],
+    'assets/mobi-hero.jpg': [801, 800],
+    'assets/xiaosi-hero.jpg': [900, 497],
+    'assets/fengwu-hero.jpg': [900, 502],
+    'assets/lele-hero.jpg': [730, 349],
+    'assets/daozhu-ip-hero.jpg': [960, 597],
+    'assets/starry.jpg': [720, 576],
+    'assets/kart-real.jpg': [800, 537],
+    'assets/arena_ceramic_bowl.jpg': [800, 447],
+    'assets/reform_club.jpg': [800, 446],
+    'assets/aq.jpg': [800, 533],
+    'assets/pelican.jpg': [800, 537],
+    'assets/shanhai.jpg': [800, 537],
+    'assets/tetris.jpg': [800, 537]
+  };
+
+  function renderResponsivePicture(src, alt, className = '', lazy = true) {
+    const base = src.replace(/\.(jpg|jpeg|png)$/i, '');
+    const dims = IMAGE_DIMENSIONS[src];
+    const sizeAttrs = dims ? ` width="${dims[0]}" height="${dims[1]}"` : '';
+    const classAttr = className ? ` class="${className}"` : '';
+    const loadingAttr = lazy ? ' loading="lazy"' : '';
+    return `<picture><source type="image/avif" srcset="${base}.avif"><source type="image/webp" srcset="${base}.webp"><img src="${src}" alt="${alt}"${classAttr}${sizeAttrs}${loadingAttr} decoding="async"></picture>`;
+  }
+
   // 1. 暗黑模式管理 (Dark / Light Theme Toggle)
   const ThemeManager = {
     STORAGE_KEY: 'daozhu_portfolio_theme',
@@ -60,7 +92,7 @@
       const card = document.createElement('article');
       card.className = `bento-card col-${item.colSpan}`;
 
-      const imgHtml = item.image ? `<img src="${item.image}" alt="${item.name}" class="bento-media-img" loading="lazy">` : '';
+      const imgHtml = item.image ? renderResponsivePicture(item.image, item.name, 'bento-media-img', true) : '';
 
       const mediaContent = `
         <div class="bento-media-wrap ${item.aspect}">
@@ -210,7 +242,7 @@
 
       let mediaHtml = '';
       if (w.image) {
-        mediaHtml = `<img src="${w.image}" alt="${w.title}">`;
+        mediaHtml = renderResponsivePicture(w.image, w.title, '', true);
       } else {
         mediaHtml = `
           <div style="position: absolute; inset: 0; background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-card) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; border: 1px dashed var(--border-line);">
@@ -435,7 +467,7 @@
 
       let gameMediaHtml = '';
       if (g.image) {
-        gameMediaHtml = `<img src="${g.image}" alt="${g.title}" loading="lazy">`;
+        gameMediaHtml = renderResponsivePicture(g.image, g.title, '', true);
       } else {
         gameMediaHtml = `
           <div style="position: absolute; inset: 0; background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-card) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 18px; border: 1px dashed var(--border-line);">
@@ -656,7 +688,19 @@
     `).join('');
   }
 
-  // 10. 模态弹窗管理 (All Modals)
+  // 10. 模态弹窗管理 (All Modals + 按需加载弹窗图片)
+  function hydrateModalMedia(modalEl) {
+    if (!modalEl) return;
+    modalEl.querySelectorAll('source[data-srcset]').forEach(source => {
+      source.srcset = source.dataset.srcset;
+      source.removeAttribute('data-srcset');
+    });
+    modalEl.querySelectorAll('img[data-src]').forEach(img => {
+      img.src = img.dataset.src;
+      img.removeAttribute('data-src');
+    });
+  }
+
   function initModals() {
     document.addEventListener('click', (e) => {
       const trigger = e.target.closest('[data-open-modal]');
@@ -666,6 +710,7 @@
       const modalId = trigger.getAttribute('data-open-modal');
       const targetModal = document.getElementById(modalId) || (modalId === 'coffee' ? document.getElementById('coffee-modal') : null);
       if (targetModal) {
+        hydrateModalMedia(targetModal);
         targetModal.classList.add('open');
         document.body.style.overflow = 'hidden';
 
