@@ -394,10 +394,10 @@ window.DAOZHU_DATA = {
       status: "oss"
     },
     {
-      tag: "工具 · 可体验",
+      tag: "工具 · 专属域名",
       title: "慢游中国 · AI 旅行路线定制",
       desc: "输入出发地、天数、节奏、预算、偏好和真实约束（带娃 / 带老人 / 不爬山），路线引擎自动串成一条不绕路、带地图时间线和吃喝故事的国内旅行行程。",
-      url: "https://daozhu1993-oss.github.io/travel/",
+      url: "https://travel.daozhuai.cn/",
       status: "live"
     },
     {
