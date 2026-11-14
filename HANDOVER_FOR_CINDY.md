@@ -5,27 +5,82 @@
 ---
 
 ## 目录
-1. [全站技术架构全景图](#一全站技术架构全景图)
-2. [关键账号与权限凭据](#二关键账号与权限凭据)
-3. [本地工程与代码仓库分布](#三本地工程与代码仓库分布)
-4. [日常高频操作 SOP](#四日常高频操作-sop)
+1. [全站最新网址与仓库对照总表](#一全站最新网址与仓库对照总表)
+2. [全站技术架构全景图](#二全站技术架构全景图)
+3. [关键账号与权限凭据](#三关键账号与权限凭据)
+4. [本地工程与代码仓库分布](#四本地工程与代码仓库分布)
+5. [日常高频操作 SOP](#五日常高频操作-sop)
    - [SOP 1：主站内容更新（改经历、加作品、改文字）](#sop-1主站内容更新改经历加作品改文字)
    - [SOP 2：子项目代码更新（如旅行手账、神话杂志）](#sop-2子项目代码更新如旅行手账神话杂志)
    - [SOP 3：新做一个子网站并上线专属二级域名](#sop-3新做一个子网站并上线专属二级域名)
-5. [必须遵守的 5 条「避坑铁律」](#五必须遵守的-5-条避坑铁律)
+6. [必须遵守的 5 条「避坑铁律」](#六必须遵守的-5-条避坑铁律)
 
 ---
 
-## 一、全站技术架构全景图
+## 一、全站最新网址与仓库对照总表
 
-- **主站门户**：[https://www.daozhuai.cn/](https://www.daozhuai.cn/)（备用镜像：[https://daozhu-portfolio.pages.dev/](https://daozhu-portfolio.pages.dev/)）
-- **数字群岛（部分二级域名）**：
-  - 神话杂志：`https://myth.daozhuai.cn/`
-  - 旅行手账：`https://travel.daozhuai.cn/`
-  - 3D 绘本馆：`https://storybook.daozhuai.cn/`
-  - 八十天环游地球：`https://fogg.daozhuai.cn/`
-  - 编剧手艺工坊：`https://script.daozhuai.cn/`
-  - 阿Q交互小剧场：`https://aq.daozhuai.cn/`
+### 1. 核心门户主站
+| 站点名称 | 线上正式域名 (Custom Domain) | 灾备 / 备用镜像地址 | GitHub 源码仓库 | 本地工程目录 |
+| :--- | :--- | :--- | :--- | :--- |
+| **岛主官方个人门户** | **[https://www.daozhuai.cn/](https://www.daozhuai.cn/)**<br>(根域名 [https://daozhuai.cn/](https://daozhuai.cn/) 自动跳转) | [https://daozhu-portfolio.pages.dev/](https://daozhu-portfolio.pages.dev/) | [daozhu1993-oss/daozhu-portfolio](https://github.com/daozhu1993-oss/daozhu-portfolio) | `daozhu-portfolio/` |
+
+---
+
+### 2. 「数字群岛」各独立子站点与应用清单
+| 序号 | 站点 / 应用名称 | 线上正式域名 (带 SSL 加速) | 上游源地址 (GitHub Pages / Pages.dev) | GitHub 仓库 | 本地反代 Worker / 工程目录 |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **01** | **慢游中国 · AI旅行路线定制** (最新上线) | **[https://travel.daozhuai.cn/](https://travel.daozhuai.cn/)** | `https://daozhu1993-oss.github.io/travel/` | [daozhu1993-oss/travel](https://github.com/daozhu1993-oss/travel) | `daozhu-travel-proxy/` |
+| **02** | **《神话》独立数字文学杂志** (30期全集) | **[https://myth.daozhuai.cn/](https://myth.daozhuai.cn/)** | `https://daozhu1993-oss.github.io/myth-magazine/` | [daozhu1993-oss/myth-magazine](https://github.com/daozhu1993-oss/myth-magazine) | `daozhu-myth-proxy/` |
+| **03** | **一一与芽芽兽 · 3D立体绘本馆** | **[https://storybook.daozhuai.cn/](https://storybook.daozhuai.cn/)** | `https://daozhu1993-oss.github.io/yiyi-storybook/` | [daozhu1993-oss/yiyi-storybook](https://github.com/daozhu1993-oss/yiyi-storybook) | `daozhu-storybook-proxy/` |
+| **04** | **《福格的赌约》80天环游地球** | **[https://fogg.daozhuai.cn/](https://fogg.daozhuai.cn/)** | [https://daozhu-fogg.pages.dev/](https://daozhu-fogg.pages.dev/) (备用: `.../foggs-bet`) | [daozhu1993-oss/foggs-bet](https://github.com/daozhu1993-oss/foggs-bet) | `daozhu-fogg-proxy/` |
+| **05** | **岛主 AI 日报 · Daily Curator** | **[https://dailyone.daozhuai.cn/](https://dailyone.daozhuai.cn/)** | Cloudflare Worker / Pages 聚合服务 | [daozhu1993-oss/ai-daily](https://github.com/daozhu1993-oss/ai-daily) | `ai-daily/` |
+| **06** | **岛主的 AI 思考 · The Daozhu Journal** (68篇) | **[https://ai.daozhuai.cn/](https://ai.daozhuai.cn/)** | `https://daozhu1993-oss.github.io/ai-thinking/` | [daozhu1993-oss.github.io](https://github.com/daozhu1993-oss/daozhu1993-oss.github.io) | `daozhu-ai-proxy/` |
+| **07** | **编剧手艺工坊 · StoryCraft** | **[https://script.daozhuai.cn/](https://script.daozhuai.cn/)** | Cloudflare Worker 边缘服务 | [daozhu1993-oss/daozhu-script](https://github.com/daozhu1993-oss/daozhu-script) | `daozhu-script/` |
+| **08** | **岛主灵感工控终端 · Design & Motion** (478+) | **[https://inspo.daozhuai.cn/](https://inspo.daozhuai.cn/)** | Cloudflare Worker 边缘服务 | [daozhu1993-oss/daozhu-inspo](https://github.com/daozhu1993-oss/daozhu-inspo) | `daozhu-inspo/` |
+| **09** | **《梵高的星空 · 星月孤岛》3D漫步** | **[https://starry.daozhuai.cn/](https://starry.daozhuai.cn/)** | Cloudflare Worker 边缘服务 | [daozhu1993-oss/starry-island](https://github.com/daozhu1993-oss/starry-island) | `starry-island/` |
+| **10** | **《岛主卡丁车 (Daozhu Kart)》3D赛道** | **[https://kart.daozhuai.cn/](https://kart.daozhuai.cn/)** | Cloudflare Worker 边缘服务 | [daozhu1993-oss/daozhu-kart](https://github.com/daozhu1993-oss/daozhu-kart) | `daozhu-kart/` |
+| **11** | **《促织 · 聊斋蟋蟀决斗》音游** | **[https://cuzhi.daozhuai.cn/](https://cuzhi.daozhuai.cn/)** | Cloudflare Worker 边缘服务 | [daozhu1993-oss/cuzhi](https://github.com/daozhu1993-oss/cuzhi) | `daozhu-cuzhi-proxy/` |
+| **12** | **《阿Q正传》心理互动剧场** | **[https://aq.daozhuai.cn/](https://aq.daozhuai.cn/)** | Cloudflare Worker 边缘服务 | [daozhu1993-oss/daozhu-aq](https://github.com/daozhu1993-oss/daozhu-aq) | `daozhu-aq-proxy/` |
+| **13** | **掌机游戏匣子 (Pocket Console)** | **[https://pocket.daozhuai.cn/](https://pocket.daozhuai.cn/)** | 内含单车漫游、山海经对决、GB俄罗斯方块 | [daozhu1993-oss/daozhu-pocket](https://github.com/daozhu1993-oss/daozhu-pocket) | `daozhu-pocket/` |
+| **14** | **岛主小岛手记 (成长绘本 & 芽芽兽 IP 宇宙)** | **[https://me.daozhuai.cn/v2/](https://me.daozhuai.cn/v2/)** | `https://daozhu1993-oss.github.io/v2/` | [daozhu1993-oss.github.io](https://github.com/daozhu1993-oss/daozhu1993-oss.github.io) | `daozhu-island/` |
+
+---
+
+### 3. 知识库与开源项目
+| 项目名称 | 在线访问 / 仓库地址 | 简介 |
+| :--- | :--- | :--- |
+| **思维模型 · 每日一模型 (230+)** | [https://daozhu1993-oss.github.io/models/index.html](https://daozhu1993-oss.github.io/models/index.html) | MECE、RIDE、金字塔、SCQA 等结构化思考单页笔记知识库 |
+| **诗笺 · 诗歌排版工具** | [https://daozhu1993-oss.github.io/poem-typeset-tool/](https://daozhu1993-oss.github.io/poem-typeset-tool/) | 19 种竖排古籍、极简诗卡、杂志编辑风排版与导出工具 |
+| **现实判断战略参谋** | [https://github.com/daozhu1993-oss/reality-strategy-advisor](https://github.com/daozhu1993-oss/reality-strategy-advisor) | 把商业战略方法论做成可安装的 AI 专家包（开源） |
+
+---
+
+### 4. 社交与商业阵地
+- **小红书旅行日记**：[https://xhslink.com/m/2h5SdBrgtiq](https://xhslink.com/m/2h5SdBrgtiq)
+- **官方商务合作邮箱**：`daozhu1993@gmail.com`
+
+---
+
+## 二、全站技术架构全景图
+
+```mermaid
+flowchart TD
+    User["访客 / 移动端 / 微信浏览器"] --> DNS["Cloudflare DNS (daozhuai.cn)"]
+    
+    subgraph Edge["Cloudflare 边缘加速层"]
+        DNS --> CF_Worker["Cloudflare Worker: daozhu-portfolio<br>(www.daozhuai.cn / daozhuai.cn)"]
+        DNS --> CF_Pages["Cloudflare Pages<br>(daozhu-portfolio.pages.dev)"]
+        DNS --> Proxies["边缘反代集群 (Worker Custom Domains)"]
+    end
+
+    subgraph Archipelago["数字群岛独立应用"]
+        Proxies --> P1["travel.daozhuai.cn -> GitHub: travel"]
+        Proxies --> P2["myth.daozhuai.cn -> GitHub: myth-magazine"]
+        Proxies --> P3["storybook.daozhuai.cn -> GitHub: yiyi-storybook"]
+        Proxies --> P4["fogg.daozhuai.cn -> Pages: daozhu-fogg"]
+        Proxies --> P5["kart / script / inspo / aq / cuzhi / ai / pocket / starry ..."]
+    end
+```
 
 ### 架构核心特点：
 1. **统一门面，数据解耦**：
@@ -37,7 +92,7 @@
 
 ---
 
-## 二、关键账号与权限凭据
+## 三、关键账号与权限凭据
 
 Cindy 需要拥有以下平台的操作权限：
 
@@ -49,7 +104,7 @@ Cindy 需要拥有以下平台的操作权限：
 
 ---
 
-## 三、本地工程与代码仓库分布
+## 四、本地工程与代码仓库分布
 
 本地根目录位于：`/Users/gx/.gemini/antigravity/scratch/`
 
@@ -60,13 +115,20 @@ scratch/
 ├── daozhu-myth-proxy/         # 神话杂志反代 Worker (myth.daozhuai.cn)
 ├── daozhu-storybook-proxy/    # 3D 绘本馆反代 Worker (storybook.daozhuai.cn)
 ├── daozhu-fogg-proxy/         # 八十天环游地球反代 Worker (fogg.daozhuai.cn)
-├── daozhu-script/             # 编剧手艺工坊工程
-└── ...                        # 其他独立游戏与工具项目
+├── daozhu-script/             # 编剧手艺工坊工程 (script.daozhuai.cn)
+├── daozhu-inspo/              # 灵感工控终端工程 (inspo.daozhuai.cn)
+├── daozhu-kart/               # 岛主卡丁车游戏工程 (kart.daozhuai.cn)
+├── starry-island/             # 梵高星空工程 (starry.daozhuai.cn)
+├── cuzhi/ / daozhu-cuzhi-proxy/  # 促织游戏工程 (cuzhi.daozhuai.cn)
+├── daozhu-aq/ / daozhu-aq-proxy/ # 阿Q互动剧场工程 (aq.daozhuai.cn)
+├── daozhu-pocket/             # 掌机匣子工程 (pocket.daozhuai.cn)
+├── daozhu-island/             # 早期小岛 V2 综合页 (me.daozhuai.cn)
+└── ai-daily/                  # AI 日报服务工程 (dailyone.daozhuai.cn)
 ```
 
 ---
 
-## 四、日常高频操作 SOP
+## 五、日常高频操作 SOP
 
 ### SOP 1：主站内容更新（改经历、加作品、改文字）
 
@@ -78,7 +140,7 @@ scratch/
    - 如果是改经历、改作品卡片、加链接：直接编辑 `js/matrix-data.js`。
    - 如果是改基础 HTML 框架或文案：直接编辑 `index.html`。
 3. **关键：更新版本戳（防缓存）**：
-   - 打开 `index.html` 底部，将 `js/matrix-data.js?v=...` 中的版本号加 1（例如由 `20261114_travel_v2` 改为 `20261115_v1`）。
+   - 打开 `index.html` 底部，将 `<script src="js/matrix-data.js?v=...">` 等脚本的版本号往后递增（例如由 `20261114_travel_v2` 改为 `20261115_v1`）。
 4. **提交并部署（双引擎同步上线）**：
    ```bash
    # 1. 提交至 GitHub
@@ -138,7 +200,7 @@ scratch/
 
 ---
 
-## 五、必须遵守的 5 条「避坑铁律」
+## 六、必须遵守的 5 条「避坑铁律」
 
 1. ⚠️ **切勿在 Cloudflare DNS 页面手动乱删 CNAME 记录**：
    - 子域名绑定是由 Workers Custom Domains（`custom_domain: true`）统一纳管的，手动去改 DNS 可能会导致 SSL 证书回退或路由失效。
@@ -149,4 +211,4 @@ scratch/
 4. ⚠️ **双引擎同步部署（Worker + Pages）**：
    - 官方主域名绑在 Worker 上，而 Pages.dev 是核心灾备镜像，每次修改主站务必同时运行 Worker deploy 和 Pages deploy 两条指令。
 5. ⚠️ **密钥安全（BYOK 模式原则）**：
-   - 旅行手账等 AI 工具采用用户自备 API Key（BYOK）设计，前端代码中绝不能硬编码岛主个人的 Gemini / OpenAI / DeepSeek 生产 API 私钥。
+   - 旅行手账等 AI 工具采用用户自备 API Key（BYOK）设计，前端代码中绝不能硬编码岛主个人的商业大模型 API 私钥。
