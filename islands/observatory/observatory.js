@@ -16,7 +16,7 @@ for(const button of document.querySelectorAll('.channel-switches [data-channel]'
   const object=document.createElement('span');object.className='artifact-object';
   const face=document.createElement('span');face.className='artifact-face';
   const art=document.createElement('span');art.className='artifact-art';art.setAttribute('aria-hidden','true');
-  art.style.setProperty('--art',`url('../assets/${cover[0]}')`);art.style.setProperty('--zoom',cover[1]);art.style.setProperty('--crop',cover[2]);
+  art.style.setProperty('--art',`url('${new URL('../assets/'+cover[0],document.baseURI).href}')`);art.style.setProperty('--zoom',cover[1]);art.style.setProperty('--crop',cover[2]);
   const type=document.createElement('span');type.className='artifact-type';
   const title=document.createElement('b');for(const line of (button.dataset.channel==='journal'?['岛主的','AI 思考']:button.dataset.channel==='models'?['思维模型','图鉴']:[cover[3]])){const part=document.createElement('span');part.textContent=line;title.append(part);}const author=document.createElement('small');author.textContent='岛主 · 观察与思考';type.append(title,author);
   face.append(art,type);object.append(face);

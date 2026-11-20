@@ -25,7 +25,7 @@ for (const game of games) {
   const object=document.createElement('span');object.className='artifact-object';
   const face=document.createElement('span');face.className='artifact-face';
   const art=document.createElement('span');art.className='artifact-art';art.setAttribute('aria-hidden','true');
-  art.style.setProperty('--art',`url('../assets/${cover[0]}')`);art.style.setProperty('--zoom',cover[1]);art.style.setProperty('--crop',cover[2]);
+  art.style.setProperty('--art',`url('${new URL('../assets/'+cover[0],document.baseURI).href}')`);art.style.setProperty('--zoom',cover[1]);art.style.setProperty('--crop',cover[2]);
   const type=document.createElement('span');type.className='artifact-type';
   const title=document.createElement('b');
   for(const line of (gameTitleLines[game.id]||[game.name])){const part=document.createElement('span');part.textContent=line;title.append(part);}
