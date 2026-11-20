@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>岛主的港口 · 开始一场小小探索</title>
+<style>
+:root{--ink:#354538;--paper:#fff3d9;--red:#a3482e;--line:#a9956c;--green:#2d5249}*{box-sizing:border-box}body{margin:0;background:#f5e9d0;color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer}a{color:inherit}button:focus-visible,a:focus-visible{outline:3px solid #ac431e;outline-offset:4px}header{max-width:1600px;margin:auto;padding:14px 26px;display:flex;justify-content:space-between;align-items:center;gap:12px}header strong{font:700 22px 'Songti SC',serif}.links{display:flex;align-items:center;gap:20px}header a{font-size:13px;text-underline-offset:5px}header button{border:0;background:transparent;padding:8px;color:var(--ink);font-size:13px}.viewport{max-width:1672px;margin:auto;overflow-x:auto;overscroll-behavior-x:contain;border-top:1px solid #bba475;border-bottom:1px solid #bba475}.scene{position:relative;isolation:isolate;aspect-ratio:1672/941;min-width:800px}.art{display:block;width:100%;height:100%;position:absolute;inset:0;z-index:-2}.title{position:absolute;left:4%;top:5%;width:39%;pointer-events:none}.title small{font-size:clamp(11px,1vw,16px);letter-spacing:3px;color:#825b36}.title h1{font:700 clamp(32px,3.8vw,63px)/1.1 'Songti SC',STSong,serif;letter-spacing:1px;margin:9px 0 14px}.title p{font-size:clamp(12px,1.15vw,18px);margin:0;color:#615841}.hotspot{position:absolute;border:0;background:transparent;color:var(--ink);min-width:44px;min-height:44px;border-radius:50%;display:grid;place-items:center;touch-action:manipulation}.hotspot:before{content:'';position:absolute;inset:12%;border:1px dashed #fff6d5;border-radius:50%;opacity:0;transition:opacity .2s,transform .2s}.hotspot:hover:before,.hotspot:focus-visible:before{opacity:1;transform:scale(1.08)}.hotspot .label{position:absolute;top:100%;white-space:nowrap;background:#fff1cd;box-shadow:2px 3px 0 #4f3a272b;border:1px solid #ad9262;padding:3px 12px;border-radius:3px;font-size:clamp(11px,1vw,15px);transform:rotate(-3deg);transition:transform .2s}.hotspot:hover .label{transform:rotate(0deg) translateY(-3px)}.lamp{left:22%;top:61%;width:11%;height:17%}.workshop{left:46%;top:27%;width:19%;height:25%}.books{left:81%;top:11%;width:14%;height:19%}.observatory{left:7%;top:31%;width:13%;height:23%}.boat{left:77%;top:55%;width:17%;height:20%}.cat{left:31%;top:77%;width:10%;height:12%}.gull{left:63%;top:1%;width:8%;height:13%}.pulse{width:13px;height:13px;border-radius:50%;background:#fff6d5;border:3px solid #ad522e;box-shadow:0 0 0 7px #fff0c861;position:absolute;right:3%;bottom:16%;animation:ping 2.8s ease-in-out infinite}.beam{position:absolute;left:10.5%;top:46.7%;width:74%;height:28%;clip-path:polygon(0 32%,100% 0,100% 100%);background:linear-gradient(90deg,#fff2b596,#fff9d500);transform-origin:0 32%;opacity:0;pointer-events:none;mix-blend-mode:screen}.lit .beam{opacity:1;animation:sweep 7s ease-in-out infinite}.routes{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.route{fill:none;stroke:#ffda77;stroke-width:6;stroke-linecap:round;stroke-dasharray:1800;stroke-dashoffset:1800;filter:drop-shadow(0 0 7px #ffe8a3);transition:stroke-dashoffset 1.6s ease}.lit .route{stroke-dashoffset:0}.spark{position:absolute;left:9%;top:44%;width:7%;height:8%;background:#fff0b5;border-radius:50%;filter:blur(15px);opacity:0;pointer-events:none}.lit .spark{opacity:.7}.hint{display:flex;max-width:1240px;margin:16px auto 0;padding:0 24px;justify-content:space-between;align-items:center;gap:16px;color:#66583d;font-size:13px}.hint p{margin:0}.hint button{border:0;background:transparent;color:inherit;text-decoration:underline;text-underline-offset:4px;padding:8px}.shortcuts{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:14px 20px 24px}.shortcuts button,.shortcuts a{text-decoration:none;border:1px solid #b59b6d;color:var(--ink);background:#fff2d4;padding:8px 16px;border-radius:22px;font-size:14px}.shortcuts button:hover,.shortcuts a:hover{background:#e8d8b7}footer{max-width:1240px;margin:auto;padding:12px 24px 24px;font-size:12px;color:#77664c;display:flex;justify-content:space-between;gap:20px}.toast{position:fixed;bottom:25px;left:50%;transform:translate(-50%,15px);max-width:calc(100% - 30px);width:max-content;background:#284b41;color:#fff4db;border:1px solid #f4d296;padding:12px 22px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:5}.toast.show{opacity:1;transform:translate(-50%,0)}dialog{width:min(870px,calc(100% - 28px));max-height:88dvh;border:1px solid #997b4b;border-radius:9px;padding:0;background:#fff5df;color:var(--ink);box-shadow:0 24px 100px #10251a70}dialog::backdrop{background:#183c39a8;backdrop-filter:blur(5px)}.dialog-head{padding:18px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #c5b28a;gap:20px}.dialog-head span{font-size:13px;color:#776040}.close{width:44px;height:44px;border:1px solid #ad9367;border-radius:50%;background:#f7e8c8;color:var(--ink);font-size:22px}.dialog-body{padding:24px}.dialog-body h2{font:700 32px/1.3 'Songti SC',serif;margin:0 0 16px}.dialog-body>p{color:#655f4d}.project{display:grid;grid-template-columns:1fr 1.1fr;gap:23px}.project img{width:100%;height:240px;object-fit:cover;border-radius:4px}.project h3{font-size:23px;margin:0 0 10px}.project p{font-size:14px;margin:0 0 15px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}.tabs button{padding:8px 13px;background:transparent;border:1px solid #bfa77a;border-radius:4px;color:var(--ink);min-height:44px}.tabs button[aria-pressed=true]{background:var(--green);color:#fff4dc}.paper-link{display:inline-block;background:var(--green);color:#fff4dc;padding:11px 19px;border-radius:3px;text-decoration:none;font-size:14px}.note{font-size:12px!important;color:#77664c;margin-top:18px!important}.mini{display:flex;gap:8px;margin:14px 0;flex-wrap:wrap}.mini button{border:1px solid #b5a078;border-radius:4px;background:#f0e1c0;padding:8px 12px;font-size:13px;color:var(--ink)}.mini button[aria-pressed=true]{background:#e0b96f;border-color:#967444}.book-preview{display:grid;grid-template-columns:1fr 1fr;gap:23px}.book-preview img{width:100%;border-radius:6px}.arrival{background:#ecdfc1;padding:22px;border:1px dashed #a28c63;transform:rotate(-1deg);margin-bottom:22px}.arrival strong{font:700 29px 'Songti SC',serif;display:block}.arrival p{margin-bottom:0}.image-failed{padding:45px;background:#f0e1c0;text-align:center}.mobile-note{display:none}@keyframes ping{50%{box-shadow:0 0 0 11px #fff0c800}}@keyframes sweep{50%{transform:rotate(-12deg)}}@media(max-width:700px){header{padding:12px 16px}.links{gap:8px}header strong{font-size:19px}header a,header button{font-size:12px}.scene{min-width:860px}.title{left:3%;top:4%}.title h1{font-size:36px}.title p{font-size:13px}.title small{font-size:11px}.hotspot .label{font-size:12px}.hint{display:block;padding:0 16px;font-size:12px}.hint>button{display:none}.mobile-note{display:block!important;margin-top:5px!important}.shortcuts{gap:7px;padding:12px 15px 18px}.shortcuts button,.shortcuts a{padding:8px 12px;font-size:12px}.project,.book-preview{grid-template-columns:1fr}.project img{height:180px}.dialog-body{padding:18px}.dialog-head{padding:10px 18px}.dialog-body h2{font-size:28px}footer{padding:0 16px 18px;font-size:11px}.toast{font-size:13px}.book-preview img{max-height:200px;object-fit:cover}}@media(prefers-reduced-motion:reduce){*,*:before{animation:none!important;transition:none!important}.route{transition:none}.lit .beam{animation:none}}
+.atelier-entry{left:40%;top:79%;width:11%;height:12%}.atelier-entry .label{top:94%}
+</style>
+<link rel="stylesheet" href="journey.css"></head>
+<body>
+<header><strong>岛主的港口</strong><div class="links"><button id="sound" aria-pressed="false">声音 · 关</button><a href="https://www.daozhuai.cn/">进入主站 ↗</a></div></header>
+<main>
+<div class="viewport" id="viewport"><section class="scene" id="scene" aria-label="可探索的手绘港口">
+<img class="art" src="assets/harbor-art.webp" width="1672" height="941" alt="立体书里的港口：灯塔与拉杆、儿童产品工坊、绘本小屋和渡船">
+<div class="title"><small>产品人 · 创作者 · 岛主王仙客</small><h1>欢迎，来岛上坐坐。</h1><p>有些想法，已经长成了小岛。<br>先拨一下码头上的拉杆？</p></div>
+<div class="beam"></div><div class="spark"></div>
+<svg class="routes" viewBox="0 0 1672 941" aria-hidden="true"><path class="route" d="M520 735 Q570 590 760 585 Q1000 530 1120 585 Q1360 510 1280 420 Q1230 380 1245 344 M980 604 Q895 670 1000 690 Q1080 720 1120 718"/></svg>
+<button class="hotspot lamp" id="lamp" aria-label="拨动灯塔拉杆，点亮航线" aria-pressed="false"><span class="pulse"></span><span class="label">拨一下，开灯</span></button>
+<a class="hotspot workshop" href="workshop/index.html" aria-label="进入产品工坊，查看摩比、AI 小思和 AI 乐乐"><span class="pulse"></span><span class="label">产品工坊</span></a>
+<a class="hotspot observatory" href="observatory/index.html" aria-label="走进灯塔观察室，接通日报与灵感频道"><span class="pulse"></span><span class="label">灯塔观察室</span></a>
+<a class="hotspot books" href="stories/index.html" aria-label="进入故事小屋，翻看神话、绘本与手记"><span class="pulse"></span><span class="label">故事小屋</span></a>
+<a class="hotspot boat" href="play/index.html" aria-label="走进游戏码头，拿起掌机玩一会儿"><span class="pulse"></span><span class="label">游戏码头</span></a>
+<a class="hotspot atelier-entry" href="atelier/index.html" aria-label="打开猫旁边的地图，进入旅行与创作事务所"><span class="pulse"></span><span class="label">旅行与创作事务所</span></a>
+<button class="hotspot cat" id="cat" aria-label="摸摸码头上的猫"></button>
+<a class="hotspot gull" href="contact.html" aria-label="展开海鸥送来的邀请信，联系岛主"></a>
+</section></div>
+<div class="hint"><div><p id="status" role="status">港口已经准备好了。点点工坊、小屋；猫旁边的地图通向旅行与创作事务所。</p><p class="mobile-note">← 左右滑动看整座港口，或用下面的小路标直达。</p></div><button id="reset">重新逛一遍</button></div>
+<nav class="shortcuts" aria-label="港口快捷入口"><a href="experience.html">连续乘船体验</a><a href="voyage/index.html">逐页乘船体验</a><button data-focus="lamp">灯塔拉杆</button><a href="workshop/index.html">逛产品工坊</a><a href="stories/index.html">进故事小屋</a><a href="observatory/index.html">去观察室</a><a href="play/index.html">去游戏码头</a><a href="atelier/index.html">进旅行与创作事务所</a><a href="atlas.html">看全部群岛</a><a href="contact.html">联系岛主</a></nav>
+<section class="capability-note"><p>岛主 · 王仙客</p><h2>从一个故事，到一件能用的产品。</h2><p>十年编剧经历，后来做儿童产品、品牌传播与 AI 伙伴。把人物、内容和真实使用场景接起来，是我一直在做的工作。</p><p>摩比魔法七巧板：研究与产品定义 · AI 小思：世界观、人设与应用规范 · AI 乐乐：亲子阅读与跨部门落地。</p><a href="workshop/index.html">翻看三份产品记录 →</a><a href="contact.html">聊聊你的项目 →</a></section></main>
+<footer><span>用故事思维，驱动用户价值。</span><span>每一座岛，都从一个念头开始。</span></footer>
+<dialog id="panel" aria-labelledby="panel-title"><div class="dialog-head"><span id="panel-caption"></span><button class="close" id="close" aria-label="合上记录，回到港口">×</button></div><div class="dialog-body" id="panel-body"><h2 id="panel-title">港口记录</h2></div></dialog>
+<div class="toast" id="toast" role="status"></div>
+<script src="journey.js"></script><script>
+const scene = document.getElementById('scene');
+const lamp = document.getElementById('lamp');
+const panel = document.getElementById('panel');
+const panelBody = document.getElementById('panel-body');
+const caption = document.getElementById('panel-caption');
+const toast = document.getElementById('toast');
+const sound = document.getElementById('sound');
+let toastTimer;
+let audioContext;
+let catCount = 0;
+function notify(message) {
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 3300);
+}
+function chime() {
+  if (sound.getAttribute('aria-pressed') !== 'true') return;
+  try {
+    audioContext ||= new (window.AudioContext || window.webkitAudioContext)();
+    audioContext.resume();
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(660, audioContext.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(440, audioContext.currentTime + .24);
+    gain.gain.setValueAtTime(.04, audioContext.currentTime);
+    gain.gain.exponentialRampToValueAtTime(.001, audioContext.currentTime + .5);
+    oscillator.connect(gain).connect(audioContext.destination);
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + .5);
+  } catch {
+    sound.setAttribute('aria-pressed','false');
+    sound.textContent = '声音 · 不可用';
+    notify('当前浏览器暂时无法播放声音。');
+  }
+}
+function setLight(on) {
+  try { sessionStorage.setItem('daozhu-harbor-light', String(on)); } catch {}
+  scene.classList.toggle('lit',on);
+  lamp.setAttribute('aria-pressed',String(on));
+  lamp.setAttribute('aria-label',on?'拨动灯塔拉杆，收起光束':'拨动灯塔拉杆，点亮航线');
+  lamp.querySelector('.label').textContent = on?'灯塔已亮 · 再拨熄灯':'拨一下，开灯';
+  document.getElementById('status').textContent = on?'航线亮了。中间的产品工坊里，放着我参与过的三个产品。':'港口已经准备好了。点点工坊、小屋；猫旁边的地图通向旅行与创作事务所。';
+}
+function openPanel(kind) {
+  caption.textContent = {letter:'一封来自港口的信'}[kind];
+  if(kind==='letter') panelBody.innerHTML = '<h2 id="panel-title">你好，我是岛主。</h2><p>十年编剧经历，后来做儿童产品、AI 伙伴，如今也和 AI 一起独立构建数字群岛。</p><p>如果你在做 AI 角色、儿童产品，或有个值得做出来的想法，可以写信来聊聊。</p><a class="paper-link" href="contact.html">展开这封邀请信 →</a>';
+  panel.showModal();
+  chime();
+}
+lamp.addEventListener('click',()=>{const on = lamp.getAttribute('aria-pressed')!=='true';setLight(on);chime();notify(on?'灯亮了，工坊也准备开门了。':'留着屋里的灯，等下一位访客。');});
+document.querySelectorAll('[data-open]').forEach(button=>button.addEventListener('click',()=>openPanel(button.dataset.open)));
+document.getElementById('close').addEventListener('click',()=>panel.close());
+panel.addEventListener('click',event=>{if(event.target===panel){const rect=panel.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom) panel.close();}});
+document.getElementById('cat').addEventListener('click',()=>{catCount++;notify(['猫伸了个懒腰：今天也要慢慢来。','它翻了个身，露出一点肚皮。','它决定继续睡觉。你去工坊看看吧。'][(catCount-1)%3]);chime();});
+sound.addEventListener('click',()=>{const on=sound.getAttribute('aria-pressed')!=='true';sound.setAttribute('aria-pressed',String(on));sound.textContent=on?'声音 · 开':'声音 · 关';if(on)chime();});
+document.getElementById('reset').addEventListener('click',()=>{setLight(false);catCount=0;document.getElementById('viewport').scrollTo({left:0});notify('欢迎再来逛一遍。');});
+document.querySelector('[data-focus="lamp"]').addEventListener('click',()=>{lamp.scrollIntoView({block:'nearest',inline:'center',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});lamp.focus({preventScroll:true});});
+document.querySelector('.art').addEventListener('error',()=>{document.getElementById('status').textContent='港口原画暂时没能加载，可以通过下面的路标继续浏览。';scene.classList.add('image-failed');});
+
+window.addEventListener('pagehide', () => {
+  try { sessionStorage.setItem('daozhu-harbor-pan', String(document.getElementById('viewport').scrollLeft)); } catch {}
+});
+try {
+  if(sessionStorage.getItem('daozhu-harbor-light') === 'true') setLight(true);
+  document.getElementById('viewport').scrollLeft = Number(sessionStorage.getItem('daozhu-harbor-pan') || 0);
+} catch {}
+const returningFrom = new URLSearchParams(location.search).get('from');
+if(['workshop','stories','observatory','play','atelier'].includes(returningFrom)) {
+  document.getElementById('status').textContent = '欢迎回港口。翻开群岛海图，还能找到更多故事、工具和游戏。';
+  const returnFocus = {workshop:'.workshop',stories:'.books',observatory:'.observatory',play:'.boat',atelier:'.atelier-entry'};
+  document.querySelector(returnFocus[returningFrom]).focus({preventScroll:true});
+}
+</script>
+</body></html>

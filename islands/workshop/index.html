@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>岛主的产品工坊 · 进来动动手</title>
+  <link rel="stylesheet" href="workshop.css">
+<link rel="stylesheet" href="../journey.css"></head>
+<body>
+  <a class="skip" href="#bench">跳到工作台</a>
+  <header class="masthead">
+    <a class="back" href="../island.html?from=workshop">← 回港口</a>
+    <span>岛主的产品工坊</span>
+    <button id="sound" type="button" aria-pressed="false">声音 · 关</button>
+  </header>
+  <main>
+    <section class="room" aria-labelledby="room-title">
+      <div class="room-heading">
+        <p>推开门，想法正在成形。</p>
+        <h1 id="room-title">进来，动动手。</h1>
+      </div>
+      <div class="panorama" id="panorama">
+        <div class="room-scene">
+          <img class="room-art" src="../assets/workshop-art.webp" width="1672" height="941" alt="暖光里的手绘产品工坊，有七巧板工作台、AI 伙伴实验台和亲子阅读角">
+          <a class="door object" href="../island.html?from=workshop" aria-label="推门回到港口"><span>回港口</span></a>
+          <button class="object station mobi" data-project="mobi" aria-label="拿起七巧板，打开摩比工作台"><i></i><span>拿起七巧板</span></button>
+          <button class="object station xiaosi" data-project="xiaosi" aria-label="和 AI 小思打个招呼"><i></i><span>叫醒 AI 伙伴</span></button>
+          <button class="object station lele" data-project="lele" aria-label="翻开亲子阅读角的绘本"><i></i><span>翻开那本书</span></button>
+        <button class="object workshop-cat" id="workshop-cat" aria-label="轻轻摸摸梁上的猫"></button>
+        </div>
+      </div>
+      <p class="room-caption">挑一件东西，翻开它背后的产品记录。<span>手机上可以左右滑动整间工坊。</span></p>
+    </section>
+    <section class="capability-note"><h2>故事与产品，是同一条工作线。</h2><p>从编剧的人物与动机，走向儿童产品的场景、反馈和陪伴关系。下面三份记录，分别展示产品定义、AI 角色体系和亲子阅读方案。</p><a href="../contact.html">聊聊你的项目 →</a></section><section class="bench" id="bench" aria-labelledby="case-title">
+      <nav class="project-tabs" aria-label="选择产品记录">
+        <button data-project="mobi" aria-pressed="true">七巧板工作台</button>
+        <button data-project="xiaosi" aria-pressed="false">AI 伙伴实验台</button>
+        <button data-project="lele" aria-pressed="false">亲子阅读角</button>
+      </nav>
+      <div class="notebook">
+        <div class="case-heading">
+          <div><p id="company">好未来 / 学而思 · 智能启蒙硬件</p><h2 id="case-title" tabindex="-1">摩比魔法七巧板</h2></div>
+          <span class="paper-stamp">岛主的产品记录</span>
+        </div>
+        <div class="spread">
+          <div class="left-page">
+            <img id="project-image" src="../assets/mobi-hero.webp" width="800" height="600" alt="摩比魔法七巧板产品展示">
+            <p id="question" class="question">孩子手里的积木，怎样和屏幕里的冒险连起来？</p>
+            <h3>我的职责与推进</h3>
+            <p id="responsibility">产品策划负责人。参与市场测算、竞品拆解、产品定义、商业与定价策略，以及版本节奏与儿童互动体验协同。</p>
+            <details><summary>翻看职责记录</summary><p id="record">围绕摩比魔法七巧板的启蒙场景，与 UI、产品和研发团队协作，从用户体验视角推进儿童互动游戏落地。</p></details>
+          </div>
+          <div class="right-page">
+            <div class="turner" aria-label="翻看产品思路"><button id="previous" aria-label="上一页产品思路">←</button><span id="page-number" aria-live="polite">场景 / 判断 / 体验</span><button id="next" aria-label="下一页产品思路">→</button></div>
+            <div class="case-note" id="case-note" aria-live="polite"></div>
+            <div id="experiment"></div>
+          </div>
+        </div>
+        <div class="notebook-footer"><span id="session-progress" role="status">已翻看 1 / 3 份产品记录</span><a href="https://www.daozhuai.cn/#works">去主站看更多代表作 ↗</a></div>
+      </div>
+    </section>
+    <section class="departure">
+      <div><p>把手里的东西做完整，也把下一步想清楚。</p><h2>出门，就是继续生长的群岛。</h2></div>
+      <a class="solid" href="../island.html?from=workshop">合上记录，回港口 →</a>
+    </section>
+  </main>
+  <footer><a href="../stories/index.html">去故事小屋 →</a><a href="../atlas.html">全部数字群岛 →</a></footer>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="../journey.js"></script><script src="workshop.js"></script>
+</body>
+</html>

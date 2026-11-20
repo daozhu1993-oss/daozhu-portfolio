@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>数字群岛 · 航行手册</title>
+<link rel="stylesheet" href="stories/stories.css">
+<link rel="stylesheet" href="journey.css"></head>
+<body class="atlas-page">
+<header class="topbar"><a href="island.html">← 回港口</a><strong>群岛航行手册</strong><a href="https://www.daozhuai.cn/">岛主主站 ↗</a></header>
+<main class="ledger">
+<div class="ledger-title"><p>翻开海图，总能找到下一站。</p><h1>这些岛，都在这里。</h1><p>读故事，找工具，看产品，或认真玩一会儿。</p></div>
+<section class="map-fold"><div class="overview-heading"><h2>六座岛，都在海上。</h2><button id="overview-zoom" type="button" aria-pressed="false">放大海图</button></div><div class="overview-scroll"><div class="overview-world"><img class="map-art" src="assets/archipelago-map.webp" width="1672" height="941" alt="六岛总览：上排灯塔、工坊、故事，下排港口、游戏、事务所"><a class="map-port port-observatory" href="observatory/index.html" aria-label="进入灯塔观察室"><span>灯塔观察室</span></a><a class="map-port port-workshop" href="workshop/index.html" aria-label="进入产品工坊"><span>产品工坊</span></a><a class="map-port port-stories" href="stories/index.html" aria-label="进入故事小屋"><span>故事小屋</span></a><a class="map-port port-harbor" href="island.html" aria-label="进入港口"><span>港口</span></a><a class="map-port port-play" href="play/index.html" aria-label="进入游戏码头"><span>游戏码头</span></a><a class="map-port port-atelier" href="atelier/index.html" aria-label="进入旅行与创作"><span>旅行与创作</span></a></div></div><p class="map-caption">点岛屿直接进入。想体验小船航行？<a href="voyage/index.html">从灯塔出发 →</a></p><details class="map-list"><summary>展开文字路标与联系入口</summary><div class="map-routes"><a class="map-route" href="workshop/index.html"><img src="assets/workshop-art.webp" alt="" loading="lazy" width="400" height="225"><strong>产品工坊</strong><small>研究、定义与体验 →</small></a><a class="map-route" href="stories/index.html"><img src="assets/stories-art.webp" alt="" loading="lazy" width="400" height="225"><strong>故事小屋</strong><small>文学、绘本与手记 →</small></a><a class="map-route" href="observatory/index.html"><img src="assets/observatory-art.webp" alt="" loading="lazy" width="400" height="225"><strong>灯塔观察室</strong><small>日报、灵感与方法 →</small></a><a class="map-route" href="play/index.html"><img src="assets/play-art.webp" alt="" loading="lazy" width="400" height="225"><strong>游戏码头</strong><small>九个入口，认真玩 →</small></a><a class="map-route" href="atelier/index.html"><img src="assets/atelier-art.webp" alt="" loading="lazy" width="400" height="225"><strong>旅行与创作</strong><small>路线与故事工作单 →</small></a><a class="map-route" href="contact.html"><img src="assets/harbor-art.webp" alt="" loading="lazy" width="400" height="225"><strong>港口来信</strong><small>认识岛主，聊聊合作 →</small></a></div></details></section><form class="search" role="search"><label for="search">找一座岛</label><input id="search" type="search" placeholder="输入名字，或试试“旅行”“绘本”“游戏”" autocomplete="off"><button type="reset">清空</button></form>
+<nav class="categories" aria-label="按用途筛选"><button data-group="all" aria-pressed="true">全部航线</button><button data-group="products" aria-pressed="false">产品经历</button><button data-group="stories" aria-pressed="false">故事与生活</button><button data-group="tools" aria-pressed="false">创作与工具</button><button data-group="observe" aria-pressed="false">观察与思考</button><button data-group="play" aria-pressed="false">游戏与体验</button></nav>
+<p id="results-count" class="catalog-status" role="status"></p>
+<div id="catalog" class="catalog"></div>
+<p id="no-results" hidden>这条航线还没找到。换个词试试，或清空搜索看看全部群岛。</p>
+<div class="ledger-bottom"><a href="play/index.html">去游戏码头 →</a><a href="workshop/index.html">进产品工坊 →</a><a href="stories/index.html">去故事小屋 →</a><a href="https://www.daozhuai.cn/#about">认识岛主 ↗</a><a href="https://www.daozhuai.cn/#services">查看合作方向 ↗</a></div>
+</main>
+<footer class="bottom"><span>岛主 · 用故事思维，驱动用户价值。</span><a href="island.html">回港口</a></footer>
+<script src="journey.js"></script><script src="catalog.js"></script><script src="atlas.js"></script>
+</body></html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>岛主的观察室 · 收到一点新线索</title>
+<link rel="stylesheet" href="../stories/stories.css">
+<link rel="stylesheet" href="observatory.css"><link rel="stylesheet" href="../objects.css">
+<link rel="stylesheet" href="../journey.css"></head>
+<body>
+<header class="topbar"><a href="../island.html?from=observatory">← 回港口</a><strong>岛主的观察室</strong><a href="../atlas.html">全部群岛 ↗</a></header>
+<main>
+<section class="observation-room" aria-labelledby="room-title">
+<div class="room-intro"><p>窗外看世界，桌上留线索。</p><h1 id="room-title">收到一点新想法。</h1></div>
+<div class="panorama"><div class="illustration">
+<img id="observation-art" src="../assets/observatory-art.webp" width="1672" height="941" alt="手绘海边观察室，有收报机、灵感终端、手记与索引抽屉">
+<button class="room-object receiver" data-channel="daily" aria-label="打开收报机，查看 AI 日报频道"><span>收一份日报</span></button>
+<button class="room-object terminal" data-channel="inspo" aria-label="打开灵感终端"><span>接通灵感</span></button>
+<button class="room-object notes" data-channel="journal" aria-label="翻开 AI 思考手记"><span>翻翻思考</span></button>
+<button class="room-object drawers" data-channel="models" aria-label="拉开思维模型抽屉"><span>找个思考方法</span></button>
+</div></div>
+<p class="room-hint" id="art-status">选一个画里的物件，或翻翻桌上的收藏。<span>手机上可以左右滑动看整间观察室。</span></p>
+</section>
+<section class="control-desk" id="control-desk" aria-labelledby="channel-title">
+<div class="desk-heading"><p>从窗外收到的，留在纸上。</p><h2>桌上四份收藏，随手翻翻。</h2></div>
+<nav class="channel-switches object-grid" aria-label="切换观察频道"><button data-channel="daily" aria-pressed="true">AI 日报</button><button data-channel="inspo" aria-pressed="false">设计灵感</button><button data-channel="journal" aria-pressed="false">AI 思考</button><button data-channel="models" aria-pressed="false">思维模型</button></nav>
+<div class="machine paper-note"><div class="screen" id="screen"><p class="paper-kicker">这次翻到的收藏</p><h2 id="channel-title" tabindex="-1">岛主 AI 日报</h2><p id="channel-description"></p><p id="channel-question"></p><a id="channel-link" href="https://dailyone.daozhuai.cn/">前往 AI 日报 ↗</a></div><aside class="tuning"><button id="knob" aria-label="翻下一份收藏">下一份 →</button><p id="dial-label" role="status">AI 日报</p><label for="tuner">翻选收藏</label><input id="tuner" type="range" min="0" max="3" step="1" value="0" aria-valuetext="AI 日报"></aside></div>
+<section class="clippings" aria-labelledby="clippings-title"><div class="clipping-heading"><h2 id="clippings-title">这条航线，怎么开始？</h2><span id="clipping-label"></span></div><div id="clipping-content"></div></section>
+</section>
+<section class="other-routes"><h2>再往别处看看。</h2><div><a href="../stories/index.html">去故事小屋坐坐 →</a><a href="../workshop/index.html">去产品工坊动动手 →</a><a href="../play/index.html">去游戏码头玩玩 →</a><a href="../atlas.html">翻开全部群岛 →</a></div></section>
+</main>
+<footer class="bottom"><span>岛主 · 用故事思维，驱动用户价值。</span><a href="../island.html?from=observatory">回港口</a></footer>
+<script src="../journey.js"></script><script src="../catalog.js"></script><script src="../stories/books.js"></script><script src="observatory.js"></script>
+</body>
+</html>
