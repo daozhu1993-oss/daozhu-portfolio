@@ -12,7 +12,7 @@ let point={...seaNodes.lighthouse},destination='lighthouse',currentPort='lightho
 const camera=window.createVoyageCamera(viewport,document.getElementById('world'),reduced);
 const islandCenters={lighthouse:{x:17,y:28},workshop:{x:50,y:27},stories:{x:83,y:28},harbor:{x:17,y:74},play:{x:50,y:74},atelier:{x:83,y:74}};
 const closeup=document.getElementById('arrival-closeup'),closeupArt=document.getElementById('closeup-art');
-const closeupFiles={lighthouse:'observatory-art.webp',workshop:'workshop-art.webp',stories:'stories-art.webp',harbor:'harbor-art.webp',play:'play-art.webp',atelier:'atelier-art.webp'};
+const closeupFiles={lighthouse:'versioned/observatory-art.fb0a733e312e.webp',workshop:'workshop-art.webp',stories:'stories-art.webp',harbor:'harbor-art.webp',play:'play-art.webp',atelier:'atelier-art.webp'};
 let closeupVersion=0,bearing;
 function hideCloseup(){closeupVersion++;closeup.hidden=true;closeup.classList.remove('visible');}
 function revealCloseup(id){const version=++closeupVersion;closeup.classList.remove('visible');closeup.hidden=false;document.getElementById('closeup-title').textContent='抵岸近景 · '+ports[id].title;closeupArt.alt=ports[id].title+'清晰场景';const ready=()=>{if(version===closeupVersion&&!sailing&&destination===id)requestAnimationFrame(()=>{if(version===closeupVersion){closeup.classList.add('visible');viewport.scrollIntoView({block:'start',behavior:reduced.matches?'instant':'smooth'});}});};closeupArt.onload=ready;closeupArt.onerror=()=>{if(version===closeupVersion)hideCloseup();};closeupArt.src='../assets/'+closeupFiles[id];if(closeupArt.complete&&closeupArt.naturalWidth)ready();}
@@ -20,7 +20,7 @@ document.getElementById('closeup-back').addEventListener('click',hideCloseup);
 function dockFocus(){const center=islandCenters[destination];camera.dock({x:center.x*.65+point.x*.35,y:center.y*.65+point.y*.35});}
 const chart=document.getElementById('chart');let chartSelection='workshop';
 function selectChart(id){if(!Object.hasOwn(ports,id))return;chartSelection=id;document.querySelectorAll('[data-chart]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.chart===id)));document.getElementById('chart-selection').textContent='目的地：'+ports[id].title;}
-function openChart(){selectChart(destination);if(!chart.open)chart.showModal();}
+function openChart(){loadMapImage(chart.querySelector('img[data-src]'));selectChart(destination);if(!chart.open)chart.showModal();}
 document.getElementById('open-chart').addEventListener('click',openChart);document.getElementById('close-chart').addEventListener('click',()=>chart.close());
 document.querySelectorAll('[data-chart]').forEach(button=>button.addEventListener('click',()=>selectChart(button.dataset.chart)));
 document.getElementById('chart-sail').addEventListener('click',()=>{chart.close();sail(chartSelection);});
@@ -35,8 +35,17 @@ function sail(id){if(!Object.hasOwn(ports,id))return;cancelAnimationFrame(frame)
  function tick(time){if(!sailing||paused)return;if(!lastTime)lastTime=time;distanceProgress=Math.min(1,distanceProgress+Math.max(0,time-lastTime)/duration);lastTime=time;const next=pointOnSeaRoute(activePath,voyageEase(distanceProgress)),lean=voyageLean(point,next,bearing);bearing=lean.bearing;boat.style.setProperty('--boat-roll',lean.roll+'deg');boat.style.setProperty('--boat-speed',String(6*distanceProgress*(1-distanceProgress)/1.5));boat.classList.toggle('westbound',Math.cos(bearing*Math.PI/180)<0);point=next;place();document.getElementById('progress').value=Math.round(distanceProgress*100);if(distanceProgress>=1)arrive();else frame=requestAnimationFrame(tick);}
  window.resumeSailing=()=>{if(!sailing)return;paused=false;lastTime=0;window.islandAudio.phase('sailing');boat.classList.add('sailing');document.getElementById('pause').textContent='停一会儿';document.getElementById('voyage-status').textContent='继续前往'+ports[destination].title+'。仍可改道或直接靠岸。';frame=requestAnimationFrame(tick);};frame=requestAnimationFrame(tick);
 }
-function showSea(returning){clearTimeout(lightTimer);document.getElementById('arrival').hidden=true;document.getElementById('sea').hidden=false;cancelAnimationFrame(frame);destination=Object.hasOwn(ports,returning)?returning:'lighthouse';arrive();hideCloseup();if(!Object.hasOwn(ports,returning))camera.overview();document.getElementById('sea-title').focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}
-document.getElementById('lever').addEventListener('click',()=>{if(lit)return;window.islandAudio.effect('lever');lit=true;document.getElementById('arrival').classList.add('lit');document.getElementById('lever').setAttribute('aria-pressed','true');document.getElementById('lever-label').textContent='灯塔亮了';document.getElementById('arrival-message').textContent='六座岛的灯依次亮起。码头的小船正在等你。';lightTimer=setTimeout(()=>{document.getElementById('board').disabled=false;},reduced.matches?0:900);});
+const seaImage=document.getElementById('ocean-art');
+function loadMapImage(image) {
+  if (!image.hasAttribute('src')) image.src=image.dataset.src;
+}
+function prepareSeaImage() {
+  if (seaImage.hasAttribute('src')) return;
+  seaImage.fetchPriority='low';
+  loadMapImage(seaImage);
+}
+function showSea(returning){seaImage.fetchPriority='high';loadMapImage(seaImage);clearTimeout(lightTimer);document.getElementById('arrival').hidden=true;document.getElementById('sea').hidden=false;cancelAnimationFrame(frame);destination=Object.hasOwn(ports,returning)?returning:'lighthouse';arrive();hideCloseup();if(!Object.hasOwn(ports,returning))camera.overview();document.getElementById('sea-title').focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});}
+document.getElementById('lever').addEventListener('click',()=>{if(lit)return;prepareSeaImage();window.islandAudio.effect('lever');lit=true;document.getElementById('arrival').classList.add('lit');document.getElementById('lever').setAttribute('aria-pressed','true');document.getElementById('lever-label').textContent='灯塔亮了';document.getElementById('arrival-message').textContent='六座岛的灯依次亮起。码头的小船正在等你。';lightTimer=setTimeout(()=>{document.getElementById('board').disabled=false;},reduced.matches?0:900);});
 document.getElementById('board').addEventListener('click',()=>showSea());document.getElementById('skip-intro').addEventListener('click',()=>showSea());document.querySelectorAll('[data-island]').forEach(button=>button.addEventListener('click',()=>{const id=button.dataset.island;if(button.classList.contains('island')&&!sailing&&id===currentPort){if(window.parent!==window&&window.parent.__ISLAND_PLAYER__){window.parent.__ISLAND_PLAYER__.navigate(new URL(ports[id].url,location.href).href);}else location.assign(ports[id].url);return;}sail(id);}));finish.addEventListener('click',arrive);
 document.getElementById('pause').addEventListener('click',()=>{if(!sailing)return;if(paused){window.resumeSailing();return;}paused=true;boat.style.setProperty('--boat-roll','0deg');window.islandAudio.phase('quiet');cancelAnimationFrame(frame);boat.classList.remove('sailing');document.getElementById('pause').textContent='继续航行';document.getElementById('voyage-status').textContent='小船停在海上。可以继续，也可以改选另一座岛。';});
 document.getElementById('fit').addEventListener('click',()=>{hideCloseup();if(camera.mode==='overview'){if(sailing)camera.follow(point);else dockFocus();}else camera.overview();});
@@ -50,3 +59,11 @@ window.addEventListener('pagehide',()=>{cancelAnimationFrame(frame);clearTimeout
 window.addEventListener('pageshow',event=>{if(event.persisted&&sailing){paused=true;boat.classList.remove('sailing');document.getElementById('pause').textContent='继续航行';}});
 reduced.addEventListener('change',()=>{if(reduced.matches&&sailing)arrive();});
 const returning=new URLSearchParams(location.search).get('return');if(Object.hasOwn(ports,returning))showSea(returning);place();syncChoices();
+
+// Wait for the opening artwork before warming the map on connections that allow it.
+const openingImage=document.querySelector('.arrival-art');
+if (!navigator.connection?.saveData && !/2g/.test(navigator.connection?.effectiveType || '')) {
+  const warmMap=()=>setTimeout(prepareSeaImage, 300);
+  if (openingImage.complete && openingImage.naturalWidth) warmMap();
+  else openingImage.addEventListener('load',warmMap,{once:true});
+}
