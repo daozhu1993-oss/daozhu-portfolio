@@ -517,13 +517,13 @@
           identity.visitorId = msg.visitorId;
         }
         updateSelfNameUI(msg.name || identity.name);
-        stats.isFirstTime = Boolean(msg.isFirstTime);
-        stats.guestNumber = Number(msg.guestNumber || 0);
-        stats.totalGuests = Number(msg.totalGuests || 0);
+        stats.isFirstTime = stats.isFirstTime || Boolean(msg.isFirstTime);
+        stats.guestNumber = Number(msg.guestNumber || stats.guestNumber || 0);
+        stats.totalGuests = Math.max(stats.totalGuests, Number(msg.totalGuests || 0));
         stats.onlineCount = Number(msg.onlineCount || 1);
         stats.islandVisits = msg.islandVisits || {};
         stats.dockedCounts = msg.dockedCounts || {};
-        notes = Array.isArray(msg.notes) ? msg.notes : [];
+        notes = Array.isArray(msg.notes) ? msg.notes : notes;
         renderStatsUI();
         renderNotesUI();
 
@@ -739,9 +739,32 @@
       }
     });
 
+    function fetchInitialStats() {
+      if (typeof fetch !== 'function') return;
+      fetch(`${serviceOrigin}/stats?visitorId=${encodeURIComponent(identity.visitorId)}`, {
+        mode: 'cors',
+        cache: 'no-store',
+      })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data) => {
+          if (!data || typeof data.totalGuests !== 'number') return;
+          stats.isFirstTime = stats.isFirstTime || Boolean(data.isFirstTime);
+          stats.guestNumber = Number(data.guestNumber || stats.guestNumber || 0);
+          stats.totalGuests = Math.max(stats.totalGuests, Number(data.totalGuests || 0));
+          if (!connected) stats.onlineCount = Math.max(1, Number(data.onlineCount || 0));
+          if (data.islandVisits) stats.islandVisits = data.islandVisits;
+          if (data.dockedCounts) stats.dockedCounts = data.dockedCounts;
+          if (Array.isArray(data.notes) && notes.length === 0) notes = data.notes;
+          renderStatsUI();
+          if (notes.length > 0) renderNotesUI();
+        })
+        .catch(() => {});
+    }
+
     updateSelfNameUI(identity.name);
     updateNotePlaceholder();
-    setTimeout(connect, 120);
+    fetchInitialStats();
+    connect();
 
     return {
       enterSea(port) {
