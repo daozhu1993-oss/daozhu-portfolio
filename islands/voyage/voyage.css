@@ -20,3 +20,66 @@
 
 .chart-heading #chart-sound{width:auto;min-width:72px;font-size:11px;padding:8px 10px;border-radius:4px;white-space:nowrap}
 .boat-turn{transform:rotate(var(--boat-roll,0deg));transform-origin:50% 70%;transition:transform 220ms ease-out}.sailing .wake{opacity:calc(.25 + var(--boat-speed,0) * .55)}.arrival-closeup{position:absolute;inset:0;z-index:3;opacity:0;transition:opacity 650ms ease-out;background:#315b50;pointer-events:none}.arrival-closeup.visible{opacity:1;pointer-events:auto}.arrival-closeup>img{width:100%;height:100%;object-fit:cover;display:block}.arrival-closeup>div{position:absolute;top:14px;left:16px;right:16px;display:flex;gap:10px;align-items:center;justify-content:start;padding-right:330px}.arrival-closeup span{font-size:12px;background:#fff3d9eb;color:#354b3c;padding:8px 11px;border:1px solid #b69e71}.arrival-closeup button{min-height:44px;white-space:nowrap;background:#fff3d9eb;border:1px solid #b69e71;color:#354b3c;font-size:12px;padding:8px 11px}.camera-viewport:has(.arrival-closeup.visible) .near-water,.camera-viewport:has(.arrival-closeup.visible) .far-clouds{opacity:0}@media(max-width:700px){.arrival-closeup>div{top:65px;left:12px;right:12px;padding-right:0;justify-content:space-between}.arrival-closeup span{font-size:11px;padding:7px 9px}.arrival-closeup button{font-size:11px}}@media(prefers-reduced-motion:reduce){.arrival-closeup,.boat-turn{transition:none!important}}
+
+/* Live sea presence & guestbook V1 */
+.arrival-guest-count{display:inline-block;margin:0 0 8px;padding:7px 14px;border-radius:999px;background:#102b29b8;border:1px solid #d9c08e66;color:#ffefc9;font-size:12px;letter-spacing:.4px;backdrop-filter:blur(4px);min-height:auto!important;max-width:100%!important}
+.sea-presence-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 14px;background:#fff4dc;border:1px solid #bda57a;border-radius:999px;font-size:12px;color:#354b3c;box-shadow:1px 2px #d9c69f66}
+.presence-dot{width:8px;height:8px;border-radius:50%;background:#3f8b5f;box-shadow:0 0 0 4px #3f8b5f33;flex-shrink:0;animation:presence-pulse 2.6s ease-in-out infinite}
+.rename-boat{border:0;border-left:1px solid #cbb58d;background:transparent;color:#31564b;padding:2px 0 2px 10px;min-height:28px;font-size:12px;white-space:nowrap}
+.rename-boat strong{font-weight:700;color:#8e492e}
+.rename-boat:hover{text-decoration:underline;text-underline-offset:3px}
+.other-boats{position:absolute;inset:0;pointer-events:none;z-index:1}
+.other-boat{position:absolute;width:clamp(18px,2vw,31px);transform:translate(-50%,-50%);pointer-events:none;opacity:.9;filter:drop-shadow(1px 3px 2px #14362f38)}
+.other-boat svg{width:100%;display:block}
+.other-boat-bob{animation:bob 2900ms ease-in-out infinite;transform-origin:center}
+.other-boat.westbound .other-boat-bob svg{transform:scaleX(-1)}
+.other-boat.is-sailing .wake{stroke-dasharray:6 4;animation:wake 700ms linear infinite}
+.boat-tag,.self-boat-tag{position:absolute;left:50%;bottom:calc(100% + 2px);transform:translateX(-50%);white-space:nowrap;padding:1px 6px;border-radius:999px;font-size:9px;line-height:1.4;letter-spacing:.2px;pointer-events:none}
+.boat-tag{background:#fff6e2eb;color:#354b3c;border:1px solid #b89f72;box-shadow:0 1px 3px #14332a26}
+.self-boat-tag{background:#31564beb;color:#fff4d8;border:1px solid #f0d7a2aa;box-shadow:0 1px 4px #14332a36}
+.chart-other-boats{position:absolute;inset:0;pointer-events:none}
+.chart-other-dot{position:absolute;width:9px;height:9px;border-radius:50%;background:#fff2c6;border:2px solid #31564b;transform:translate(-50%,-50%);box-shadow:0 0 0 3px #fff2c644}
+.island-crowd{display:block;font-size:9px;color:#5a6e5c;margin-top:4px;letter-spacing:.3px}
+.boat-name-dialog{width:min(380px,calc(100% - 28px));padding:22px;border:1px solid #a98e61;border-radius:8px;background:#fff4dc;color:#354b3c;box-shadow:0 20px 60px #14362a55}
+.boat-name-dialog::backdrop{background:#173d3699;backdrop-filter:blur(3px)}
+.boat-name-dialog h2{font:700 22px 'Songti SC',serif;margin:0 0 8px}
+.boat-name-dialog p{font-size:12px;color:#6b604b;margin:0 0 14px}
+.boat-name-dialog input{width:100%;padding:10px 12px;font:15px/1.4 inherit;color:#354b3c;background:#fffbf0;border:1px solid #b49a6f;border-radius:4px;margin-bottom:16px}
+.boat-name-actions{display:flex;justify-content:flex-end;gap:10px}
+.boat-name-actions button{min-height:42px;padding:8px 16px;border:1px solid #b49a6f;border-radius:4px;background:transparent;color:#354b3c;font-size:13px}
+.boat-name-actions button[type=submit]{background:#31564b;color:#fff3d8;border-color:#31564b}
+@keyframes presence-pulse{0%,100%{box-shadow:0 0 0 3px #3f8b5f33}50%{box-shadow:0 0 0 6px #3f8b5f12}}
+@media(max-width:700px){.sea-heading{flex-direction:column;align-items:flex-start}.sea-presence-bar{border-radius:10px;padding:7px 11px;font-size:11px;gap:6px 8px}.rename-boat{border-left:0;padding-left:0;font-size:11px}.camera-viewport .other-boat{width:10px}.camera-viewport[data-camera=follow] .other-boat,.camera-viewport[data-camera=dock] .other-boat{width:12px}.boat-tag,.self-boat-tag{font-size:5px;padding:0 3px;bottom:calc(100% + 1px)}.camera-viewport[data-camera=overview] .boat-tag,.camera-viewport[data-camera=overview] .self-boat-tag{font-size:6px;padding:1px 4px}.arrival-guest-count{font-size:11px;padding:6px 11px}}
+
+/* V2: Horn greeting bubbles + Dock guestbook footprints */
+.horn-btn{border:1px solid #b59c70;background:#f7e5be;color:#354b3c;border-radius:999px;padding:4px 11px;min-height:30px;font-size:12px;white-space:nowrap;transition:background 160ms,transform 120ms}
+.horn-btn:hover:not(:disabled){background:#efe0b8}
+.horn-btn:active:not(:disabled){transform:scale(.97)}
+.horn-btn:disabled{opacity:.65;cursor:default}
+.boat-bubble{position:absolute;left:50%;bottom:calc(100% + 22px);transform:translateX(-50%);white-space:nowrap;padding:3px 9px;border-radius:12px;background:#fffaf0;color:#31564b;border:1px solid #b59460;box-shadow:0 3px 10px #14362a33;font-size:10px;font-weight:600;pointer-events:none;z-index:5;animation:bubble-float 3.1s ease-out forwards}
+.horn-ripple{position:absolute;left:50%;top:50%;width:120%;height:120%;border-radius:50%;border:2px solid #fff0b8cc;transform:translate(-50%,-50%) scale(.6);pointer-events:none;animation:horn-ring 1.2s ease-out forwards}
+@keyframes bubble-float{0%{opacity:0;transform:translate(-50%,6px) scale(.9)}12%{opacity:1;transform:translate(-50%,0) scale(1)}82%{opacity:1;transform:translate(-50%,-4px) scale(1)}100%{opacity:0;transform:translate(-50%,-10px) scale(.96)}}
+@keyframes horn-ring{0%{opacity:.9;transform:translate(-50%,-50%) scale(.5)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.4)}}
+.guestbook{max-width:1080px;margin:18px auto 0;padding:24px 30px;background:#fff6e2;border:1px solid #c2ab80;box-shadow:2px 4px #e2d1ae88}
+.guestbook-head{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.guestbook-head h2{font:700 22px/1.35 'Songti SC',serif;margin:0}
+.guestbook-filters{display:flex;gap:8px}
+.guestbook-filters button{min-height:36px;padding:5px 12px;border:1px solid #b8a078;background:transparent;color:#546558;border-radius:999px;font-size:12px}
+.guestbook-filters button[aria-pressed=true]{background:#31564b;color:#fff3d8;border-color:#31564b}
+.guestbook-stamps{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.guestbook-stamps button{min-height:32px;padding:4px 11px;border:1px dashed #b9a178;background:#fffaf0;color:#4f6253;border-radius:4px;font-size:12px}
+.guestbook-stamps button:hover{background:#f7e8c8;border-style:solid}
+.guestbook-form{display:flex;gap:10px;align-items:stretch}
+.guestbook-form input{flex:1;min-width:0;padding:10px 13px;font:14px/1.4 inherit;color:#354b3c;background:#fffcf4;border:1px solid #b89f74;border-radius:4px}
+.guestbook-form button{min-height:44px;padding:10px 18px;background:#31564b;color:#fff3d8;border:1px solid #31564b;border-radius:4px;font-size:13px;white-space:nowrap}
+.guestbook-status{font-size:12px;color:#3b6653;margin:9px 0 0}
+.guestbook-status.is-error{color:#a2492d}
+.guestbook-list{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.guestbook-item{padding:12px 14px;background:#fffbf0;border:1px solid #dcc9a3;border-radius:4px}
+.guestbook-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:11px;color:#78674e;margin-bottom:6px}
+.guestbook-meta strong{font-size:12px;color:#354b3c}
+.guestbook-port{padding:1px 7px;border-radius:999px;background:#efe2c4;color:#4a5e4f;font-size:10px}
+.guestbook-meta time{margin-left:auto;font-size:10px}
+.guestbook-item p{margin:0;font-size:13px;color:#354b3c;line-height:1.55;word-break:break-word}
+.guestbook-empty{grid-column:1/-1;font-size:13px;color:#78674e;padding:10px 0}
+@media(max-width:700px){.guestbook{margin:16px 14px 0;padding:18px 16px}.guestbook-form{flex-direction:column}.guestbook-list{grid-template-columns:1fr}.horn-btn{font-size:11px;padding:4px 9px}.boat-bubble{font-size:6px;padding:2px 5px;bottom:calc(100% + 10px)}}
