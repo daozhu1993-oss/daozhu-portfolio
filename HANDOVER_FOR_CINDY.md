@@ -19,10 +19,12 @@
 
 ## 一、全站最新网址与仓库对照总表
 
-### 1. 核心门户主站
+### 1. 核心门户主站与交互式数字群岛
 | 站点名称 | 线上正式域名 (Custom Domain) | 灾备 / 备用镜像地址 | GitHub 源码仓库 | 本地工程目录 |
 | :--- | :--- | :--- | :--- | :--- |
 | **岛主官方个人门户** | **[https://www.daozhuai.cn/](https://www.daozhuai.cn/)**<br>(根域名 [https://daozhuai.cn/](https://daozhuai.cn/) 自动跳转) | [https://daozhu-portfolio.pages.dev/](https://daozhu-portfolio.pages.dev/) | [daozhu1993-oss/daozhu-portfolio](https://github.com/daozhu1993-oss/daozhu-portfolio) | `daozhu-portfolio/` |
+| **数字群岛（手绘乘船交互版）** | **[https://www.daozhuai.cn/islands/](https://www.daozhuai.cn/islands/)**<br>(含自由航行、登岛船票、全站浮标 `/islands/buoy.js`) | [https://daozhu-portfolio.pages.dev/islands/](https://daozhu-portfolio.pages.dev/islands/) | 同上 (`daozhu-portfolio/islands/`) | `daozhu-portfolio/islands/` |
+| **实时海域与登岛足迹服务** | **[https://sea.daozhuai.cn/](https://sea.daozhuai.cn/)**<br>(`/ws` 实时同屏小船 · `/stats` 登岛统计 · `/health` 探针) | Cloudflare Durable Object (`SeaRoom` SQLite) | 本地独立归档 | `daozhu-sea-presence/` |
 
 ---
 
@@ -110,21 +112,31 @@ Cindy 需要拥有以下平台的操作权限：
 
 ```text
 scratch/
-├── daozhu-portfolio/          # 【核心】主站个人门户源码 (www.daozhuai.cn)
-├── daozhu-travel-proxy/       # 旅行手账反代 Worker (travel.daozhuai.cn)
-├── daozhu-myth-proxy/         # 神话杂志反代 Worker (myth.daozhuai.cn)
-├── daozhu-storybook-proxy/    # 3D 绘本馆反代 Worker (storybook.daozhuai.cn)
-├── daozhu-fogg-proxy/         # 八十天环游地球反代 Worker (fogg.daozhuai.cn)
-├── daozhu-script/             # 编剧手艺工坊工程 (script.daozhuai.cn)
-├── daozhu-inspo/              # 灵感工控终端工程 (inspo.daozhuai.cn)
-├── daozhu-kart/               # 岛主卡丁车游戏工程 (kart.daozhuai.cn)
-├── starry-island/             # 梵高星空工程 (starry.daozhuai.cn)
-├── cuzhi/ / daozhu-cuzhi-proxy/  # 促织游戏工程 (cuzhi.daozhuai.cn)
-├── daozhu-aq/ / daozhu-aq-proxy/ # 阿Q互动剧场工程 (aq.daozhuai.cn)
-├── daozhu-pocket/             # 掌机匣子工程 (pocket.daozhuai.cn)
-├── daozhu-island/             # 早期小岛 V2 综合页 (me.daozhuai.cn)
-└── ai-daily/                  # AI 日报服务工程 (dailyone.daozhuai.cn)
+├── daozhu-portfolio/          # 【核心】主站个人门户 & /islands/ 数字群岛源码 (www.daozhuai.cn)
+├── daozhu-sea-presence/       # 【核心】实时海域、多船同屏、鸣笛、足迹簿与金帆鉴权 Worker (sea.daozhuai.cn)
+├── daozhu-travel-proxy/       # 旅行手账反代 Worker (travel.daozhuai.cn，已注入浮标与 OG)
+├── daozhu-myth-proxy/         # 神话杂志反代 Worker (myth.daozhuai.cn，已注入浮标与 OG)
+├── daozhu-storybook-proxy/    # 3D 绘本馆反代 Worker (storybook.daozhuai.cn，已注入浮标与 OG)
+├── daozhu-fogg-proxy/         # 八十天环游地球反代 Worker (fogg.daozhuai.cn，已注入浮标/OG/图标/统计)
+├── daozhu-ai-proxy/           # AI思考反代 Worker (ai.daozhuai.cn，已注入浮标与图标)
+├── daozhu-cuzhi-proxy/        # 促织音游反代 Worker (cuzhi.daozhuai.cn，已注入浮标/OG/图标/统计)
+├── daozhu-aq-proxy/           # 阿Q剧场反代 Worker (aq.daozhuai.cn，已注入浮标/OG/图标)
+├── daozhu-me/                 # 小岛手记反代 Worker (me.daozhuai.cn，已注入浮标)
+├── daozhu-script/             # 编剧手艺工坊工程 (script.daozhuai.cn，已加浮标与 OG)
+├── daozhu-inspo/              # 灵感工控终端工程 (inspo.daozhuai.cn，Worker 注入浮标与 OG)
+├── daozhu-kart/               # 岛主卡丁车游戏工程 (kart.daozhuai.cn，已加浮标与 OG)
+├── starry-island/             # 梵高星空工程 (starry.daozhuai.cn，已加浮标/OG/图标)
+├── daozhu-pocket/             # 掌机匣子工程 (pocket.daozhuai.cn，已加浮标)
+└── ai-daily/                  # AI 日报服务工程 (dailyone.daozhuai.cn，已加浮标与统计探针)
 ```
+
+### 实时海域服务（`daozhu-sea-presence`）运维说明
+- **本地工程**：`/Users/gx/.gemini/antigravity/scratch/daozhu-sea-presence/`
+- **部署指令**：`cd /Users/gx/.gemini/antigravity/scratch/daozhu-sea-presence && npx wrangler deploy`
+- **关键配置**：
+  - `HISTORICAL_GUEST_BASE`（在 `wrangler.toml` `[vars]` 中配置，当前 `"9155"`）：历史累计登岛基数，与实时 SQLite 来客数无缝叠加；
+  - `HOST_SECRET`（在 Cloudflare Dashboard → `daozhu-sea-presence` → Settings → Variables and Secrets 配置）：岛主金帆旗专属暗号；在浏览器打开 `https://www.daozhuai.cn/islands/?captain=<暗号>` 即可升起岛主金帆并自动清理地址栏参数。
+- **全站返回浮标**：所有 14 个子站统一引用 `https://www.daozhuai.cn/islands/buoy.js`（Shadow DOM 隔离，支持一键收起为小图标，iframe 内自动隐藏）。改一次 `daozhu-portfolio/islands/buoy.js` 并重新部署主站，全生态 14 个子站即可同步更新浮标样式。
 
 ---
 
