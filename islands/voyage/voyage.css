@@ -83,3 +83,31 @@
 .guestbook-item p{margin:0;font-size:13px;color:#354b3c;line-height:1.55;word-break:break-word}
 .guestbook-empty{grid-column:1/-1;font-size:13px;color:#78674e;padding:10px 0}
 @media(max-width:700px){.guestbook{margin:16px 14px 0;padding:18px 16px}.guestbook-form{flex-direction:column}.guestbook-list{grid-template-columns:1fr}.horn-btn{font-size:11px;padding:4px 9px}.boat-bubble{font-size:6px;padding:2px 5px;bottom:calc(100% + 10px)}}
+
+/* Item 4: Boarding pass ticket dialog + Host Golden Flag easter egg */
+.host-encounter-banner{max-width:1400px;margin:0 auto 14px;padding:9px 18px;background:linear-gradient(90deg,#fff3cc,#fae2a0);border:1px solid #cfa045;border-radius:8px;color:#543a11;font-size:13px;font-weight:600;text-align:center;box-shadow:0 2px 10px #c99a3e2e}
+.other-boat.is-host{width:clamp(22px,2.5vw,38px);opacity:1;z-index:2;filter:drop-shadow(0 0 8px #ffd96699) drop-shadow(1px 3px 2px #14362f44)}
+.other-boat.is-host .boat-tag,.self-boat-tag.is-host{background:linear-gradient(135deg,#f8d673,#e6ae3c);color:#2c210b;border-color:#9e6d18;font-weight:700;box-shadow:0 2px 8px #c88e1d55}
+.boat.is-host{filter:drop-shadow(0 0 9px #ffd966aa) drop-shadow(2px 5px 3px #163c3340)}
+.chart-other-dot.is-host{width:12px;height:12px;background:#ffd862;border:2px solid #8b5612;box-shadow:0 0 0 4px #ffd86266;animation:presence-pulse 2s ease-in-out infinite}
+.boat-bubble.is-host{background:#fff8df;color:#69420d;border-color:#d49e35}
+.horn-ripple.is-host{border-color:#ffd966ee}
+.guestbook-item.is-host{background:#fff9e4;border-color:#d7ad54}
+.guestbook-host-badge{padding:1px 7px;border-radius:999px;background:linear-gradient(135deg,#f6d16a,#e4aa35);color:#2e2009;font-size:10px;font-weight:700}
+.host-exit-btn{margin-right:auto;border:0!important;color:#8a6a42!important;text-decoration:underline;font-size:12px!important;padding-left:0!important}
+.passport-actions{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0}
+.passport .ticket-trigger{text-decoration:none;background:#31564b;color:#fff3d8;border:1px solid #31564b;border-radius:4px;padding:10px 18px;font-size:13px;font-weight:600;white-space:nowrap}
+.passport .ticket-trigger:hover{filter:brightness(1.08)}
+.ticket-dialog{width:min(460px,calc(100% - 24px));max-height:92dvh;overflow:auto;padding:20px;border:1px solid #a98e61;border-radius:10px;background:#fff4dc;color:#354b3c;box-shadow:0 24px 80px #12332a66}
+.ticket-dialog::backdrop{background:#153832b8;backdrop-filter:blur(4px)}
+.ticket-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.ticket-head p{font-size:11px;letter-spacing:2px;color:#78674e;margin:0 0 3px}
+.ticket-head h2{font:700 24px 'Songti SC',serif;margin:0}
+.ticket-head button{width:40px;height:40px;border:1px solid #b49a6e;background:transparent;border-radius:50%;font-size:22px;color:#354b3c}
+.ticket-preview{width:100%;height:auto;display:block;border-radius:8px;border:1px solid #c5ad80;background:#234642}
+.ticket-status{font-size:12px;color:#5a6b5b;margin:10px 0 12px;text-align:center}
+.ticket-actions{display:flex;gap:10px}
+.ticket-actions a,.ticket-actions button{flex:1;text-align:center;min-height:44px;padding:10px 12px;border-radius:4px;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.ticket-download{background:#31564b;color:#fff3d8;border:1px solid #31564b}
+.ticket-actions button{background:#f3dfb8;color:#354b3c;border:1px solid #ac9265}
+@media(max-width:700px){.host-encounter-banner{margin:0 14px 10px;font-size:11px;padding:8px 12px}.passport-actions{align-items:stretch;margin-top:12px}.passport .ticket-trigger{text-align:center}.camera-viewport .other-boat.is-host{width:13px}.ticket-actions{flex-direction:column}}

@@ -1,6 +1,7 @@
 'use strict';
 (function () {
   const IDENTITY_KEY = 'daozhu-voyage-identity-v1';
+  const CAPTAIN_KEY = 'daozhu-captain-key-v1';
   const MAX_RENDERED_BOATS = 15;
   const HORN_COOLDOWN_MS = 4000;
 
@@ -84,6 +85,22 @@
     }
   }
 
+  function captureCaptainToken() {
+    try {
+      const u = new URL(location.href);
+      const fromUrl = u.searchParams.get('captain');
+      if (fromUrl !== null) {
+        if (fromUrl) localStorage.setItem(CAPTAIN_KEY, fromUrl);
+        else localStorage.removeItem(CAPTAIN_KEY);
+        u.searchParams.delete('captain');
+        history.replaceState(null, '', u.pathname + u.search + u.hash);
+      }
+      return localStorage.getItem(CAPTAIN_KEY) || '';
+    } catch {
+      return '';
+    }
+  }
+
   function resolveServiceOrigin() {
     if (typeof window.__SEA_PRESENCE_ORIGIN__ === 'string' && window.__SEA_PRESENCE_ORIGIN__) {
       return window.__SEA_PRESENCE_ORIGIN__.replace(/\/$/, '');
@@ -117,7 +134,21 @@
     return `${d.getMonth() + 1}月${d.getDate()}日`;
   }
 
-  function createRemoteBoatSvg(paletteIdx) {
+  function createRemoteBoatSvg(paletteIdx, isHost) {
+    if (isHost) {
+      return (
+        '<svg viewBox="0 0 120 100" aria-hidden="true">' +
+        '<path class="wake" d="M13 78 Q35 86 59 79 M10 88 Q38 96 68 87"/>' +
+        '<path d="M25 61 L105 61 L90 83 Q62 96 36 81Z" fill="#7d4a26" stroke="#f5ce6b" stroke-width="3"/>' +
+        '<path d="M21 61 Q60 49 106 60 L98 67 Q59 65 29 69Z" fill="#f7d57e" stroke="#6c431e" stroke-width="2"/>' +
+        '<path d="M63 10 L63 62" stroke="#6b451c" stroke-width="4"/>' +
+        '<path d="M58 16 Q33 30 32 53 L58 53Z" fill="#fff3c4" stroke="#b88428" stroke-width="2"/>' +
+        '<path d="M69 14 L95 49 L69 49Z" fill="#f2c45a" stroke="#b88428" stroke-width="2"/>' +
+        '<path d="M64 8 L84 14 L64 21Z" fill="#d9532f" stroke="#ffd86b" stroke-width="1.4"/>' +
+        '<circle cx="84" cy="67" r="5.5" fill="#ffe680" stroke="#80531a"/>' +
+        '</svg>'
+      );
+    }
     const p = SAIL_PALETTES[Math.abs(paletteIdx || 0) % SAIL_PALETTES.length];
     return (
       '<svg viewBox="0 0 120 100" aria-hidden="true">' +
@@ -132,7 +163,7 @@
     );
   }
 
-  function showBubbleOnBoat(boatEl, text) {
+  function showBubbleOnBoat(boatEl, text, isHost) {
     if (!boatEl || !text) return;
     const prevBubble = boatEl.querySelector('.boat-bubble');
     if (prevBubble) prevBubble.remove();
@@ -140,12 +171,12 @@
     if (prevRipple) prevRipple.remove();
 
     const ripple = document.createElement('span');
-    ripple.className = 'horn-ripple';
+    ripple.className = isHost ? 'horn-ripple is-host' : 'horn-ripple';
     ripple.setAttribute('aria-hidden', 'true');
     boatEl.appendChild(ripple);
 
     const bubble = document.createElement('span');
-    bubble.className = 'boat-bubble';
+    bubble.className = isHost ? 'boat-bubble is-host' : 'boat-bubble';
     bubble.textContent = text;
     boatEl.appendChild(bubble);
 
@@ -160,12 +191,14 @@
     const serviceOrigin = resolveServiceOrigin();
     const wsOrigin = serviceOrigin.replace(/^http/, 'ws');
     const identity = loadIdentity();
+    let captainToken = captureCaptainToken();
 
     const worldLayer = document.getElementById('other-boats');
     const chartLayer = document.getElementById('chart-other-boats');
     const selfBoatEl = document.getElementById('boat');
     const arrivalGuestEl = document.getElementById('arrival-guest-count');
     const presenceBarEl = document.getElementById('sea-presence-bar');
+    const hostEncounterEl = document.getElementById('host-encounter-banner');
     const onlineSummaryEl = document.getElementById('sea-online-summary');
     const myBoatNameEl = document.getElementById('my-boat-name');
     const selfBoatTagEl = document.getElementById('self-boat-tag');
@@ -175,6 +208,7 @@
     const renameForm = document.getElementById('boat-name-form');
     const renameInput = document.getElementById('boat-name-input');
     const renameCancel = document.getElementById('boat-name-cancel');
+    const hostExitBtn = document.getElementById('host-exit-btn');
 
     const guestbookEl = document.getElementById('guestbook');
     const guestbookForm = document.getElementById('guestbook-form');
@@ -184,6 +218,7 @@
 
     const remoteBoats = new Map();
     let selfId = null;
+    let isSelfHost = false;
     let ws = null;
     let connected = false;
     let closedByPage = false;
@@ -221,10 +256,41 @@
     function updateSelfNameUI(name) {
       identity.name = name || identity.name || makeFallbackName(identity.visitorId);
       saveIdentity(identity);
-      if (myBoatNameEl) myBoatNameEl.textContent = identity.name;
+      const label = isSelfHost ? `✦ ${identity.name}` : identity.name;
+      if (myBoatNameEl) myBoatNameEl.textContent = label;
       if (selfBoatTagEl) {
-        selfBoatTagEl.textContent = identity.name;
+        selfBoatTagEl.textContent = label;
+        selfBoatTagEl.classList.toggle('is-host', isSelfHost);
         selfBoatTagEl.hidden = false;
+      }
+      if (selfBoatEl) {
+        selfBoatEl.classList.toggle('is-host', isSelfHost);
+      }
+      if (hostExitBtn) {
+        hostExitBtn.hidden = !isSelfHost;
+      }
+    }
+
+    function updateHostEncounterBanner() {
+      if (!hostEncounterEl) return;
+      if (isSelfHost) {
+        hostEncounterEl.textContent = '✦ 岛主金帆旗已升起 · 在线旅人会在海面上看见你的专属旗舰';
+        hostEncounterEl.hidden = false;
+        return;
+      }
+      let hostBoat = null;
+      for (const entry of remoteBoats.values()) {
+        if (entry.data.isHost) {
+          hostBoat = entry.data;
+          break;
+        }
+      }
+      if (hostBoat) {
+        const loc = PORT_TITLES[hostBoat.to || hostBoat.port] || '海面上';
+        hostEncounterEl.textContent = `✨ 巧了，岛主本人此刻正在「${loc}」附近！点「鸣笛打招呼」打个照面吧`;
+        hostEncounterEl.hidden = false;
+      } else {
+        hostEncounterEl.hidden = true;
       }
     }
 
@@ -264,13 +330,21 @@
 
       for (const item of filtered.slice(0, 12)) {
         const li = document.createElement('li');
-        li.className = 'guestbook-item';
+        li.className = item.isHost ? 'guestbook-item is-host' : 'guestbook-item';
 
         const meta = document.createElement('div');
         meta.className = 'guestbook-meta';
 
         const author = document.createElement('strong');
         author.textContent = item.name || '海岛旅人';
+
+        meta.append(author);
+        if (item.isHost) {
+          const badge = document.createElement('span');
+          badge.className = 'guestbook-host-badge';
+          badge.textContent = '✦ 岛主';
+          meta.append(badge);
+        }
 
         const portTag = document.createElement('span');
         portTag.className = 'guestbook-port';
@@ -279,7 +353,7 @@
         const time = document.createElement('time');
         time.textContent = formatRelativeTime(item.createdAt, now);
 
-        meta.append(author, portTag, time);
+        meta.append(portTag, time);
 
         const body = document.createElement('p');
         body.textContent = item.text;
@@ -334,38 +408,46 @@
 
     function ensureBoatElement(entry) {
       if (!worldLayer) return;
+      const isHost = Boolean(entry.data.isHost);
       if (!entry.el) {
         const el = document.createElement('div');
-        el.className = 'other-boat';
+        el.className = isHost ? 'other-boat is-host' : 'other-boat';
         el.setAttribute('aria-hidden', 'true');
         el.innerHTML =
           '<span class="boat-tag"></span>' +
           '<div class="other-boat-turn"><div class="other-boat-bob">' +
-          createRemoteBoatSvg(entry.data.color) +
+          createRemoteBoatSvg(entry.data.color, isHost) +
           '</div></div>';
         worldLayer.appendChild(el);
         entry.el = el;
         entry.tagEl = el.querySelector('.boat-tag');
       }
-      if (entry.tagEl) entry.tagEl.textContent = entry.data.name || '海岛旅人';
+      entry.el.classList.toggle('is-host', isHost);
+      if (entry.tagEl) {
+        entry.tagEl.textContent = isHost ? `✦ ${entry.data.name || '岛主'}` : (entry.data.name || '海岛旅人');
+      }
 
       if (chartLayer && !entry.dot) {
         const dot = document.createElement('span');
-        dot.className = 'chart-other-dot';
+        dot.className = isHost ? 'chart-other-dot is-host' : 'chart-other-dot';
         dot.setAttribute('aria-hidden', 'true');
-        dot.title = entry.data.name || '';
+        dot.title = isHost ? `岛主 · ${entry.data.name || '岛主'}` : (entry.data.name || '');
         chartLayer.appendChild(dot);
         entry.dot = dot;
       } else if (entry.dot) {
-        entry.dot.title = entry.data.name || '';
+        entry.dot.classList.toggle('is-host', isHost);
+        entry.dot.title = isHost ? `岛主 · ${entry.data.name || '岛主'}` : (entry.data.name || '');
       }
     }
 
     function trimVisibleBoats() {
       if (remoteBoats.size <= MAX_RENDERED_BOATS) return;
-      const sorted = [...remoteBoats.entries()].sort(
-        (a, b) => (b[1].data.updatedAt || 0) - (a[1].data.updatedAt || 0)
-      );
+      const sorted = [...remoteBoats.entries()].sort((a, b) => {
+        if (Boolean(b[1].data.isHost) !== Boolean(a[1].data.isHost)) {
+          return b[1].data.isHost ? 1 : -1;
+        }
+        return (b[1].data.updatedAt || 0) - (a[1].data.updatedAt || 0);
+      });
       for (let i = MAX_RENDERED_BOATS; i < sorted.length; i++) {
         const [id, entry] = sorted[i];
         removeBoatElement(entry);
@@ -409,6 +491,7 @@
       trimVisibleBoats();
       positionBoat(entry, serverNow());
       scheduleAnimation();
+      updateHostEncounterBanner();
     }
 
     function removeBoat(id) {
@@ -417,6 +500,7 @@
       if (!entry) return;
       removeBoatElement(entry);
       remoteBoats.delete(id);
+      updateHostEncounterBanner();
     }
 
     function positionBoat(entry, now) {
@@ -513,6 +597,7 @@
 
       if (msg.type === 'welcome') {
         selfId = msg.selfId || null;
+        isSelfHost = Boolean(msg.isHost);
         if (msg.visitorId && msg.visitorId !== identity.visitorId) {
           identity.visitorId = msg.visitorId;
         }
@@ -532,6 +617,7 @@
         if (Array.isArray(msg.boats)) {
           for (const b of msg.boats) upsertBoat(b);
         }
+        updateHostEncounterBanner();
 
         if (inSea) {
           send({ type: 'enter_sea', port: currentPort });
@@ -545,10 +631,10 @@
       }
 
       if (msg.type === 'greet' && msg.id && msg.greeting) {
-        if (msg.id === selfId) return; // already shown locally on click
+        if (msg.id === selfId) return;
         const entry = remoteBoats.get(msg.id);
         if (entry && entry.el) {
-          showBubbleOnBoat(entry.el, msg.greeting);
+          showBubbleOnBoat(entry.el, msg.greeting, Boolean(msg.isHost));
           if (window.islandAudio) window.islandAudio.effect('horn-far');
         }
         return;
@@ -612,6 +698,8 @@
         port: currentPort,
         status: inSea ? 'docked' : 'arrival',
       });
+      if (captainToken) params.set('captain', captainToken);
+
       try {
         ws = new WebSocket(`${wsOrigin}/ws?${params.toString()}`);
       } catch {
@@ -637,19 +725,16 @@
         }
       });
 
-      ws.addEventListener('error', () => {
-        // Silent degradation
-      });
+      ws.addEventListener('error', () => {});
     }
 
-    // Horn greeting interaction
     if (hornBtn) {
       hornBtn.addEventListener('click', () => {
         const now = Date.now();
         if (now - lastHornAt < HORN_COOLDOWN_MS) return;
         lastHornAt = now;
         const idx = Math.floor(Math.random() * GREETINGS.length);
-        showBubbleOnBoat(selfBoatEl, GREETINGS[idx]);
+        showBubbleOnBoat(selfBoatEl, GREETINGS[idx], isSelfHost);
         if (window.islandAudio) window.islandAudio.effect('horn');
         send({ type: 'greet', index: idx });
         hornBtn.disabled = true;
@@ -662,7 +747,6 @@
       });
     }
 
-    // Rename dialog interactions
     if (renameBtn && renameDialog && renameForm && renameInput) {
       renameBtn.addEventListener('click', () => {
         renameInput.value = identity.name || '';
@@ -684,7 +768,24 @@
       });
     }
 
-    // Guestbook interactions
+    if (hostExitBtn) {
+      hostExitBtn.addEventListener('click', () => {
+        captainToken = '';
+        isSelfHost = false;
+        try {
+          localStorage.removeItem(CAPTAIN_KEY);
+        } catch {}
+        updateSelfNameUI(makeFallbackName(identity.visitorId));
+        updateHostEncounterBanner();
+        if (renameDialog && renameDialog.open) renameDialog.close();
+        if (ws && ws.readyState === WebSocket.OPEN) {
+          try {
+            ws.close();
+          } catch {}
+        }
+      });
+    }
+
     document.querySelectorAll('[data-note-filter]').forEach((btn) => {
       btn.addEventListener('click', () => {
         noteFilter = btn.dataset.noteFilter === 'current' ? 'current' : 'all';
@@ -733,9 +834,7 @@
       if (ws && ws.readyState === WebSocket.OPEN) {
         try {
           ws.close();
-        } catch {
-          // ignore
-        }
+        } catch {}
       }
     });
 
@@ -784,6 +883,15 @@
         updateNotePlaceholder();
         if (noteFilter === 'current') renderNotesUI();
         send({ type: 'dock', port: currentPort });
+      },
+      getSnapshot() {
+        return {
+          name: identity.name,
+          isHost: isSelfHost,
+          guestNumber: stats.guestNumber,
+          totalGuests: stats.totalGuests,
+          onlineCount: stats.onlineCount,
+        };
       },
       get connected() {
         return connected;

@@ -60,6 +60,7 @@ window.addEventListener('pagehide',()=>{cancelAnimationFrame(frame);clearTimeout
 window.addEventListener('pageshow',event=>{if(event.persisted&&sailing){paused=true;boat.classList.remove('sailing');document.getElementById('pause').textContent='继续航行';}});
 reduced.addEventListener('change',()=>{if(reduced.matches&&sailing)arrive();});
 const returning=new URLSearchParams(location.search).get('return');if(Object.hasOwn(ports,returning))showSea(returning);place();syncChoices();
+if(typeof window.initVoyageTicket==='function')window.initVoyageTicket(()=>{const snap=seaPresence?seaPresence.getSnapshot():{name:'海岛旅人',isHost:false,guestNumber:0,totalGuests:0};return{...snap,visited};});
 
 // Wait for the opening artwork before warming the map on connections that allow it.
 const openingImage=document.querySelector('.arrival-art');

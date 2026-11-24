@@ -1,6 +1,7 @@
 'use strict';
 (() => {
  const frame=document.getElementById('island-frame'),veil=document.getElementById('passage'),base=new URL('.',location.href),audio=window.islandAudio;
+ try{const u=new URL(location.href);const cap=u.searchParams.get('captain');if(cap!==null){if(cap)localStorage.setItem('daozhu-captain-key-v1',cap);else localStorage.removeItem('daozhu-captain-key-v1');u.searchParams.delete('captain');history.replaceState(null,'',u.pathname+u.search+u.hash);}}catch{}
  const pages={'voyage/index.html':['六岛航行','voyage'],'island.html':['岛主的港口','harbor'],'workshop/index.html':['产品工坊','workshop'],'stories/index.html':['故事小屋','stories'],'observatory/index.html':['灯塔观察室','lighthouse'],'play/index.html':['游戏码头','play'],'atelier/index.html':['旅行与创作','atelier'],'atlas.html':['群岛海图','atlas'],'contact.html':['港口来信','contact']};
  if(location.protocol==='file:'){document.getElementById('stage').hidden=true;document.querySelector('.player-bar').hidden=true;document.getElementById('file-notice').hidden=false;return;}
  let current='',ownedDepth=0,pendingTarget=null,counter=0,watchdog,transitionTimer;
