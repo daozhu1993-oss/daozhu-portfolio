@@ -710,15 +710,16 @@
         connected = true;
         reconnectAttempt = 0;
         clearInterval(pingTimer);
-        pingTimer = setInterval(() => send({ type: 'ping' }), 25000);
+        pingTimer = setInterval(() => send({ type: 'ping' }), 20000);
       });
 
       ws.addEventListener('message', (event) => handleMessage(event.data));
 
-      ws.addEventListener('close', () => {
+      ws.addEventListener('close', (event) => {
         connected = false;
         clearInterval(pingTimer);
         if (closedByPage) return;
+        if (event && (event.reason === 'superseded' || event.reason === 'replaced_or_stale')) return;
         if (reconnectAttempt < 3) {
           const delay = 2000 * Math.pow(2, reconnectAttempt++);
           reconnectTimer = setTimeout(connect, delay);
@@ -825,7 +826,7 @@
       if (!document.hidden) scheduleAnimation();
     });
 
-    window.addEventListener('pagehide', () => {
+    function closeConnectionCleanly() {
       closedByPage = true;
       clearTimeout(reconnectTimer);
       clearTimeout(hornResetTimer);
@@ -833,10 +834,13 @@
       cancelAnimationFrame(animFrame);
       if (ws && ws.readyState === WebSocket.OPEN) {
         try {
-          ws.close();
+          ws.close(1000, 'page_leave');
         } catch {}
       }
-    });
+    }
+
+    window.addEventListener('pagehide', closeConnectionCleanly);
+    window.addEventListener('beforeunload', closeConnectionCleanly);
 
     function fetchInitialStats() {
       if (typeof fetch !== 'function') return;
