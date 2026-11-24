@@ -12,7 +12,7 @@ let point={...seaNodes.lighthouse},destination='lighthouse',currentPort='lightho
 const camera=window.createVoyageCamera(viewport,document.getElementById('world'),reduced);
 const islandCenters={lighthouse:{x:17,y:28},workshop:{x:50,y:27},stories:{x:83,y:28},harbor:{x:17,y:74},play:{x:50,y:74},atelier:{x:83,y:74}};
 const closeup=document.getElementById('arrival-closeup'),closeupArt=document.getElementById('closeup-art');
-const closeupFiles={lighthouse:'versioned/observatory-art.fb0a733e312e.webp',workshop:'workshop-art.webp',stories:'stories-art.webp',harbor:'harbor-art.webp',play:'play-art.webp',atelier:'atelier-art.webp'};
+const closeupFiles={lighthouse:'versioned/observatory-art.20261123.webp',workshop:'workshop-art.webp',stories:'stories-art.webp',harbor:'harbor-art.webp',play:'play-art.webp',atelier:'atelier-art.webp'};
 let closeupVersion=0,bearing;
 function hideCloseup(){closeupVersion++;closeup.hidden=true;closeup.classList.remove('visible');}
 function revealCloseup(id){const version=++closeupVersion;closeup.classList.remove('visible');closeup.hidden=false;document.getElementById('closeup-title').textContent='抵岸近景 · '+ports[id].title;closeupArt.alt=ports[id].title+'清晰场景';const ready=()=>{if(version===closeupVersion&&!sailing&&destination===id)requestAnimationFrame(()=>{if(version===closeupVersion){closeup.classList.add('visible');viewport.scrollIntoView({block:'start',behavior:reduced.matches?'instant':'smooth'});}});};closeupArt.onload=ready;closeupArt.onerror=()=>{if(version===closeupVersion)hideCloseup();};closeupArt.src='../assets/'+closeupFiles[id];if(closeupArt.complete&&closeupArt.naturalWidth)ready();}

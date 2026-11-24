@@ -2920,3 +2920,131 @@ html.dark .floating-tool-badge {
 }
 
 
+
+/* ── 数字群岛交互入口按钮与横幅卡片 (2026-11-24) ── */
+.btn-islands {
+  background: linear-gradient(135deg, #2d5d56 0%, #3d7569 100%);
+  color: #fff6e2 !important;
+  border: 1px solid rgba(236, 206, 152, 0.55);
+  box-shadow: 0 8px 22px rgba(45, 93, 86, 0.22);
+}
+
+.btn-islands:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(45, 93, 86, 0.34);
+  filter: brightness(1.06);
+}
+
+.archipelago-voyage-banner {
+  display: grid;
+  grid-template-columns: minmax(260px, 420px) minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+  margin: 0 0 28px;
+  padding: 20px;
+  border-radius: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-line);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s var(--ease-smooth), border-color 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth);
+}
+
+.archipelago-voyage-banner:hover {
+  transform: translateY(-4px);
+  border-color: var(--brand-primary);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+.voyage-banner-media {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: #285755;
+  border: 1px solid var(--border-subtle);
+}
+
+.voyage-banner-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.55s var(--ease-smooth);
+}
+
+.archipelago-voyage-banner:hover .voyage-banner-media img {
+  transform: scale(1.04);
+}
+
+.voyage-banner-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(20, 50, 46, 0.84);
+  color: #ffefc8;
+  border: 1px solid rgba(242, 217, 166, 0.45);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(6px);
+}
+
+.voyage-banner-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 4px 6px;
+}
+
+.voyage-banner-kicker {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--brand-primary);
+  font-weight: 600;
+}
+
+.voyage-banner-title {
+  margin: 0;
+  font-family: var(--font-serif, 'Noto Serif SC', serif);
+  font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+  line-height: 1.35;
+  color: var(--text-primary);
+}
+
+.voyage-banner-desc {
+  margin: 0;
+  font-size: 0.94rem;
+  line-height: 1.72;
+  color: var(--text-secondary);
+}
+
+.voyage-banner-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  margin-top: 6px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #2d5d56 0%, #3d7569 100%);
+  color: #fff6e2;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: transform 0.22s var(--ease-smooth), filter 0.22s var(--ease-smooth);
+}
+
+.archipelago-voyage-banner:hover .voyage-banner-cta {
+  transform: translateX(3px);
+  filter: brightness(1.06);
+}
+
+@media (max-width: 820px) {
+  .archipelago-voyage-banner {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+}

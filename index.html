@@ -11,11 +11,17 @@
   <meta http-equiv="Expires" content="0">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 
-  <!-- Open Graph -->
+  <!-- Open Graph & Twitter Card -->
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="岛主 Daozhu">
+  <meta property="og:url" content="https://www.daozhuai.cn/">
   <meta property="og:title" content="岛主 | 用故事思维驱动用户价值">
   <meta property="og:description" content="十年编剧 × AI 产品 × 内容创作。在岛上，慢慢长出来的数字化产品与故事宇宙。">
-  <meta property="og:image" content="assets/avatar.jpg">
+  <meta property="og:image" content="https://www.daozhuai.cn/assets/avatar.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="岛主 | 用故事思维驱动用户价值">
+  <meta name="twitter:description" content="十年编剧 × AI 产品 × 内容创作。在岛上，慢慢长出来的数字化产品与故事宇宙。">
+  <meta name="twitter:image" content="https://www.daozhuai.cn/assets/avatar.jpg">
 
   <!-- 防止深色模式闪烁脚本 (Rico UI 最佳实践) -->
   <script>
@@ -36,7 +42,7 @@
 
   <!-- 核心样式 (带版本时间戳防浏览器缓存) -->
   <link rel="stylesheet" href="css/style.css?v=20261111_perf_v1">
-  <link rel="stylesheet" href="css/components.css?v=20261111_perf_v1">
+  <link rel="stylesheet" href="css/components.css?v=20261124_islands">
 </head>
 <body>
 
@@ -170,6 +176,9 @@
             <a href="#services" class="btn btn-primary">
               <span>商业交付方案 ↓</span>
             </a>
+            <a href="/islands/" class="btn btn-islands">
+              <span>⛵ 乘船逛数字群岛 →</span>
+            </a>
             <a href="#works" class="btn btn-ghost">
               <span>看代表作品 →</span>
             </a>
@@ -181,6 +190,9 @@
           <!-- 社交外链微交互卡片列 -->
           <div class="social-cards-wrapper reveal delay-4">
             <div class="social-list">
+              <a href="/islands/" class="social-item">
+                <span>⛵ 乘船逛群岛</span>
+              </a>
               <a href="https://me.daozhuai.cn/v2/" target="_blank" rel="noopener noreferrer" class="social-item">
                 <span>🏝️ 作品站·岛上</span>
               </a>
@@ -279,6 +291,25 @@
       <p class="section-subtitle reveal">
         不是孤立的单点应用，而是围绕「前沿洞察、工控灵感、编剧手艺、独立游戏与人文绘本」深度咬合的群岛生态。
       </p>
+
+      <!-- 交互式乘船入口横幅：连接主站与数字群岛航行体验 -->
+      <a href="/islands/" class="archipelago-voyage-banner reveal delay-1" aria-label="前往数字群岛，点亮灯塔坐船逛遍六座数字小岛">
+        <div class="voyage-banner-media">
+          <img src="islands/assets/archipelago-map.webp" alt="手绘六座数字群岛海图" width="1280" height="720" loading="lazy" decoding="async">
+          <span class="voyage-banner-badge font-mono">NEW · 交互式手绘海图</span>
+        </div>
+        <div class="voyage-banner-body">
+          <div class="voyage-banner-kicker font-mono">INTERACTIVE ARCHIPELAGO · 换一种方式逛这里</div>
+          <h3 class="voyage-banner-title">点亮灯塔，坐小船逛遍六座数字小岛</h3>
+          <p class="voyage-banner-desc">
+            把所有产品案例、故事小屋、独立游戏与创作工具搬进了手绘海图。支持自由航行、实时看到同时在线的旅人小船、鸣笛打招呼，并在码头留下你的登岛足迹。
+          </p>
+          <span class="voyage-banner-cta">
+            <span>⛵ 登船出发</span>
+            <span aria-hidden="true">→</span>
+          </span>
+        </div>
+      </a>
 
       <!-- 动态注入 Bento 栅格 -->
       <div id="ecosystem-bento-grid" class="bento-grid reveal delay-1"></div>
