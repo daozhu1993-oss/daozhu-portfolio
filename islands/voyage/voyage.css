@@ -138,3 +138,13 @@ html[data-sky=night] .arrival .arrival-art{filter:brightness(.4) saturate(.82) h
 html[data-sky=night] .arrival.lit .arrival-art{filter:brightness(.78) saturate(.95)}
 @keyframes twinkle{0%,100%{opacity:.85}50%{opacity:.45}}
 @media(max-width:700px){.sky-toggle{font-size:11px!important;padding:4px 9px!important;min-height:30px!important}}
+
+/* The player toolbar reduces the height available inside the voyage frame. */
+@media (max-width: 360px) and (max-height: 720px) {
+  .arrival { min-height: 100%; }
+  .arrival-copy { padding: 12px 20px; }
+  .arrival h1 { font-size: 37px; line-height: 1.12; margin: 8px 0; }
+  .arrival-copy > p { min-height: 0; margin: 5px 0; }
+  .arrival-copy .arrival-guest-count { font-size: 12px; line-height: 1.4; }
+  .lever-panel { gap: 8px; margin: 8px 0; }
+}
