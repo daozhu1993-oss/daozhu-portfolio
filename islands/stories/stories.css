@@ -151,3 +151,12 @@ body.reader-open { overflow: hidden; }
 .cover-visual.island-art .cover-art { object-position:70% 20%; transform:scale(1.12); }
 
 @media(max-width:700px) { .cover-visual { height:58%; } }
+
+.hint-book{font:inherit;color:inherit;text-underline-offset:.2em;text-decoration:underline;background:none;border:0;padding:6px 2px;cursor:pointer}
+.sample-spread{display:block;width:100%;height:auto;aspect-ratio:1100/752}
+@media(max-width:700px){
+  .picturebook-reader .open-book{display:flex;flex-direction:column}
+  .picturebook-reader .reading-page{order:-1}
+}
+
+.picturebook-reader #book-page a{display:inline-flex;align-items:center;min-height:44px;margin:8px 0;text-underline-offset:.25em}

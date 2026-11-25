@@ -159,11 +159,15 @@ scratch/
    git commit -am "feat: 更新内容说明"
    git push origin main
 
-   # 2. 部署至主域名 Worker
-   npx wrangler deploy --name daozhu-portfolio --assets=. --compatibility-date=2026-10-12
+   # 2. 从已提交版本提取访客所需的文件，Worker 和 Pages 共用这一份
+   public_dir=$(mktemp -d)
+   git archive HEAD index.html _headers assets css js islands | tar -x -C "$public_dir"
+
+   # 部署至主域名 Worker
+   npx wrangler deploy --name daozhu-portfolio --assets="$public_dir" --compatibility-date=2026-10-12
 
    # 3. 部署至 Pages 镜像站
-   npx wrangler pages deploy . --project-name=daozhu-portfolio --branch=main
+   npx wrangler pages deploy "$public_dir" --project-name=daozhu-portfolio --branch=main
    ```
 
 ---

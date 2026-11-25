@@ -24,15 +24,18 @@ window.BOOKS = [
     "id": "storybook",
     "title": "一一与芽芽兽",
     "subtitle": "亲子共读 · 原创绘本",
-    "description": "留一点一起读故事的时间。",
+    "description": "《春天里最重要的事》是一一出生时的故事。一一与爸爸妈妈，一起署了名。",
     "image": "bento-island.webp",
     "color": "green",
     "url": "https://storybook.daozhuai.cn/",
-    "action": "进入绘本馆",
+    "action": "逛一一与芽芽兽的书架",
     "pages": [
       {
-        "title": "故事，先从陪伴开始",
-        "text": "给女儿的成长绘本，与原创 IP 芽芽兽，一点点长成了可以翻阅的数字绘本世界。"
+        "title": "春天里最重要的事",
+        "spread": "../assets/yiyi-spring-first.svg",
+        "text": "3月底。春天，来了。",
+        "url": "https://storybook.daozhuai.cn/read/yiyi-01/",
+        "linkText": "去绘本馆读这一本"
       },
       {
         "title": "给一起读的人留个座位",

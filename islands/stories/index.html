@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-CN">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>岛主的故事小屋 · 抽一本书，坐一会儿</title><meta name="description" content="神话杂志、亲子 3D 绘本和海边手记，挑一本慢慢读。"><link rel="icon" type="image/svg+xml" href="../assets/favicon-boat.svg"><meta property="og:type" content="website"><meta property="og:site_name" content="岛主的数字群岛"><meta property="og:url" content="https://www.daozhuai.cn/islands/stories/"><meta property="og:title" content="故事小屋 · 岛主的数字群岛"><meta property="og:description" content="神话杂志、亲子 3D 绘本和海边手记，挑一本慢慢读。"><meta property="og:image" content="https://www.daozhuai.cn/islands/assets/og-islands.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="故事小屋 · 岛主的数字群岛"><meta name="twitter:description" content="神话杂志、亲子 3D 绘本和海边手记，挑一本慢慢读。"><meta name="twitter:image" content="https://www.daozhuai.cn/islands/assets/og-islands.jpg"><link rel="stylesheet" href="stories.css"><link rel="stylesheet" href="../journey.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>岛主的故事小屋 · 抽一本书，坐一会儿</title><meta name="description" content="神话杂志、亲子 3D 绘本和海边手记，挑一本慢慢读。"><link rel="icon" type="image/svg+xml" href="../assets/favicon-boat.svg"><meta property="og:type" content="website"><meta property="og:site_name" content="岛主的数字群岛"><meta property="og:url" content="https://www.daozhuai.cn/islands/stories/"><meta property="og:title" content="故事小屋 · 岛主的数字群岛"><meta property="og:description" content="神话杂志、亲子 3D 绘本和海边手记，挑一本慢慢读。"><meta property="og:image" content="https://www.daozhuai.cn/islands/assets/og-islands.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="故事小屋 · 岛主的数字群岛"><meta name="twitter:description" content="神话杂志、亲子 3D 绘本和海边手记，挑一本慢慢读。"><meta name="twitter:image" content="https://www.daozhuai.cn/islands/assets/og-islands.jpg"><link rel="stylesheet" href="stories.css?v=20261125"><link rel="stylesheet" href="../journey.css"></head>
 <body>
 <header class="topbar"><a href="../island.html?from=stories">← 回港口</a><strong>岛主的故事小屋</strong><a href="../atlas.html">全部群岛 ↗</a></header>
 <main>
@@ -9,12 +9,12 @@
 <div class="panorama"><div class="illustration">
 <img id="room-art" src="../assets/stories-art.webp" width="1672" height="941" alt="手绘故事小屋：左边是神话卷轴，中间是绘本矮桌，右侧有手记书桌和小放映角">
 <button class="room-object scrolls" data-book="myth"><span>抽一卷神话</span></button>
-<button class="room-object picturebook" data-book="storybook"><span>打开绘本</span></button>
+<button class="room-object picturebook" data-book="storybook"><span>翻开一一的第一本书</span></button>
 <button class="room-object journal" data-book="journal"><span>翻翻手记</span></button>
 <button class="room-object projector" data-book="fengwu"><span>去放映角</span></button>
 <button class="room-cat" id="room-cat" aria-label="摸摸梁上的猫"></button>
 </div></div>
-<p class="room-hint" id="room-hint">点点画里的物件，或<a href="#shelf-title">到书架挑一本</a>。<span>手机上可以左右滑动看整间小屋。</span></p>
+<p class="room-hint" id="room-hint">点点画里的物件，或<button type="button" class="hint-book" data-book="storybook">翻开《春天里最重要的事》</button>。<span>手机上可以左右滑动看整间小屋。</span></p>
 </section>
 <section class="shelf-section" aria-labelledby="shelf-title"><div class="shelf-heading"><h2 id="shelf-title">挑一本，慢慢翻。</h2><span id="read-count" role="status">还没抽出第一本书</span></div><div class="shelf" id="shelf"></div><p class="shelf-caption">故事、思考和影像，留在同一间小屋里。</p></section>
 <section class="other-routes"><h2>想换一条航线？</h2><div><a href="../workshop/index.html">去产品工坊动动手 →</a><a href="../observatory/index.html">去观察室接通新线索 →</a><a href="../atlas.html">翻开全部群岛 →</a><a href="https://dailyone.daozhuai.cn/">看 AI 日报 ↗</a><a href="https://script.daozhuai.cn/">进编剧手艺工坊 ↗</a></div></section>
@@ -22,5 +22,5 @@
 <footer class="bottom"><span>岛主 · 用故事思维，驱动用户价值。</span><a href="../island.html?from=stories">回港口</a></footer>
 <dialog id="reader" aria-labelledby="book-title"><div class="reader-top"><span>书架导读</span><button id="close-reader" aria-label="合上书，回到小屋">×</button></div><div class="open-book"><div class="cover-page" id="cover-page"><small id="book-subtitle"></small><h2 id="book-title"></h2><img id="book-image" alt="所选作品封面" hidden><p id="book-description"></p><a id="book-link" class="solid" href="https://www.daozhuai.cn/">打开作品</a></div><div class="reading-page"><div class="page-turner"><button id="prev" aria-label="上一页导读">←</button><span id="page-count" aria-live="polite"></span><button id="next" aria-label="下一页导读">→</button></div><div id="book-page" aria-live="polite"></div><button id="bookmark" class="bookmark" aria-pressed="false">夹上书签</button><p id="bookmark-status" class="bookmark-status" role="status"></p></div></div></dialog>
 <div class="toast" id="toast" role="status"></div>
-<script src="../journey.js"></script><script src="books.js"></script><script src="stories.js"></script>
+<script src="../journey.js"></script><script src="books.js?v=20261125"></script><script src="stories.js?v=20261125"></script>
 </body></html>

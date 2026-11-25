@@ -27,10 +27,15 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      - name: Collect website files
+        run: |
+          mkdir public-site
+          git archive HEAD index.html _headers assets css js islands | tar -x -C public-site
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: public-site
 
       - name: Deploy to GitHub Pages
         id: deployment

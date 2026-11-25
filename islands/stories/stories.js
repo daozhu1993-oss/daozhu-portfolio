@@ -122,7 +122,16 @@ function renderPage(direction = 0) {
   title.textContent = item.title;
   const text = document.createElement('p');
   text.textContent = item.text;
-  area.append(title, text);
+  area.append(title);
+  if (item.spread) {
+    const spread = document.createElement('img');
+    spread.className = 'sample-spread';
+    spread.src = item.spread;
+    spread.alt = item.text;
+    area.append(spread);
+  } else {
+    area.append(text);
+  }
   if (item.url) {
     const link = document.createElement('a');
     link.href = item.url;
@@ -157,6 +166,7 @@ function openBook(id, trigger) {
   readerAnimation?.cancel();
   lastTrigger = trigger || null;
   currentBook = book;
+  reader.classList.toggle("picturebook-reader", id === "storybook");
   page = 0;
   visited.add(id);
   history.replaceState(null, '', '#' + id);
